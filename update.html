@@ -25,6 +25,12 @@ button{width:100%;padding:14px;border:none;border-radius:12px;margin-top:12px;fo
 .paypal{background:#ffc439;color:black}
 .whatsapp{background:#25D366;color:white}
 footer{text-align:center;padding:30px;color:#7e8bb8}
+.section h2{letter-spacing:.5px;text-transform:uppercase}
+.card{border:1px solid rgba(255,255,255,.04);background:linear-gradient(180deg,#141f3a,#0f1830)}
+.card h2{display:flex;justify-content:center;align-items:center;gap:10px}
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:10px}
+.chip{padding:10px 14px;border-radius:12px;background:#0e172e;border:1px solid #223060;color:#cfd8ff}
+.divider{height:1px;background:linear-gradient(90deg,transparent,#2b3f7a,transparent);margin:40px 0}
 </style>
 </head>
 <body>
@@ -83,18 +89,18 @@ footer{text-align:center;padding:30px;color:#7e8bb8}
 <section class="section">
 <div class="card" style="text-align:center;max-width:900px;margin:auto">
 <h2>Supported Brands</h2>
-<ul class="list">
-<li>Volvo Trucks / Volvo CE</li>
-<li>Scania</li>
-<li>Mercedes-Benz Trucks</li>
-<li>MAN</li>
-<li>DAF</li>
-<li>Iveco</li>
-<li>Cummins Engines</li>
-<li>Caterpillar (CAT)</li>
-<li>Detroit Diesel</li>
-<li>Deutz</li>
-</ul>
+<div class="brands-grid">
+<div class="chip">Volvo Trucks / CE</div>
+<div class="chip">Scania</div>
+<div class="chip">Mercedes-Benz Trucks</div>
+<div class="chip">MAN</div>
+<div class="chip">DAF</div>
+<div class="chip">Iveco</div>
+<div class="chip">Cummins Engines</div>
+<div class="chip">Caterpillar (CAT)</div>
+<div class="chip">Detroit Diesel</div>
+<div class="chip">Deutz</div>
+</div>
 </div>
 </section>
 
