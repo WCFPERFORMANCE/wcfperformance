@@ -5,103 +5,109 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Software Update - WCF Performance</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <style>
 body{margin:0;font-family:Poppins;background:#0b1220;color:white}
-
-/* TOP BAR */
-.topbar{
-background: radial-gradient(circle at 30% 50%, rgba(255,0,0,.35), transparent 60%),
-linear-gradient(90deg,#1a0000,#2b0000,#120000);
-padding:18px 0;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.7)
-}
+.topbar{background:linear-gradient(90deg,#2a0000,#a00000,#2a0000);padding:18px 0;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.7)}
 .topbar img{height:60px;filter:drop-shadow(0 0 12px rgba(255,0,0,.6))}
-
-/* NAVBAR */
-nav{
-background:#0a0a0c;
-display:flex;align-items:center;gap:25px;
-padding:14px 28px;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a
-}
-.logo{font-weight:800;color:#ff2e2e;font-size:22px}
+nav{background:#07090f;padding:14px 30px;display:flex;gap:25px;align-items:center;border-top:1px solid #1c1c1c;border-bottom:1px solid #1c1c1c}
 nav a{color:#cfd8ff;text-decoration:none;font-size:14px}
 nav a:hover{color:white}
-.search{margin-left:auto;background:#0b1220;border:1px solid #1f2c4f;border-radius:10px;padding:8px 12px;color:white;width:200px}
-
-/* HEADER */
-.header{text-align:center;padding:70px 20px;background:#070b16}
-.header h1{color:#ff2e2e;font-size:40px;margin:0}
-.header p{color:#cfd8ff;max-width:800px;margin:auto;margin-top:10px}
-
-/* SERVICES */
-.services{
-max-width:1100px;margin:60px auto;padding:0 20px;
-display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px
-}
-.card{background:#131c33;padding:28px;border-radius:18px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.6)}
-.price{color:#ff2e2e;font-size:26px;margin:12px 0;font-weight:700}
-
-button{width:100%;padding:14px;border:none;border-radius:12px;margin-top:10px;font-weight:600;cursor:pointer}
+.hero{padding:110px 20px;text-align:center;background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.85)),url('https://images.unsplash.com/photo-1555617117-08fda2d90b12?q=80&w=1600');background-size:cover}
+.hero h1{color:#ff3b3b;font-size:44px;margin:0}
+.hero p{max-width:760px;margin:auto;color:#d0d8ff;margin-top:15px}
+.section{max-width:1200px;margin:70px auto;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.card{background:#131c33;padding:30px;border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+.card h2{margin-top:0;color:#ff2e2e}
+.list li{margin:8px 0;color:#cfd8ff}
+.price{color:#ff2e2e;font-size:30px;font-weight:700;margin:20px 0}
+button{width:100%;padding:14px;border:none;border-radius:12px;margin-top:12px;font-weight:600;cursor:pointer}
 .paypal{background:#ffc439;color:black}
 .whatsapp{background:#25D366;color:white}
-
-footer{text-align:center;padding:30px;color:#7e8bb8;margin-top:60px}
+footer{text-align:center;padding:30px;color:#7e8bb8}
 </style>
 </head>
-
 <body>
 
-<div class="topbar">
-<img src="logo.png">
-</div>
+<div class="topbar"><img src="logo.png"></div>
 
 <nav>
 <a href="index.html">Accueil</a>
 <a href="chiptuning.html">Chiptuning</a>
-<a href="remote_support.html">Remote Support</a>
+<a href="remote.html">Remote Support</a>
 <a href="update.html">Software Update</a>
 <a href="contact.html">Contact</a>
 </nav>
 
-
-
-<section class="header">
-<h1>Software Update & Calibration</h1>
-<p>Mise à jour calculateurs constructeur, calibration systèmes, adaptation ECU/TCU et résolution incompatibilités logiciels.</p>
+<section class="hero">
+<h1>Truck & Heavy Equipment Programming</h1>
+<p>Remote programming and configuration for trucks and heavy machinery using manufacturer-level engineering software.</p>
 </section>
 
-<section class="services">
+<section class="section">
+<div class="grid">
 
 <div class="card">
-<h3>ECU Software Update</h3>
+<h2>Engine & Aftertreatment Module Updates</h2>
+<ul class="list">
+<li>Firmware update</li>
+<li>Software compatibility fixes</li>
+<li>Parameter correction</li>
+<li>Flash recovery</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Module Replacement & Initialization</h2>
+<ul class="list">
+<li>Used module configuration</li>
+<li>VIN matching</li>
+<li>Variant coding</li>
+<li>Startup authorization</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Truck & Machine Configuration</h2>
+<ul class="list">
+<li>Truck & machine configuration</li>
+<li>Adaption calibration</li>
+<li>Feature activation</li>
+<li>Network synchronization</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="card" style="text-align:center;max-width:900px;margin:auto">
+<h2>Supported Brands</h2>
+<ul class="list">
+<li>Volvo Trucks / Volvo CE</li>
+<li>Scania</li>
+<li>Mercedes-Benz Trucks</li>
+<li>MAN</li>
+<li>DAF</li>
+<li>Iveco</li>
+<li>Cummins Engines</li>
+<li>Caterpillar (CAT)</li>
+<li>Detroit Diesel</li>
+<li>Deutz</li>
+</ul>
+</div>
+</section>
+
+<section class="section">
+<div class="card" style="text-align:center;max-width:600px;margin:auto">
+<h2>Heavy Equipment Programming Session</h2>
+<p>Live remote programming with engineer supervision.</p>
 <div class="price">70€</div>
-<a href="https://paypal.me/swiftprog/70" target="_blank"><button class="paypal">Payer maintenant</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer infos véhicule</button></a>
+<a href="https://paypal.me/swiftprog/70" target="_blank"><button class="paypal">Pay Session</button></a>
+<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Send Vehicle Details</button></a>
 </div>
-
-<div class="card">
-<h3>TCU / Gearbox Update</h3>
-<div class="price">80€</div>
-<a href="https://paypal.me/swiftprog/80" target="_blank"><button class="paypal">Payer maintenant</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer infos véhicule</button></a>
-</div>
-
-<div class="card">
-<h3>Coding & Adaptation</h3>
-<div class="price">60€</div>
-<a href="https://paypal.me/swiftprog/60" target="_blank"><button class="paypal">Payer maintenant</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer infos véhicule</button></a>
-</div>
-
-<div class="card">
-<h3>VIN / Immo / Configuration Fix</h3>
-<div class="price">Sur devis</div>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Demander diagnostic</button></a>
-</div>
-
 </section>
 
 <footer>© WCF Performance</footer>
-
 </body>
 </html>
