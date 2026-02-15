@@ -4,168 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WCF Performance</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-
-body{
-margin:0;
-font-family:'Poppins',sans-serif;
-background:#0b0f17;
-color:white;
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Poppins',sans-serif;background:#0b0f17;color:white}
 
 /* NAVBAR */
 nav{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:10px 35px;
-background:#0f1624;
-box-shadow:0 3px 15px rgba(0,0,0,0.6);
-position:sticky;
-top:0;
-height:100px;
-z-index:1000;
+position:sticky;top:0;z-index:10;
+display:flex;align-items:center;justify-content:space-between;
+padding:14px 40px;background:#0f1624;box-shadow:0 4px 20px rgba(0,0,0,0.6);
 }
+.logo-wrap{display:flex;align-items:center;gap:14px}
+.logo-wrap img{height:60px}
+.brand{font-size:20px;font-weight:700;color:#ff2e2e}
+.menu{font-size:14px;color:#cbd5ff}
 
-
-.logo{
-display:flex;
-align-items:center;
-background:#0b0f17;
-padding:6px 14px;
-border-radius:10px;
-box-shadow:0 0 12px rgba(255,0,0,0.35);
-}
-
-.logo img{
-height:95px;
-filter:drop-shadow(0 0 6px rgba(255,0,0,0.7));
-}
-
-.menu{
-color:#c7d0ea;
-font-size:14px;
-}
-
-/* HERO BANNER */
-.hero{
-height:420px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
-background:linear-gradient(rgba(8,12,20,0.85),rgba(8,12,20,0.95)),
-url("https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1920");
-background-size:cover;
-background-position:center;
-}
-
-.hero h1{
-font-size:48px;
-color:#ff2e2e;
-margin-bottom:10px;
-}
-
-.hero p{
-color:#c7d0ea;
-font-size:18px;
-max-width:750px;
-}
-
-/* BADGES */
-.badges{
-display:flex;
-gap:30px;
-justify-content:center;
-padding:25px;
-font-size:14px;
-color:#9fb0d9;
-}
+/* HERO */
+.hero{position:relative;height:520px;background:url("https://images.unsplash.com/photo-1549921296-3a6b4f59a8d6?q=80&w=1920") center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,10,20,0.6),rgba(5,10,20,0.95))}
+.hero-content{position:relative;max-width:900px;padding:20px}
+.hero h1{font-size:52px;color:#ff2e2e;margin-bottom:20px;font-weight:700}
+.hero p{font-size:18px;color:#c8d2ff;margin-bottom:30px}
+.trust{display:flex;gap:25px;justify-content:center;flex-wrap:wrap;font-size:15px;color:#e2e8ff}
 
 /* SERVICES */
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-padding:60px 30px;
-max-width:1100px;
-margin:auto;
-}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;padding:70px 30px;max-width:1200px;margin:auto}
+.card{background:#151c2c;padding:30px;border-radius:18px;box-shadow:0 15px 40px rgba(0,0,0,0.6);text-align:center;transition:.25s}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.8)}
+.price{color:#ff2e2e;font-size:30px;margin:18px 0;font-weight:700}
+button{width:100%;padding:15px;border:none;border-radius:12px;margin-top:12px;font-weight:600;cursor:pointer;font-size:15px}
+.paypal{background:#ffc439;color:black}
+.whatsapp{background:#25D366;color:white}
 
-.card{
-background:#151c2c;
-padding:30px;
-border-radius:18px;
-box-shadow:0 15px 35px rgba(0,0,0,0.6);
-text-align:center;
-transition:0.3s;
-}
+/* FLOAT WHATSAPP */
+.float{position:fixed;bottom:25px;right:25px;background:#25D366;color:white;padding:15px 20px;border-radius:40px;text-decoration:none;font-weight:600;box-shadow:0 10px 25px rgba(0,0,0,0.5)}
 
-.card:hover{
-transform:translateY(-5px);
-}
-
-.price{
-color:#ff2e2e;
-font-size:30px;
-margin:15px 0;
-font-weight:700;
-}
-
-button{
-width:100%;
-padding:15px;
-border:none;
-border-radius:12px;
-margin-top:10px;
-font-weight:600;
-cursor:pointer;
-font-size:15px;
-}
-
-.paypal{
-background:#ffc439;
-color:black;
-}
-
-.whatsapp{
-background:#25D366;
-color:white;
-}
-
-footer{
-text-align:center;
-padding:25px;
-color:#7f8bb3;
-border-top:1px solid #1d263b;
-}
-
+footer{text-align:center;padding:30px;color:#7f8bb3}
 </style>
 </head>
 
 <body>
 
 <nav>
-<div class="logo">
-<img src="logo.png" alt="WCF Performance">
+<div class="logo-wrap">
+<img src="logo.png" alt="WCF">
+<div class="brand">WCF PERFORMANCE</div>
 </div>
 <div class="menu">Reprogrammation & Assistance professionnelle</div>
 </nav>
 
 <section class="hero">
-<h1>Reprogrammation Automobile Professionnelle</h1>
-<p>Intervention à distance rapide, paiement sécurisé et assistance technique spécialisée pour professionnels et particuliers.</p>
-</section>
-
-<div class="badges">
-<div>✔ Paiement sécurisé</div>
-<div>✔ Support professionnel</div>
-<div>✔ Intervention rapide</div>
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<h1>Optimisation & Reprogrammation Moteur</h1>
+<p>Solutions professionnelles pour particuliers et garages.<br>Intervention à distance sécurisée partout en Europe.</p>
+<div class="trust">
+<span>✔ Paiement sécurisé</span>
+<span>✔ Support technique réel</span>
+<span>✔ Intervention rapide</span>
 </div>
+</div>
+</section>
 
 <section class="services">
 
@@ -192,9 +93,9 @@ border-top:1px solid #1d263b;
 
 </section>
 
-<footer>
-© WCF Performance — Service technique spécialisé
-</footer>
+<a class="float" href="https://wa.me/message/NMAYVYZADORVF1">WhatsApp</a>
+
+<footer>© WCF Performance — Service technique spécialisé</footer>
 
 </body>
 </html>
