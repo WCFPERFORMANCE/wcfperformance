@@ -26,7 +26,7 @@ box-shadow:0 10px 30px rgba(0,0,0,.7);
 /* NAVBAR */
 nav{
 position:sticky;top:0;z-index:999;
-background:#0e1628;
+background:rgba(10,10,12,0.95);backdrop-filter:blur(6px);border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;
 display:flex;align-items:center;gap:25px;
 padding:14px 28px;
 box-shadow:0 5px 20px rgba(0,0,0,.5);
@@ -68,10 +68,13 @@ button{width:100%;padding:14px;border:none;border-radius:12px;margin-top:10px;fo
 .whatsapp{background:#25D366;color:white}
 
 .contact{text-align:center;margin:90px 0}
-footer{text-align:center;padding:30px;color:#7e8bb8}
+.topbar{background:linear-gradient(180deg,#050505,#0b0b0b);padding:18px 0;text-align:center;border-bottom:1px solid #1c1c1c;box-shadow:0 10px 30px rgba(0,0,0,.7)}
+.toplogo{height:60px;filter:drop-shadow(0 0 12px rgba(255,0,0,.45))}
+footer{text-align:center;padding:30px;col
 </style>
 </head>
 <body>
+<div class="topbar"><img src="logo.png" class="toplogo"></div>
 <div class="topbar">
 <img src="logo.png" alt="WCF Performance">
 </div>
