@@ -4,52 +4,145 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WCF Performance</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 <style>
-body{font-family:Arial;margin:0;background:#0b0e13;color:white;text-align:center}
-header{padding:60px;background:#111722}
-h1{color:#ff2e2e;font-size:40px;margin:0}
-.card{background:#151b28;margin:25px auto;padding:25px;border-radius:14px;max-width:420px}
-.price{font-size:26px;color:#ff2e2e;margin:10px 0}
-button{padding:14px;border:none;border-radius:10px;width:90%;margin:8px;font-size:15px;cursor:pointer}
-.paypal{background:#ffc439;color:black;font-weight:bold}
-.whatsapp{background:#25D366;color:white;font-weight:bold}
-.float{position:fixed;bottom:25px;right:25px;background:#25D366;color:white;padding:16px 20px;border-radius:50px;text-decoration:none}
-footer{padding:25px;color:#7d859f;font-size:13px}
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#0b0f17;
+color:white;
+}
+
+/* NAVBAR /
+nav{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:18px 40px;
+background:#0f1624;
+box-shadow:0 3px 12px rgba(0,0,0,0.5);
+position:sticky;
+top:0;
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+color:#ff2e2e;
+}
+
+.menu{
+color:#c7d0ea;
+font-size:14px;
+}
+
+/ HERO /
+.hero{
+padding:100px 20px;
+text-align:center;
+background:linear-gradient(180deg,#0b0f17,#121a2b);
+}
+
+.hero h1{
+font-size:46px;
+color:#ff2e2e;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#b8c2e0;
+font-size:18px;
+max-width:700px;
+margin:auto;
+}
+
+/ SERVICES */
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+padding:60px 30px;
+max-width:1100px;
+margin:auto;
+}
+
+.card{
+background:#151c2c;
+padding:30px;
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+text-align:center;
+}
+
+.price{
+color:#ff2e2e;
+font-size:28px;
+margin:15px 0;
+font-weight:700;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+margin-top:10px;
+font-weight:600;
+cursor:pointer;
+}
+
+.paypal{background:#ffc439;color:black;}
+.whatsapp{background:#25D366;color:white;}
+
+footer{
+text-align:center;
+padding:25px;
+color:#7f8bb3;
+}
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>WCF PERFORMANCE</h1>
-<p>Paiement sécurisé • Assistance professionnelle • Intervention rapide</p>
-</header>
+<nav>
+<div class="logo">WCF PERFORMANCE</div>
+<div class="menu">Reprogrammation & Assistance professionnelle</div>
+</nav>
+
+<section class="hero">
+<h1>Reprogrammation Automobile Professionnelle</h1>
+<p>Intervention à distance rapide, paiement sécurisé et assistance technique spécialisée pour professionnels et particuliers.</p>
+</section>
+
+<section class="services">
 
 <div class="card">
 <h2>Stage 1</h2>
 <div class="price">80€</div>
-<a href="https://paypal.me/swiftprog/80" target="_blank"><button class="paypal">Payer</button></a>
+<a href="https://paypal.me/swiftprog/80" target="_blank"><button class="paypal">Payer maintenant</button></a>
 <a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer infos WhatsApp</button></a>
 </div>
 
 <div class="card">
 <h2>EGR / FAP / Adblue OFF</h2>
 <div class="price">100€</div>
-<a href="https://paypal.me/swiftprog/100" target="_blank"><button class="paypal">Payer</button></a>
+<a href="https://paypal.me/swiftprog/100" target="_blank"><button class="paypal">Payer maintenant</button></a>
 <a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer infos WhatsApp</button></a>
 </div>
 
 <div class="card">
 <h2>Installation & Support</h2>
 <div class="price">50€</div>
-<a href="https://paypal.me/swiftprog/50" target="_blank"><button class="paypal">Payer</button></a>
+<a href="https://paypal.me/swiftprog/50" target="_blank"><button class="paypal">Payer maintenant</button></a>
 <a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer infos WhatsApp</button></a>
 </div>
 
-<a class="float" href="https://wa.me/message/NMAYVYZADORVF1">WhatsApp</a>
+</section>
 
 <footer>
-© WCF Performance
+© WCF Performance - Service technique spécialisé
 </footer>
 
 </body>
