@@ -84,12 +84,12 @@ Envoyez les informations du véhicule pour prise en charge
 </div>
 
 <form>
-<input type="text" placeholder="Nom / Garage">
-<input type="text" placeholder="Véhicule (Marque Modèle Année)">
-<input type="text" placeholder="Calculateur / ECU">
-<input type="text" placeholder="Outil utilisé (Kess, Flex, SM2...)">
-<textarea rows="4" placeholder="Décrivez votre demande"></textarea>
-<button type="button">Envoyer via WhatsApp</button>
+<input id="name" type="text" placeholder="Nom / Garage">
+<input id="car" type="text" placeholder="Véhicule (Marque Modèle Année)">
+<input id="ecu" type="text" placeholder="Calculateur / ECU">
+<input id="tool" type="text" placeholder="Outil utilisé (Kess, Flex, SM2...)">
+<textarea id="msg" rows="4" placeholder="Décrivez votre demande"></textarea>
+<button type="button" onclick="sendWhatsApp()">Envoyer via WhatsApp</button>
 </form>
 
 <a class="whatsapp" href="https://wa.me/message/NMAYVYZADORVF1">
@@ -98,6 +98,27 @@ Contacter directement sur WhatsApp
 </div>
 
 <footer>© WCF Performance</footer>
+
+<script>
+function sendWhatsApp(){
+
+let name = document.getElementById("name").value;
+let car = document.getElementById("car").value;
+let ecu = document.getElementById("ecu").value;
+let tool = document.getElementById("tool").value;
+let msg = document.getElementById("msg").value;
+
+let text =
+"Bonjour WCF Performance,%0A%0A" +
+"Nom : " + name + "%0A" +
+"Véhicule : " + car + "%0A" +
+"ECU : " + ecu + "%0A" +
+"Outil : " + tool + "%0A" +
+"Demande : " + msg;
+
+window.open("https://wa.me/message/NMAYVYZADORVF1?text=" + text, "_blank");
+}
+</script>
 
 </body>
 </html>
