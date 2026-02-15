@@ -25,21 +25,54 @@ button{width:100%;padding:14px;border:none;border-radius:12px;margin-top:12px;fo
 .paypal{background:#ffc439;color:black}
 .whatsapp{background:#25D366;color:white}
 footer{text-align:center;padding:30px;color:#7e8bb8}
+.about{padding:90px 20px;background:linear-gradient(180deg,#0b1220,#0e1730)}
+.about-wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.about-text h2{font-size:34px;margin-bottom:10px}
+.about-text p{color:#aab6ff;line-height:1.6}
+.about-badges{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px}
+.about-badges span{background:#111a33;border:1px solid #243060;padding:8px 14px;border-radius:10px;color:#dbe3ff}
+.about-card{background:#131c33;border:1px solid #243060;border-radius:18px;padding:26px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+.about-card h3{margin-top:0;color:#ff2e2e}
+.about-card ul{padding-left:18px;color:#cdd6ff;line-height:1.7}
+@media(max-width:900px){.about-wrap{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div class="topbar"><img src="logo.png"></div>
 
+<section class="about">
+  <div class="about-wrap">
+    <div class="about-text">
+      <h2>Professional ECU Engineering Services</h2>
+      <p>WCF Performance provides advanced remote calibration, troubleshooting and integration for workshops worldwide. Our workflow is designed for reliability, speed and OEM‑level safety.</p>
+      <div class="about-badges">
+        <span>✔ Secure process</span>
+        <span>✔ Verified solutions</span>
+        <span>✔ Worldwide availability</span>
+        <span>✔ Fast turnaround</span>
+      </div>
+    </div>
+    <div class="about-card">
+      <h3>Why choose us</h3>
+      <ul>
+        <li>Daily professional support</li>
+        <li>Truck & car expertise</li>
+        <li>Bench / OBD / Boot solutions</li>
+        <li>Tool compatibility assistance</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <nav>
 <a href="index.html">Accueil</a>
 <a href="chiptuning.html">Chiptuning</a>
-<a href="remote_support.html">Remote Support</a>
+<a href="remote.html">Remote Support</a>
 <a href="update.html">Software Update</a>
 <a href="contact.html">Contact</a>
+<input class="search" placeholder="Rechercher service...">
 </nav>
-
-
 
 <section class="hero">
 <h1>Professional Remote Assistance</h1>
