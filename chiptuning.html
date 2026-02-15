@@ -7,23 +7,136 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
 body{margin:0;font-family:Poppins;background:#0b1220;color:white}
-.topbar{background:linear-gradient(90deg,#1a0000,#7a0000,#1a0000);padding:18px;text-align:center}
-.topbar img{height:60px}
-nav{background:#05070c;padding:14px 28px;display:flex;gap:24px;align-items:center}
-nav a{color:#cfd8ff;text-decoration:none}
-nav a:hover{color:white}
-.container{max-width:1100px;margin:60px auto;padding:20px}
-.hero{text-align:center;margin-bottom:60px}
-.hero h1{color:#ff2e2e;font-size:40px;margin:0}
-.box{background:#131c33;padding:28px;border-radius:18px;margin:25px 0;box-shadow:0 10px 40px rgba(0,0,0,.6)}
-.price{color:#ff2e2e;font-size:30px;margin:12px 0;font-weight:700}
-button{width:100%;padding:14px;border:none;border-radius:12px;margin-top:10px;font-weight:600;cursor:pointer}
-.paypal{background:#ffc439;color:black}
-.whatsapp{background:#25D366;color:white}
+
+/* TOP LOGO BAR */
+.topbar{
+background:linear-gradient(90deg,#1a0000,#8b0000,#1a0000);
+padding:20px;
+text-align:center;
+box-shadow:0 5px 20px rgba(0,0,0,.6);
+}
+.topbar img{height:70px}
+
+/* NAV */
+nav{
+background:#05070c;
+padding:16px 40px;
+display:flex;
+gap:28px;
+align-items:center;
+justify-content:center;
+border-bottom:1px solid #111;
+}
+nav a{
+color:#cfd8ff;
+text-decoration:none;
+font-weight:500;
+transition:.3s;
+}
+nav a:hover{color:#ff2e2e}
+
+.container{max-width:1100px;margin:70px auto;padding:20px}
+
+/* HERO */
+.hero{text-align:center;margin-bottom:70px}
+.hero h1{
+color:#ff2e2e;
+font-size:42px;
+margin-bottom:20px;
+font-weight:800;
+}
+.hero p{
+color:#cfd8ff;
+font-size:18px;
+max-width:700px;
+margin:auto;
+line-height:1.6;
+}
+
+/* TRUST SECTION */
+.trust{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:35px;
+flex-wrap:wrap;
+}
+.trust div{
+background:#111a30;
+padding:14px 22px;
+border-radius:12px;
+font-size:14px;
+color:#9fb3ff;
+}
+
+/* SERVICE BOX */
+.box{
+background:linear-gradient(145deg,#121c33,#1a2747);
+padding:35px;
+border-radius:20px;
+margin:30px 0;
+box-shadow:0 15px 50px rgba(0,0,0,.7);
+transition:.4s;
+}
+.box:hover{transform:translateY(-6px)}
+
+.box h2{
+margin-top:0;
+color:white;
+font-weight:700;
+}
+
+.box p{
+color:#cfd8ff;
+margin-bottom:20px;
+}
+
+.price{
+color:#ff2e2e;
+font-size:32px;
+margin:15px 0;
+font-weight:800;
+}
+
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:14px;
+margin-top:12px;
+font-weight:600;
+cursor:pointer;
+font-size:15px;
+transition:.3s;
+}
+
+.paypal{
+background:#ffc439;
+color:black;
+}
+.paypal:hover{opacity:.85}
+
+.whatsapp{
+background:#25D366;
+color:white;
+}
+.whatsapp:hover{opacity:.85}
+
+.footer{
+text-align:center;
+padding:40px;
+color:#6c7aa8;
+margin-top:80px;
+}
+
 </style>
 </head>
 <body>
-<div class="topbar"><img src="logo.png"></div>
+
+<div class="topbar">
+<img src="logo.png" alt="WCF Performance">
+</div>
+
 <nav>
 <a href="index.html">Accueil</a>
 <a href="chiptuning.html">Chiptuning</a>
@@ -31,25 +144,42 @@ button{width:100%;padding:14px;border:none;border-radius:12px;margin-top:10px;fo
 <a href="update.html">Software Update</a>
 <a href="contact.html">Contact</a>
 </nav>
+
 <div class="container">
+
 <div class="hero">
-<h1>Chiptuning Calibration Services</h1>
-<p>Optimisation puissance, couple et agrément de conduite avec calibrations sécurisées</p>
+<h1>Professional ECU Calibration Center</h1>
+<p>Advanced remote tuning solutions for professional garages and performance specialists. Clean, tested and safe calibration files delivered fast.</p>
+
+<div class="trust">
+<div>✔ Tested & Verified Calibrations</div>
+<div>✔ Fast File Turnaround</div>
+<div>✔ Professional Tools Support</div>
+<div>✔ Secure Workflow</div>
 </div>
+</div>
+
 <div class="box">
-<h2>Stage 1</h2>
-<p>Optimisation moteur sans modification mécanique</p>
+<h2>Stage 1 Calibration</h2>
+<p>Optimised torque and power increase without hardware modification. Smooth drivability and OEM-safe approach.</p>
 <div class="price">80€</div>
-<a href="https://paypal.me/swiftprog/80" target="_blank"><button class="paypal">Payer</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer fichier</button></a>
+<a href="https://paypal.me/swiftprog/80" target="_blank"><button class="paypal">Secure Payment</button></a>
+<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Send File via WhatsApp</button></a>
 </div>
+
 <div class="box">
-<h2>EGR / FAP / Adblue OFF</h2>
-<p>Solutions hors route et banc uniquement</p>
+<h2>EGR / FAP / Adblue OFF (Off-road use)</h2>
+<p>Advanced off-road solutions. Custom calibration according to ECU version and hardware configuration.</p>
 <div class="price">100€</div>
-<a href="https://paypal.me/swiftprog/100" target="_blank"><button class="paypal">Payer</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer fichier</button></a>
+<a href="https://paypal.me/swiftprog/100" target="_blank"><button class="paypal">Secure Payment</button></a>
+<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Send File via WhatsApp</button></a>
 </div>
+
 </div>
+
+<div class="footer">
+© WCF Performance – Professional Remote Calibration Services
+</div>
+
 </body>
 </html>
