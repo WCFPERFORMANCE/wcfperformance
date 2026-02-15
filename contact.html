@@ -4,139 +4,160 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact - WCF Performance</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body{margin:0;font-family:Poppins;background:#0b1220;color:white}
-
-/* TOP BAR */
-.topbar{
-background: radial-gradient(circle at 30% 50%, rgba(255,0,0,.35), transparent 60%),
-linear-gradient(90deg,#1a0000,#2b0000,#120000);
-padding:18px 0;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.7)
+body{
+margin:0;
+font-family:Poppins;
+background:linear-gradient(180deg,#0b1220,#0a1a35);
+color:white;
 }
-.topbar img{height:60px;filter:drop-shadow(0 0 12px rgba(255,0,0,.6))}
 
-/* NAVBAR */
+/* NAVBAR (tu gardes la même partout) */
 nav{
-background:#0a0a0c;
-display:flex;align-items:center;gap:25px;
-padding:14px 28px;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a
+background:#0c0f18;
+padding:14px 28px;
+display:flex;
+gap:25px;
+align-items:center;
+border-bottom:1px solid #1d2746;
 }
-.logo{font-weight:800;color:#ff2e2e;font-size:22px}
-nav a{color:#cfd8ff;text-decoration:none;font-size:14px}
+nav a{color:#cfd8ff;text-decoration:none}
 nav a:hover{color:white}
-.search{margin-left:auto;background:#0b1220;border:1px solid #1f2c4f;border-radius:10px;padding:8px 12px;color:white;width:200px}
 
-/* CONTACT */
-.container{max-width:900px;margin:60px auto;padding:0 20px;text-align:center}
-h1{color:#ff2e2e}
+/* PAGE */
+.container{
+max-width:900px;
+margin:80px auto;
+padding:40px;
+background:#131c33;
+border-radius:18px;
+box-shadow:0 15px 60px rgba(0,0,0,.6);
+text-align:center;
+}
 
-.info{margin:30px 0;font-size:18px;color:#cfd8ff}
+h1{
+color:#ff2e2e;
+margin-bottom:10px;
+}
+
+.subtitle{
+color:#9fb0ff;
+margin-bottom:35px;
+}
+
+/* FORM */
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-bottom:15px;
+}
+
+input, textarea{
+width:100%;
+padding:14px;
+border-radius:10px;
+border:1px solid #1f2c4f;
+background:#0b1220;
+color:white;
+font-size:14px;
+}
+
+textarea{
+grid-column:1 / -1;
+resize:vertical;
+min-height:100px;
+}
+
+.file{
+margin-top:10px;
+padding:14px;
+background:#0b1220;
+border:1px dashed #3a4d8f;
+border-radius:12px;
+}
+
+button{
+margin-top:20px;
+width:100%;
+padding:16px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#ff2e2e,#ff6a00);
+color:white;
+font-weight:600;
+font-size:16px;
+cursor:pointer;
+transition:.2s;
+}
+button:hover{transform:scale(1.02)}
+
+.whatsapp{
+display:inline-block;
+margin-top:18px;
+background:#25D366;
+padding:14px 24px;
+border-radius:12px;
+color:white;
+text-decoration:none;
+font-weight:600;
+}
+
+footer{
+margin-top:60px;
+text-align:center;
+color:#6e7fb3;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Accueil</a>
+<a href="chiptuning.html">Chiptuning</a>
+<a href="remote.html">Remote Support</a>
+<a href="update.html">Software Update</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+
+<h1>Envoyer un fichier</h1>
+<p class="subtitle">Upload ORI / BIN / VR — réponse rapide</p>
 
 <form action="https://formsubmit.co/wcfperformance@gmail.com" method="POST" enctype="multipart/form-data">
 
 <input type="hidden" name="_subject" value="Nouveau fichier client WCF Performance">
 <input type="hidden" name="_captcha" value="false">
 
-<input name="Nom" type="text" placeholder="Nom / Garage" required>
-<input name="Vehicule" type="text" placeholder="Véhicule (Marque Modèle Année)" required>
-<input name="ECU" type="text" placeholder="Calculateur / ECU" required>
-<input name="Outil" type="text" placeholder="Outil utilisé (Kess, Flex, SM2...)" required>
-
-<textarea name="Demande" rows="4" placeholder="Expliquez la demande"></textarea>
-
-<label style="display:block;margin-top:18px;margin-bottom:8px;color:#9fb0ff">
-Joindre fichier ORI / BIN / VR
-</label>
-
-<input type="file" name="file" required style="margin-bottom:15px">
-
-<button type="submit">Envoyer le fichier</button>
-
-</form>
-
-
-input,textarea{
-width:100%;padding:14px;margin-top:12px;
-border:none;border-radius:10px;background:#0b1220;color:white
-}
-
-button{
-width:100%;padding:14px;margin-top:18px;
-border:none;border-radius:12px;font-weight:600;
-cursor:pointer;background:#25D366;color:white
-}
-
-.whatsapp{
-display:inline-block;margin-top:30px;padding:15px 25px;
-background:#25D366;border-radius:12px;color:white;text-decoration:none;font-weight:600
-}
-
-footer{text-align:center;padding:30px;color:#7e8bb8;margin-top:60px}
-</style>
-</head>
-
-<body>
-
-<div class="topbar">
-<img src="logo.png">
+<div class="form-grid">
+<input name="Nom" placeholder="Nom / Garage" required>
+<input name="Vehicule" placeholder="Véhicule (Marque Modèle Année)" required>
+<input name="ECU" placeholder="Calculateur / ECU" required>
+<input name="Outil" placeholder="Outil (Flex, Kess, SM2...)" required>
 </div>
 
-<nav>
-<div class="logo">WCF</div>
-<a href="index.html">Accueil</a>
-<a href="chiptuning.html">Chiptuning</a>
-<a href="remote.html">Remote Support</a>
-<a href="update.html">Software Update</a>
-<a href="contact.html">Contact</a>
-<input class="search" placeholder="Rechercher service...">
-</nav>
+<textarea name="Demande" placeholder="Expliquez la demande"></textarea>
 
-<div class="container">
-<h1>Contact & Assistance</h1>
-
-<div class="info">
-Disponible 7j/7 — réponse rapide<br>
-Envoyez les informations du véhicule pour prise en charge
+<div class="file">
+<input type="file" name="file" required>
 </div>
 
-<form>
-<input id="name" type="text" placeholder="Nom / Garage">
-<input id="car" type="text" placeholder="Véhicule (Marque Modèle Année)">
-<input id="ecu" type="text" placeholder="Calculateur / ECU">
-<input id="tool" type="text" placeholder="Outil utilisé (Kess, Flex, SM2...)">
-<textarea id="msg" rows="4" placeholder="Décrivez votre demande"></textarea>
-<button type="button" onclick="sendWhatsApp()">Envoyer via WhatsApp</button>
+<button type="submit">Envoyer le fichier au serveur</button>
+
 </form>
 
 <a class="whatsapp" href="https://wa.me/message/NMAYVYZADORVF1">
 Contacter directement sur WhatsApp
 </a>
+
 </div>
 
 <footer>© WCF Performance</footer>
-
-<script>
-function sendWhatsApp(){
-
-let name = document.getElementById("name").value;
-let car = document.getElementById("car").value;
-let ecu = document.getElementById("ecu").value;
-let tool = document.getElementById("tool").value;
-let msg = document.getElementById("msg").value;
-
-let text =
-"Bonjour WCF Performance,%0A%0A" +
-"Nom : " + name + "%0A" +
-"Véhicule : " + car + "%0A" +
-"ECU : " + ecu + "%0A" +
-"Outil : " + tool + "%0A" +
-"Demande : " + msg;
-
-window.open("https://wa.me/message/NMAYVYZADORVF1?text=" + text, "_blank");
-}
-</script>
 
 </body>
 </html>
