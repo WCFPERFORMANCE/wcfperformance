@@ -5,112 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chiptuning - WCF Performance</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <style>
 body{margin:0;font-family:Poppins;background:#0b1220;color:white}
-
-/* TOP LOGO BAR */
-.topbar{
-background: radial-gradient(circle at 30% 50%, rgba(255,0,0,.35), transparent 60%),
-linear-gradient(90deg,#1a0000,#2b0000,#120000);
-padding:18px 0;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.7)
-}
-.topbar img{height:60px;filter:drop-shadow(0 0 12px rgba(255,0,0,.6))}
-
-/* NAVBAR */
-nav{
-background:#0a0a0c;
-display:flex;align-items:center;gap:25px;
-padding:14px 28px;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a
-}
-.logo{font-weight:800;color:#ff2e2e;font-size:22px}
-nav a{color:#cfd8ff;text-decoration:none;font-size:14px}
+.topbar{background:linear-gradient(90deg,#1a0000,#7a0000,#1a0000);padding:18px;text-align:center}
+.topbar img{height:60px}
+nav{background:#05070c;padding:14px 28px;display:flex;gap:24px;align-items:center}
+nav a{color:#cfd8ff;text-decoration:none}
 nav a:hover{color:white}
-.search{margin-left:auto;background:#0b1220;border:1px solid #1f2c4f;border-radius:10px;padding:8px 12px;color:white;width:200px}
-
-/* HEADER */
-.header{
-text-align:center;padding:70px 20px;background:#070b16
-}
-.header h1{color:#ff2e2e;font-size:40px;margin:0}
-.header p{color:#cfd8ff}
-
-/* CARDS */
-.services{
-max-width:1100px;margin:60px auto;padding:0 20px;
-display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px
-}
-.card{background:#131c33;padding:28px;border-radius:18px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.6)}
-.price{color:#ff2e2e;font-size:26px;margin:12px 0;font-weight:700}
-
+.container{max-width:1100px;margin:60px auto;padding:20px}
+.hero{text-align:center;margin-bottom:60px}
+.hero h1{color:#ff2e2e;font-size:40px;margin:0}
+.box{background:#131c33;padding:28px;border-radius:18px;margin:25px 0;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+.price{color:#ff2e2e;font-size:30px;margin:12px 0;font-weight:700}
 button{width:100%;padding:14px;border:none;border-radius:12px;margin-top:10px;font-weight:600;cursor:pointer}
 .paypal{background:#ffc439;color:black}
 .whatsapp{background:#25D366;color:white}
-
-footer{text-align:center;padding:30px;color:#7e8bb8;margin-top:60px}
 </style>
 </head>
-
 <body>
-
-<div class="topbar">
-<img src="logo.png">
-</div>
-
+<div class="topbar"><img src="logo.png"></div>
 <nav>
-<div class="logo">WCF</div>
 <a href="index.html">Accueil</a>
 <a href="chiptuning.html">Chiptuning</a>
 <a href="remote.html">Remote Support</a>
 <a href="update.html">Software Update</a>
 <a href="contact.html">Contact</a>
-<input class="search" placeholder="Rechercher service...">
 </nav>
-
-<section class="header">
-<h1>Chiptuning Services</h1>
-<p>Optimisation moteur professionnelle et solutions OFF sécurisées</p>
-</section>
-
-<section class="services">
-
-<div class="card">
-<h3>Stage 1</h3>
+<div class="container">
+<div class="hero">
+<h1>Chiptuning Calibration Services</h1>
+<p>Optimisation puissance, couple et agrément de conduite avec calibrations sécurisées</p>
+</div>
+<div class="box">
+<h2>Stage 1</h2>
+<p>Optimisation moteur sans modification mécanique</p>
 <div class="price">80€</div>
-<a href="https://paypal.me/swiftprog/80" target="_blank"><button class="paypal">Payer maintenant</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer infos WhatsApp</button></a>
+<a href="https://paypal.me/swiftprog/80" target="_blank"><button class="paypal">Payer</button></a>
+<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer fichier</button></a>
 </div>
-
-<div class="card">
-<h3>Stage 2</h3>
-<div class="price">Sur devis</div>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Demander</button></a>
-</div>
-
-<div class="card">
-<h3>EGR OFF</h3>
+<div class="box">
+<h2>EGR / FAP / Adblue OFF</h2>
+<p>Solutions hors route et banc uniquement</p>
 <div class="price">100€</div>
-<a href="https://paypal.me/swiftprog/100" target="_blank"><button class="paypal">Payer maintenant</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer infos WhatsApp</button></a>
+<a href="https://paypal.me/swiftprog/100" target="_blank"><button class="paypal">Payer</button></a>
+<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer fichier</button></a>
 </div>
-
-<div class="card">
-<h3>DPF / FAP OFF</h3>
-<div class="price">100€</div>
-<a href="https://paypal.me/swiftprog/100" target="_blank"><button class="paypal">Payer maintenant</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer infos WhatsApp</button></a>
 </div>
-
-<div class="card">
-<h3>AdBlue OFF</h3>
-<div class="price">100€</div>
-<a href="https://paypal.me/swiftprog/100" target="_blank"><button class="paypal">Payer maintenant</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Envoyer infos WhatsApp</button></a>
-</div>
-
-</section>
-
-<footer>© WCF Performance</footer>
-
 </body>
 </html>
