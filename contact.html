@@ -34,10 +34,28 @@ h1{color:#ff2e2e}
 
 .info{margin:30px 0;font-size:18px;color:#cfd8ff}
 
-form{
-background:#131c33;padding:30px;border-radius:18px;
-box-shadow:0 10px 40px rgba(0,0,0,.6)
-}
+<form action="https://formsubmit.co/wcfperformance@gmail.com" method="POST" enctype="multipart/form-data">
+
+<input type="hidden" name="_subject" value="Nouveau fichier client WCF Performance">
+<input type="hidden" name="_captcha" value="false">
+
+<input name="Nom" type="text" placeholder="Nom / Garage" required>
+<input name="Vehicule" type="text" placeholder="Véhicule (Marque Modèle Année)" required>
+<input name="ECU" type="text" placeholder="Calculateur / ECU" required>
+<input name="Outil" type="text" placeholder="Outil utilisé (Kess, Flex, SM2...)" required>
+
+<textarea name="Demande" rows="4" placeholder="Expliquez la demande"></textarea>
+
+<label style="display:block;margin-top:18px;margin-bottom:8px;color:#9fb0ff">
+Joindre fichier ORI / BIN / VR
+</label>
+
+<input type="file" name="file" required style="margin-bottom:15px">
+
+<button type="submit">Envoyer le fichier</button>
+
+</form>
+
 
 input,textarea{
 width:100%;padding:14px;margin-top:12px;
