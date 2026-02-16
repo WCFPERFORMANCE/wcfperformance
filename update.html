@@ -6,25 +6,29 @@
 <title>Software Store - WCF Performance</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
+*{box-sizing:border-box}
 body{margin:0;font-family:Poppins;background:#0b1220;color:white}
 .topbar{background:linear-gradient(90deg,#2b0000,#b30000,#2b0000);padding:20px 0;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.7)}
 .topbar img{height:70px;filter:drop-shadow(0 0 18px rgba(255,0,0,.8))}
 nav{background:#07090f;padding:16px;display:flex;justify-content:center;gap:40px;border-top:1px solid #1c1c1c;border-bottom:1px solid #1c1c1c}
 nav a{color:#cfd8ff;text-decoration:none;font-size:14px;letter-spacing:.5px}
 nav a:hover{color:white}
-.hero{padding:120px 20px;text-align:center;background:linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.9)),url('https://images.unsplash.com/photo-1555617981-dac3880eac6e?q=80&w=1920');background-size:cover;background-position:center}
-.hero h1{color:#ff3b3b;font-size:46px;margin:0}
+.hero{padding:110px 20px;text-align:center;background:linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.9)),url('https://images.unsplash.com/photo-1581092160607-ee22731d9c3f?q=80&w=1920');background-size:cover;background-position:center}
+.hero h1{color:#ff3b3b;font-size:44px;margin:0}
 .hero p{max-width:760px;margin:auto;color:#d0d8ff;margin-top:18px}
-.section{max-width:1200px;margin:80px auto;padding:0 20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
-.card{background:linear-gradient(180deg,#151f3d,#0f162b);padding:32px;border-radius:18px;box-shadow:0 15px 45px rgba(0,0,0,.65);text-align:center}
-.card h2{margin-top:0;color:#ffffff}
-.price{color:#ff2e2e;font-size:28px;font-weight:700;margin:18px 0}
-button{width:100%;padding:15px;border:none;border-radius:12px;margin-top:12px;font-weight:600;cursor:pointer;font-size:15px}
+.section{max-width:1300px;margin:70px auto;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+.card{background:linear-gradient(180deg,#151f3d,#0f162b);padding:30px;border-radius:18px;box-shadow:0 15px 45px rgba(0,0,0,.65);display:flex;flex-direction:column;min-height:360px;justify-content:space-between;transition:.25s}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 55px rgba(0,0,0,.8)}
+.title{font-size:22px;font-weight:700;text-align:center;margin-bottom:8px;line-height:1.25}
+.tag{background:#101a33;border:1px solid #24345c;padding:6px 14px;border-radius:999px;color:#9fb4ff;font-size:12px;margin:10px auto 18px;width:max-content}
+.price{color:#ff2e2e;font-size:30px;font-weight:800;text-align:center;margin:8px 0 18px}
+.buttons{margin-top:auto;display:flex;flex-direction:column;gap:12px}
+button{width:100%;padding:14px;border:none;border-radius:12px;font-weight:600;cursor:pointer;font-size:15px}
 .paypal{background:#ffc439;color:black}
 .whatsapp{background:#25D366;color:white}
 footer{text-align:center;padding:35px;color:#7e8bb8}
-.badge{display:inline-block;margin-top:10px;padding:6px 12px;background:#0f172b;border-radius:999px;border:1px solid #24345c;color:#9fb3ff;font-size:12px}
+@media(min-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
@@ -40,75 +44,107 @@ footer{text-align:center;padding:35px;color:#7e8bb8}
 </nav>
 
 <section class="hero">
-<h1>Professional Diagnostic Software</h1>
-<p>Official engineering and dealer tools for trucks & heavy equipment. Installation, activation and configuration included.</p>
+<h1>Diagnostic & Engineering Software</h1>
+<p>Professional heavy-duty truck diagnostic and calibration software ready for workshop use.</p>
 </section>
 
 <section class="section">
 <div class="grid">
 
 <div class="card">
-<h2>Cummins INSITE + Calterm</h2>
-<div class="badge">Cummins Engines</div>
+<div>
+<div class="title">Cummins INSITE + Calterm</div>
+<div class="tag">Cummins Engines</div>
 <div class="price">390€</div>
-<a href="https://paypal.me/swiftprog/150" target="_blank"><button class="paypal">Secure Payment</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Contact WhatsApp</button></a>
+</div>
+<div class="buttons">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
 </div>
 
 <div class="card">
-<h2>Volvo TechTool (PTT)</h2>
-<div class="badge">Volvo Trucks</div>
+<div>
+<div class="title">Volvo TechTool (PTT)</div>
+<div class="tag">Volvo Trucks</div>
 <div class="price">450€</div>
-<a href="https://paypal.me/swiftprog/120" target="_blank"><button class="paypal">Secure Payment</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Contact WhatsApp</button></a>
+</div>
+<div class="buttons">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
 </div>
 
 <div class="card">
-<h2>Scania SDP3</h2>
-<div class="badge">Scania Dealer Tool</div>
+<div>
+<div class="title">Scania SDP3</div>
+<div class="tag">Dealer Tool</div>
 <div class="price">190€</div>
-<a href="https://paypal.me/swiftprog/120" target="_blank"><button class="paypal">Secure Payment</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Contact WhatsApp</button></a>
+</div>
+<div class="buttons">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
 </div>
 
 <div class="card">
-<h2>Mercedes Xentry</h2>
-<div class="badge">Mercedes Trucks</div>
+<div>
+<div class="title">Mercedes Xentry</div>
+<div class="tag">Mercedes Trucks</div>
 <div class="price">250€</div>
-<a href="https://paypal.me/swiftprog/130" target="_blank"><button class="paypal">Secure Payment</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Contact WhatsApp</button></a>
+</div>
+<div class="buttons">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
 </div>
 
 <div class="card">
-<h2>CAT Electronic Technician</h2>
-<div class="badge">Caterpillar</div>
+<div>
+<div class="title">CAT Electronic Technician</div>
+<div class="tag">Caterpillar</div>
 <div class="price">250€</div>
-<a href="https://paypal.me/swiftprog/130" target="_blank"><button class="paypal">Secure Payment</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Contact WhatsApp</button></a>
+</div>
+<div class="buttons">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
 </div>
 
 <div class="card">
-<h2>Jaltest / TEXA IDC5</h2>
-<div class="badge">Multi Brand</div>
+<div>
+<div class="title">Jaltest / TEXA IDC5</div>
+<div class="tag">Multi Brand</div>
 <div class="price">190€</div>
-<a href="https://paypal.me/swiftprog/140" target="_blank"><button class="paypal">Secure Payment</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Contact WhatsApp</button></a>
+</div>
+<div class="buttons">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
 </div>
 
 <div class="card">
-<h2>Scanmatik + Drivers</h2>
-<div class="badge">Interface configuration</div>
-<div class="price">95€</div>
-<a href="https://paypal.me/swiftprog/80" target="_blank"><button class="paypal">Secure Payment</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Contact WhatsApp</button></a>
+<div>
+<div class="title">Scanmatik + Drivers</div>
+<div class="tag">Interface Setup</div>
+<div class="price">120€</div>
+</div>
+<div class="buttons">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
 </div>
 
 <div class="card">
-<h2>WinOLS Damos</h2>
-<div class="badge">Calibration software</div>
-<div class="price">90€</div>
-<a href="https://paypal.me/swiftprog/90" target="_blank"><button class="paypal">Secure Payment</button></a>
-<a href="https://wa.me/message/NMAYVYZADORVF1"><button class="whatsapp">Contact WhatsApp</button></a>
+<div>
+<div class="title">WinOLS Installation</div>
+<div class="tag">Calibration Software</div>
+<div class="price">150€</div>
+</div>
+<div class="buttons">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
 </div>
 
 </div>
