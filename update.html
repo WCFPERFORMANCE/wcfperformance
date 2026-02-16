@@ -6,35 +6,32 @@
 <title>Software Store - WCF Performance</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}
 body{margin:0;font-family:Poppins;background:#0b1220;color:white}
-.topbar{background:linear-gradient(90deg,#2b0000,#b30000,#2b0000);padding:20px 0;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.7)}
-.topbar img{height:70px;filter:drop-shadow(0 0 18px rgba(255,0,0,.8))}
-nav{background:#07090f;padding:16px;display:flex;justify-content:center;gap:40px;border-top:1px solid #1c1c1c;border-bottom:1px solid #1c1c1c}
-nav a{color:#cfd8ff;text-decoration:none;font-size:14px;letter-spacing:.5px}
+/* ===== GLOBAL HEADER (A COPIER SUR TOUT LE SITE) ===== */
+.topbar{background:linear-gradient(90deg,#2b0000,#ff0000,#2b0000);padding:18px 0;text-align:center;box-shadow:0 10px 35px rgba(0,0,0,.7)}
+.topbar img{height:60px;filter:drop-shadow(0 0 15px rgba(255,0,0,.7))}
+nav{background:#07090f;display:flex;justify-content:center;gap:40px;padding:14px 10px;border-top:1px solid #1c1c1c;border-bottom:1px solid #1c1c1c}
+nav a{color:#cfd8ff;text-decoration:none;font-size:14px;letter-spacing:.6px}
 nav a:hover{color:white}
-.hero{padding:110px 20px;text-align:center;background:linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.9)),url('https://images.unsplash.com/photo-1581092160607-ee22731d9c3f?q=80&w=1920');background-size:cover;background-position:center}
-.hero h1{color:#ff3b3b;font-size:44px;margin:0}
+/* ================================================ */
+.hero{padding:120px 20px;text-align:center;background:linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.92)),url('https://images.unsplash.com/photo-1581093458791-9d09b3cce0f1?q=80&w=1920');background-size:cover;background-position:center}
+.hero h1{color:#ff3b3b;font-size:46px;margin:0}
 .hero p{max-width:760px;margin:auto;color:#d0d8ff;margin-top:18px}
-.section{max-width:1300px;margin:70px auto;padding:0 20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
-.card{background:linear-gradient(180deg,#151f3d,#0f162b);padding:30px;border-radius:18px;box-shadow:0 15px 45px rgba(0,0,0,.65);display:flex;flex-direction:column;min-height:360px;justify-content:space-between;transition:.25s}
-.card:hover{transform:translateY(-6px);box-shadow:0 20px 55px rgba(0,0,0,.8)}
-.title{font-size:22px;font-weight:700;text-align:center;margin-bottom:8px;line-height:1.25}
-.tag{background:#101a33;border:1px solid #24345c;padding:6px 14px;border-radius:999px;color:#9fb4ff;font-size:12px;margin:10px auto 18px;width:max-content}
-.price{color:#ff2e2e;font-size:30px;font-weight:800;text-align:center;margin:8px 0 18px}
-.buttons{margin-top:auto;display:flex;flex-direction:column;gap:12px}
-button{width:100%;padding:14px;border:none;border-radius:12px;font-weight:600;cursor:pointer;font-size:15px}
+.section{max-width:1250px;margin:70px auto;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
+.card{background:linear-gradient(180deg,#151f3d,#0f162b);padding:30px;border-radius:20px;box-shadow:0 15px 45px rgba(0,0,0,.65);text-align:center;display:flex;flex-direction:column;justify-content:space-between}
+.card img{height:55px;object-fit:contain;margin-bottom:15px}
+.card h3{margin:10px 0 6px;font-size:20px}
+.price{color:#ff2e2e;font-size:30px;font-weight:700;margin:14px 0}
+button{width:100%;padding:14px;border:none;border-radius:12px;margin-top:10px;font-weight:600;cursor:pointer;font-size:15px}
 .paypal{background:#ffc439;color:black}
 .whatsapp{background:#25D366;color:white}
 footer{text-align:center;padding:35px;color:#7e8bb8}
-@media(min-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
 
 <div class="topbar"><img src="logo.png"></div>
-
 <nav>
 <a href="index.html">Accueil</a>
 <a href="chiptuning.html">Chiptuning</a>
@@ -44,107 +41,75 @@ footer{text-align:center;padding:35px;color:#7e8bb8}
 </nav>
 
 <section class="hero">
-<h1>Diagnostic & Engineering Software</h1>
-<p>Professional heavy‑duty truck diagnostic and calibration software ready for workshop use.</p>
+<h1>Professional Diagnostic Software Store</h1>
+<p>Official engineering & dealer tools for trucks and heavy equipment. Ready‑to‑use installation and remote activation included.</p>
 </section>
 
 <section class="section">
 <div class="grid">
 
 <div class="card">
-<div>
-<div class="title">Cummins INSITE + Calterm</div>
-<div class="tag">Cummins Engines</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Cummins_logo.svg">
+<h3>Cummins INSITE + Calterm</h3>
 <div class="price">390€</div>
-</div>
-<div class="buttons">
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
-</div>
 
 <div class="card">
-<div>
-<div class="title">Volvo TechTool (PTT)</div>
-<div class="tag">Volvo Trucks</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Volvo_Trucks_logo.png">
+<h3>Volvo TechTool (PTT)</h3>
 <div class="price">450€</div>
-</div>
-<div class="buttons">
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
-</div>
 
 <div class="card">
-<div>
-<div class="title">Scania SDP3</div>
-<div class="tag">Dealer Tool</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Scania_logo.svg">
+<h3>Scania SDP3</h3>
 <div class="price">190€</div>
-</div>
-<div class="buttons">
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
-</div>
 
 <div class="card">
-<div>
-<div class="title">Mercedes Xentry</div>
-<div class="tag">Mercedes Trucks</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Mercedes-Benz_Star_2022.svg">
+<h3>Mercedes Xentry</h3>
 <div class="price">250€</div>
-</div>
-<div class="buttons">
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
-</div>
 
 <div class="card">
-<div>
-<div class="title">CAT Electronic Technician</div>
-<div class="tag">Caterpillar</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Caterpillar_logo.svg">
+<h3>CAT Electronic Technician</h3>
 <div class="price">250€</div>
-</div>
-<div class="buttons">
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
-</div>
 
 <div class="card">
-<div>
-<div class="title">Jaltest / TEXA IDC5</div>
-<div class="tag">Multi Brand</div>
-<div class="price">190€</div>
-</div>
-<div class="buttons">
-<button class="paypal">Secure Payment</button>
-<button class="whatsapp">Contact WhatsApp</button>
-</div>
-</div>
-
-<div class="card">
-<div>
-<div class="title">Scanmatik + Drivers</div>
-<div class="tag">Interface Setup</div>
-<div class="price">120€</div>
-</div>
-<div class="buttons">
-<button class="paypal">Secure Payment</button>
-<button class="whatsapp">Contact WhatsApp</button>
-</div>
-</div>
-
-<div class="card">
-<div>
-<div class="title">WinOLS Damos</div>
-<div class="tag">Calibration Software</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/16/WinOLS_logo.png">
+<h3>WinOLS</h3>
 <div class="price">150€</div>
-</div>
-<div class="buttons">
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
+
+<div class="card">
+<img src="https://www.scanmatik.ru/img/logo.png">
+<h3>Scanmatik + Drivers</h3>
+<div class="price">120€</div>
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Texa_logo.svg">
+<h3>Jaltest / TEXA IDC5</h3>
+<div class="price">190€</div>
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
 </div>
 
 </div>
