@@ -7,172 +7,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body{
-    margin:0;
-    font-family:Poppins;
-    background:#0b1220;
-    color:white;
-}
+body{margin:0;font-family:Poppins;background:#0b1220;color:white}
 
-/* ===== GLOBAL HEADER ===== */
+/* TOP BAR */
 .topbar{
-    background:linear-gradient(90deg,#2b0000,#ff0000,#2b0000);
-    padding:18px 0;
-    text-align:center;
-    box-shadow:0 10px 35px rgba(0,0,0,.7);
+background:linear-gradient(90deg,#2b0000,#ff0000,#2b0000);
+padding:18px 0;
+text-align:center;
+box-shadow:0 10px 35px rgba(0,0,0,.7)
 }
-
 .topbar img{
-    height:60px;
-    filter:drop-shadow(0 0 15px rgba(255,0,0,.7));
+height:60px;
+filter:drop-shadow(0 0 15px rgba(255,0,0,.7))
 }
 
+/* NAVBAR */
 nav{
-    background:#07090f;
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    padding:14px 10px;
-    border-top:1px solid #1c1c1c;
-    border-bottom:1px solid #1c1c1c;
+background:#07090f;
+display:flex;
+justify-content:center;
+gap:40px;
+padding:14px 10px;
+border-top:1px solid #1c1c1c;
+border-bottom:1px solid #1c1c1c
 }
-
 nav a{
-    color:#cfd8ff;
-    text-decoration:none;
-    font-size:14px;
-    letter-spacing:.6px;
+color:#cfd8ff;
+text-decoration:none;
+font-size:14px;
+letter-spacing:.6px
 }
+nav a:hover{color:white}
 
-nav a:hover{
-    color:white;
-}
-
-/* ===== HERO ===== */
+/* HERO */
 .hero{
-    padding:120px 20px;
-    text-align:center;
-    background:linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.92)),
-    url('https://images.unsplash.com/photo-1581093458791-9d09b3cce0f1?q=80&w=1920');
-    background-size:cover;
-    background-position:center;
+padding:120px 20px;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.92)),
+url('https://images.unsplash.com/photo-1581092921461-7031e5f6d1d0?q=80&w=1920');
+background-size:cover;
+background-position:center
 }
+.hero h1{color:#ff3b3b;font-size:46px;margin:0}
+.hero p{max-width:760px;margin:auto;color:#d0d8ff;margin-top:18px}
 
-.hero h1{
-    color:#ff3b3b;
-    font-size:46px;
-    margin:0;
-}
-
-.hero p{
-    max-width:760px;
-    margin:auto;
-    color:#d0d8ff;
-    margin-top:18px;
-}
-
-/* ===== GRID ===== */
-.section{
-    max-width:1250px;
-    margin:70px auto;
-    padding:0 20px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
-}
+/* GRID */
+.section{max-width:1250px;margin:70px auto;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px}
 
 .card{
-    background:linear-gradient(180deg,#151f3d,#0f162b);
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 15px 45px rgba(0,0,0,.65);
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+background:linear-gradient(180deg,#162347,#0e1730);
+padding:34px 28px;
+border-radius:22px;
+box-shadow:0 18px 55px rgba(0,0,0,.65);
+text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+transition:.25s
+}
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 25px 70px rgba(0,0,0,.9)
 }
 
-.card img{
-    height:55px;
-    max-width:160px;
-    object-fit:contain;
-    margin:0 auto 18px;
-    display:block;
-    background:#ffffff;
-    padding:8px 12px;
-    border-radius:12px;
+.logoBox{
+height:80px;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:18px;
+gap:12px
 }
 
-.dual-logo{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
-    margin-bottom:18px;
+.logoBox img{
+max-height:70px;
+max-width:200px;
+object-fit:contain;
+background:white;
+padding:10px;
+border-radius:14px
 }
 
-.dual-logo img{
-    height:45px;
-    background:#fff;
-    padding:6px 10px;
-    border-radius:10px;
-}
-
-.separator{
-    color:#ffffff;
-    font-weight:600;
-    font-size:22px;
-}
-
-.card h3{
-    margin:10px 0 6px;
-    font-size:20px;
-}
-
-.price{
-    color:#ff2e2e;
-    font-size:28px;
-    font-weight:700;
-    margin:14px 0;
-}
+.card h3{margin:8px 0 6px;font-size:22px}
+.brand{opacity:.7;font-size:13px;margin-bottom:12px}
+.price{color:#ff2e2e;font-size:32px;font-weight:800;margin:14px 0 10px}
 
 button{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    margin-top:10px;
-    font-weight:600;
-    cursor:pointer;
-    font-size:15px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:14px;
+margin-top:10px;
+font-weight:600;
+cursor:pointer;
+font-size:15px
 }
+.paypal{background:#ffc439;color:black}
+.whatsapp{background:#25D366;color:white}
 
-.paypal{
-    background:#ffc439;
-    color:black;
-}
-
-.whatsapp{
-    background:#25D366;
-    color:white;
-}
-
-footer{
-    text-align:center;
-    padding:35px;
-    color:#7e8bb8;
-}
+footer{text-align:center;padding:35px;color:#7e8bb8}
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
-    <img src="logo.png" alt="WCF Logo">
-</div>
+<div class="topbar"><img src="logo.png"></div>
 
 <nav>
 <a href="index.html">Accueil</a>
@@ -190,86 +131,85 @@ footer{
 <section class="section">
 <div class="grid">
 
-<!-- Cummins -->
 <div class="card">
-<img src="logos/cummins.png" alt="Cummins">
+<div class="logoBox"><img src="logos/cummins.png"></div>
 <h3>Cummins INSITE + Calterm</h3>
+<div class="brand">Cummins Engines</div>
 <div class="price">390€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
-<!-- Volvo -->
 <div class="card">
-<img src="logos/volvo.png" alt="Volvo">
+<div class="logoBox"><img src="logos/volvo.png"></div>
 <h3>Volvo TechTool (PTT)</h3>
+<div class="brand">Volvo Trucks</div>
 <div class="price">450€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
-<!-- Scania -->
 <div class="card">
-<img src="logos/scania.png" alt="Scania">
+<div class="logoBox"><img src="logos/scania.png"></div>
 <h3>Scania SDP3</h3>
+<div class="brand">Scania Dealer Tool</div>
 <div class="price">190€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
-<!-- Mercedes -->
 <div class="card">
-<img src="logos/xentry.png" alt="Mercedes Xentry">
+<div class="logoBox"><img src="logos/xentry.png"></div>
 <h3>Mercedes Xentry</h3>
+<div class="brand">Mercedes Trucks</div>
 <div class="price">250€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
-<!-- CAT ET -->
 <div class="card">
-<img src="logos/cat.png" alt="CAT">
+<div class="logoBox"><img src="logos/cat.png"></div>
 <h3>CAT Electronic Technician</h3>
+<div class="brand">Caterpillar</div>
 <div class="price">250€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
-<!-- Jaltest + TEXA -->
 <div class="card">
-<div class="dual-logo">
-<img src="logos/jaltest.png" alt="Jaltest">
-<span class="separator">|</span>
-<img src="logos/texa.png" alt="TEXA">
+<div class="logoBox">
+<img src="logos/jaltest.png">
+<img src="logos/texa.png">
 </div>
 <h3>Jaltest / TEXA IDC5</h3>
+<div class="brand">Multi Brand</div>
 <div class="price">190€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
-<!-- Scanmatik -->
 <div class="card">
-<img src="logos/scanmatik.png" alt="Scanmatik">
+<div class="logoBox"><img src="logos/scanmatik.png"></div>
 <h3>Scanmatik + Drivers</h3>
+<div class="brand">Interface</div>
 <div class="price">150€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
-<!-- WinOLS -->
 <div class="card">
-<img src="logos/winols.png" alt="WinOLS">
+<div class="logoBox"><img src="logos/winols.png"></div>
 <h3>WinOLS Damos</h3>
+<div class="brand">Calibration software</div>
 <div class="price">200€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
-<!-- Caterpillar SIS -->
 <div class="card">
-<img src="logos/cat.png" alt="Caterpillar SIS">
+<div class="logoBox"><img src="logos/cat.png"></div>
 <h3>Caterpillar SIS & ET</h3>
+<div class="brand">Caterpillar</div>
 <div class="price">350€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
@@ -279,6 +219,5 @@ footer{
 </section>
 
 <footer>© WCF Performance</footer>
-
 </body>
 </html>
