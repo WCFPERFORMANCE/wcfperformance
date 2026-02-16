@@ -5,33 +5,175 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Software Store - WCF Performance</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;font-family:Poppins;background:#0b1220;color:white}
-/* ===== GLOBAL HEADER (A COPIER SUR TOUT LE SITE) ===== */
-.topbar{background:linear-gradient(90deg,#2b0000,#ff0000,#2b0000);padding:18px 0;text-align:center;box-shadow:0 10px 35px rgba(0,0,0,.7)}
-.topbar img{height:60px;filter:drop-shadow(0 0 15px rgba(255,0,0,.7))}
-nav{background:#07090f;display:flex;justify-content:center;gap:40px;padding:14px 10px;border-top:1px solid #1c1c1c;border-bottom:1px solid #1c1c1c}
-nav a{color:#cfd8ff;text-decoration:none;font-size:14px;letter-spacing:.6px}
-nav a:hover{color:white}
-/* ================================================ */
-.hero{padding:120px 20px;text-align:center;background:linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.92)),url('https://images.unsplash.com/photo-1581093458791-9d09b3cce0f1?q=80&w=1920');background-size:cover;background-position:center}
-.hero h1{color:#ff3b3b;font-size:46px;margin:0}
-.hero p{max-width:760px;margin:auto;color:#d0d8ff;margin-top:18px}
-.section{max-width:1250px;margin:70px auto;padding:0 20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
-.card{background:linear-gradient(180deg,#151f3d,#0f162b);padding:30px;border-radius:20px;box-shadow:0 15px 45px rgba(0,0,0,.65);text-align:center;display:flex;flex-direction:column;justify-content:space-between}
-.card img{height:60px;max-width:160px;object-fit:contain;margin:0 auto 18px;display:block;background:#ffffff;padding:8px;border-radius:12px}
-.card h3{margin:10px 0 6px;font-size:20px}
-.price{color:#ff2e2e;font-size:30px;font-weight:700;margin:14px 0}
-button{width:100%;padding:14px;border:none;border-radius:12px;margin-top:10px;font-weight:600;cursor:pointer;font-size:15px}
-.paypal{background:#ffc439;color:black}
-.whatsapp{background:#25D366;color:white}
-footer{text-align:center;padding:35px;color:#7e8bb8}
+body{
+    margin:0;
+    font-family:Poppins;
+    background:#0b1220;
+    color:white;
+}
+
+/* ===== GLOBAL HEADER ===== */
+.topbar{
+    background:linear-gradient(90deg,#2b0000,#ff0000,#2b0000);
+    padding:18px 0;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,.7);
+}
+
+.topbar img{
+    height:60px;
+    filter:drop-shadow(0 0 15px rgba(255,0,0,.7));
+}
+
+nav{
+    background:#07090f;
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    padding:14px 10px;
+    border-top:1px solid #1c1c1c;
+    border-bottom:1px solid #1c1c1c;
+}
+
+nav a{
+    color:#cfd8ff;
+    text-decoration:none;
+    font-size:14px;
+    letter-spacing:.6px;
+}
+
+nav a:hover{
+    color:white;
+}
+
+/* ===== HERO ===== */
+.hero{
+    padding:120px 20px;
+    text-align:center;
+    background:linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.92)),
+    url('https://images.unsplash.com/photo-1581093458791-9d09b3cce0f1?q=80&w=1920');
+    background-size:cover;
+    background-position:center;
+}
+
+.hero h1{
+    color:#ff3b3b;
+    font-size:46px;
+    margin:0;
+}
+
+.hero p{
+    max-width:760px;
+    margin:auto;
+    color:#d0d8ff;
+    margin-top:18px;
+}
+
+/* ===== GRID ===== */
+.section{
+    max-width:1250px;
+    margin:70px auto;
+    padding:0 20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:linear-gradient(180deg,#151f3d,#0f162b);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 45px rgba(0,0,0,.65);
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.card img{
+    height:55px;
+    max-width:160px;
+    object-fit:contain;
+    margin:0 auto 18px;
+    display:block;
+    background:#ffffff;
+    padding:8px 12px;
+    border-radius:12px;
+}
+
+.dual-logo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.dual-logo img{
+    height:45px;
+    background:#fff;
+    padding:6px 10px;
+    border-radius:10px;
+}
+
+.separator{
+    color:#ffffff;
+    font-weight:600;
+    font-size:22px;
+}
+
+.card h3{
+    margin:10px 0 6px;
+    font-size:20px;
+}
+
+.price{
+    color:#ff2e2e;
+    font-size:28px;
+    font-weight:700;
+    margin:14px 0;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    margin-top:10px;
+    font-weight:600;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.paypal{
+    background:#ffc439;
+    color:black;
+}
+
+.whatsapp{
+    background:#25D366;
+    color:white;
+}
+
+footer{
+    text-align:center;
+    padding:35px;
+    color:#7e8bb8;
+}
 </style>
 </head>
+
 <body>
 
-<div class="topbar"><img src="logo.png"></div>
+<div class="topbar">
+    <img src="logo.png" alt="WCF Logo">
+</div>
+
 <nav>
 <a href="index.html">Accueil</a>
 <a href="chiptuning.html">Chiptuning</a>
@@ -42,72 +184,93 @@ footer{text-align:center;padding:35px;color:#7e8bb8}
 
 <section class="hero">
 <h1>Professional Diagnostic Software Store</h1>
-<p>Official engineering & dealer tools for trucks and heavy equipment. Ready‑to‑use installation and remote activation included.</p>
+<p>Official engineering & dealer tools for trucks and heavy equipment. Ready-to-use installation and remote activation included.</p>
 </section>
 
 <section class="section">
 <div class="grid">
 
+<!-- Cummins -->
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Cummins_logo.svg">
+<img src="logos/cummins.png" alt="Cummins">
 <h3>Cummins INSITE + Calterm</h3>
 <div class="price">390€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
+<!-- Volvo -->
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Volvo_Trucks_logo.png">
+<img src="logos/volvo.png" alt="Volvo">
 <h3>Volvo TechTool (PTT)</h3>
 <div class="price">450€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
+<!-- Scania -->
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Scania_logo.svg">
+<img src="logos/scania.png" alt="Scania">
 <h3>Scania SDP3</h3>
 <div class="price">190€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
+<!-- Mercedes -->
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Mercedes-Benz_Star_2022.svg">
+<img src="logos/xentry.png" alt="Mercedes Xentry">
 <h3>Mercedes Xentry</h3>
 <div class="price">250€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
+<!-- CAT ET -->
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Caterpillar_logo.svg">
+<img src="logos/cat.png" alt="CAT">
 <h3>CAT Electronic Technician</h3>
 <div class="price">250€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
+<!-- Jaltest + TEXA -->
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/16/WinOLS_logo.png">
-<h3>WinOLS</h3>
+<div class="dual-logo">
+<img src="logos/jaltest.png" alt="Jaltest">
+<span class="separator">|</span>
+<img src="logos/texa.png" alt="TEXA">
+</div>
+<h3>Jaltest / TEXA IDC5</h3>
+<div class="price">190€</div>
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
+
+<!-- Scanmatik -->
+<div class="card">
+<img src="logos/scanmatik.png" alt="Scanmatik">
+<h3>Scanmatik + Drivers</h3>
 <div class="price">150€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
+<!-- WinOLS -->
 <div class="card">
-<img src="https://www.scanmatik.ru/img/logo.png">
-<h3>Scanmatik + Drivers</h3>
-<div class="price">120€</div>
+<img src="logos/winols.png" alt="WinOLS">
+<h3>WinOLS Damos</h3>
+<div class="price">200€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
 
+<!-- Caterpillar SIS -->
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Texa_logo.svg">
-<h3>Jaltest / TEXA IDC5</h3>
-<div class="price">190€</div>
+<img src="logos/cat.png" alt="Caterpillar SIS">
+<h3>Caterpillar SIS & ET</h3>
+<div class="price">350€</div>
 <button class="paypal">Secure Payment</button>
 <button class="whatsapp">Contact WhatsApp</button>
 </div>
@@ -116,5 +279,6 @@ footer{text-align:center;padding:35px;color:#7e8bb8}
 </section>
 
 <footer>© WCF Performance</footer>
+
 </body>
 </html>
