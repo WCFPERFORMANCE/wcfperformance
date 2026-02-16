@@ -6,34 +6,38 @@
 <title>Software Store - WCF Performance</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Poppins;background:#0b1220;color:white}
-.topbar{background:linear-gradient(90deg,#2b0000,#ff0000,#2b0000);padding:16px 0;text-align:center;box-shadow:0 10px 35px rgba(0,0,0,.7);position:sticky;top:0;z-index:5}
-.topbar img{height:50px}
+:root{--bg:#0b1220;--card:#0f1a35;--card2:#0b1530;--accent:#ff2e2e}
+*{box-sizing:border-box}
+body{margin:0;font-family:Poppins;background:linear-gradient(180deg,#060b18,#0b1220);color:#e7ecff}
+.topbar{background:linear-gradient(90deg,#2b0000,#ff0000,#2b0000);padding:18px 0;text-align:center;box-shadow:0 10px 35px rgba(0,0,0,.7)}
+.topbar img{height:60px;filter:drop-shadow(0 0 15px rgba(255,0,0,.7))}
 nav{background:#07090f;display:flex;justify-content:center;gap:40px;padding:14px 10px;border-top:1px solid #1c1c1c;border-bottom:1px solid #1c1c1c}
 nav a{color:#cfd8ff;text-decoration:none;font-size:14px;letter-spacing:.6px}
 nav a:hover{color:white}
-.hero{padding:90px 20px;text-align:center;background:linear-gradient(180deg,#05070d,#0b1220)}
-.hero h1{color:#ff3b3b;font-size:42px;margin:0}
-.hero p{max-width:760px;margin:auto;color:#d0d8ff;margin-top:18px}
-.section{max-width:1250px;margin:60px auto;padding:0 20px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){.grid{grid-template-columns:1fr}}
-.card{background:linear-gradient(180deg,#182a55,#0f1c3d);padding:26px;border-radius:20px;box-shadow:0 18px 55px rgba(0,0,0,.65);display:flex;flex-direction:column;justify-content:space-between;min-height:280px}
-.header{display:flex;align-items:center;gap:14px;margin-bottom:10px}
-.logo{width:48px;height:48px;background:white;border-radius:12px;padding:6px;object-fit:contain}
-.title{font-size:20px;font-weight:600}
-.brand{opacity:.65;font-size:13px;margin-left:62px;margin-top:-4px}
-.price{color:#ff2e2e;font-size:30px;font-weight:800;margin:18px 0}
-.actions{margin-top:auto}
-button{width:100%;padding:14px;border:none;border-radius:14px;margin-top:10px;font-weight:600;cursor:pointer;font-size:15px}
-.paypal{background:#ffc439;color:black}
-.whatsapp{background:#25D366;color:white}
+.hero{padding:90px 20px;text-align:center;background:linear-gradient(180deg,#05070f,#070c18)}
+.hero h1{color:#ff3b3b;font-size:44px;margin:0}
+.hero p{max-width:760px;margin:16px auto 0;color:#aeb7e8}
+.section{max-width:1250px;margin:50px auto 80px;padding:0 18px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,var(--card),var(--card2));border-radius:22px;box-shadow:0 18px 55px rgba(0,0,0,.65);padding:26px;display:flex;flex-direction:column;min-height:340px}
+.card:hover{transform:translateY(-6px);box-shadow:0 25px 70px rgba(0,0,0,.9)}
+.head{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.logo{width:64px;height:64px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;padding:8px}
+.logo img{max-width:100%;max-height:100%;object-fit:contain}
+.title{font-size:20px;font-weight:700;line-height:1.2}
+.brand{opacity:.7;font-size:13px;margin:4px 0 18px 78px}
+.price{color:var(--accent);font-size:30px;font-weight:800;margin:6px 0 18px 78px}
+.spacer{flex:1}
+.actions{display:flex;flex-direction:column;gap:10px}
+button{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700;cursor:pointer}
+.paypal{background:#ffc439;color:#000}
+.whatsapp{background:#25D366;color:#fff}
 footer{text-align:center;padding:35px;color:#7e8bb8}
 </style>
 </head>
 <body>
-
 <div class="topbar"><img src="logo.png"></div>
 <nav>
 <a href="index.html">Accueil</a>
@@ -42,99 +46,87 @@ footer{text-align:center;padding:35px;color:#7e8bb8}
 <a href="update.html">Software Update</a>
 <a href="contact.html">Contact</a>
 </nav>
-
 <section class="hero">
 <h1>Professional Diagnostic Software Store</h1>
 <p>Official engineering & dealer tools for trucks and heavy equipment. Ready-to-use installation and remote activation included.</p>
 </section>
-
 <section class="section">
 <div class="grid">
 
 <div class="card">
-<div>
-<div class="header"><img class="logo" src="logos/cummins.png"><div class="title">Cummins INSITE + Calterm</div></div>
-<div class="brand">Cummins Engines</div>
-<div class="price">390€</div>
-</div>
-<div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
-</div>
-
-<div class="card">
-<div>
-<div class="header"><img class="logo" src="logos/volvo.png"><div class="title">Volvo TechTool (PTT)</div></div>
-<div class="brand">Volvo Trucks</div>
-<div class="price">450€</div>
-</div>
-<div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
+ <div class="head"><div class="logo"><img src="logos/cummins.png"></div><div class="title">Cummins INSITE + Calterm</div></div>
+ <div class="brand">Cummins Engines</div>
+ <div class="price">390€</div>
+ <div class="spacer"></div>
+ <div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
 </div>
 
 <div class="card">
-<div>
-<div class="header"><img class="logo" src="logos/scania.png"><div class="title">Scania SDP3</div></div>
-<div class="brand">Scania Dealer Tool</div>
-<div class="price">190€</div>
-</div>
-<div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
-</div>
-
-<div class="card">
-<div>
-<div class="header"><img class="logo" src="logos/xentry.png"><div class="title">Mercedes Xentry</div></div>
-<div class="brand">Mercedes Trucks</div>
-<div class="price">250€</div>
-</div>
-<div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
+ <div class="head"><div class="logo"><img src="logos/volvo.png"></div><div class="title">Volvo TechTool (PTT)</div></div>
+ <div class="brand">Volvo Trucks</div>
+ <div class="price">450€</div>
+ <div class="spacer"></div>
+ <div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
 </div>
 
 <div class="card">
-<div>
-<div class="header"><img class="logo" src="logos/cat.png"><div class="title">CAT Electronic Technician</div></div>
-<div class="brand">Caterpillar</div>
-<div class="price">250€</div>
-</div>
-<div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
-</div>
-
-<div class="card">
-<div>
-<div class="header"><img class="logo" src="logos/jaltest.png"><img class="logo" src="logos/texa.png"><div class="title">Jaltest / TEXA IDC5</div></div>
-<div class="brand">Multi Brand</div>
-<div class="price">190€</div>
-</div>
-<div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
+ <div class="head"><div class="logo"><img src="logos/scania.png"></div><div class="title">Scania SDP3</div></div>
+ <div class="brand">Scania Dealer Tool</div>
+ <div class="price">190€</div>
+ <div class="spacer"></div>
+ <div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
 </div>
 
 <div class="card">
-<div>
-<div class="header"><img class="logo" src="logos/scanmatik.png"><div class="title">Scanmatik + Drivers</div></div>
-<div class="brand">Interface</div>
-<div class="price">150€</div>
-</div>
-<div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
-</div>
-
-<div class="card">
-<div>
-<div class="header"><img class="logo" src="logos/winols.png"><div class="title">WinOLS Damos</div></div>
-<div class="brand">Calibration software</div>
-<div class="price">200€</div>
-</div>
-<div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
+ <div class="head"><div class="logo"><img src="logos/xentry.png"></div><div class="title">Mercedes Xentry</div></div>
+ <div class="brand">Mercedes Trucks</div>
+ <div class="price">250€</div>
+ <div class="spacer"></div>
+ <div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
 </div>
 
 <div class="card">
-<div>
-<div class="header"><img class="logo" src="logos/cat.png"><div class="title">Caterpillar SIS & ET</div></div>
-<div class="brand">Caterpillar</div>
-<div class="price">350€</div>
+ <div class="head"><div class="logo"><img src="logos/cat.png"></div><div class="title">CAT Electronic Technician</div></div>
+ <div class="brand">Caterpillar</div>
+ <div class="price">250€</div>
+ <div class="spacer"></div>
+ <div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
 </div>
-<div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
+
+<div class="card">
+ <div class="head"><div class="logo"><img src="logos/jaltest.png"></div><div class="logo"><img src="logos/texa.png"></div><div class="title">Jaltest / TEXA IDC5</div></div>
+ <div class="brand">Multi Brand</div>
+ <div class="price">190€</div>
+ <div class="spacer"></div>
+ <div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
+</div>
+
+<div class="card">
+ <div class="head"><div class="logo"><img src="logos/scanmatik.png"></div><div class="title">Scanmatik + Drivers</div></div>
+ <div class="brand">Interface</div>
+ <div class="price">150€</div>
+ <div class="spacer"></div>
+ <div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
+</div>
+
+<div class="card">
+ <div class="head"><div class="logo"><img src="logos/winols.png"></div><div class="title">WinOLS Damos</div></div>
+ <div class="brand">Calibration software</div>
+ <div class="price">200€</div>
+ <div class="spacer"></div>
+ <div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
+</div>
+
+<div class="card">
+ <div class="head"><div class="logo"><img src="logos/cat.png"></div><div class="title">Caterpillar SIS & ET</div></div>
+ <div class="brand">Caterpillar</div>
+ <div class="price">350€</div>
+ <div class="spacer"></div>
+ <div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div>
 </div>
 
 </div>
 </section>
-
 <footer>© WCF Performance</footer>
 </body>
 </html>
