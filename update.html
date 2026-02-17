@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Software Store - WCF Performance</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<title>WCF Performance - Software Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#070f22;--card1:#213764;--card2:#182c55;--accent:#ff3b3b}
+:root{
+--bg1:#060b18;
+--bg2:#0a1f45;
+--cardTop:#2f5fff;
+--cardMid:#1c3d95;
+--cardBot:#0e1f4d;
+--accent:#ff3b3b;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Poppins;background:radial-gradient(circle at 50% 0%,#0b1d40,#050b18 70%);color:#eaf0ff}
+body{margin:0;font-family:Poppins;background:radial-gradient(circle at 50% 0%,var(--bg2),var(--bg1) 70%);color:#eaf0ff}
 
 /* HEADER */
 .topbar{background:#e00000;height:72px;display:flex;align-items:center;justify-content:center;font-weight:800;letter-spacing:3px}
@@ -28,164 +35,38 @@ nav a:hover{color:#fff}
 @media(max-width:650px){.grid{grid-template-columns:1fr}}
 
 /* CARD */
-.card{
-background:
-radial-gradient(circle at 50% 0%, rgba(255,255,255,.25), transparent 35%),
-linear-gradient(180deg,#2c5cff 0%,#1c3c95 40%,#0c1e4f 100%);
-border-radius:28px;
-padding:34px 26px 28px;
-box-shadow:
-inset 0 2px 10px rgba(255,255,255,.35),
-inset 0 -8px 20px rgba(0,0,0,.55),
-0 0 0 1px rgba(255,255,255,.08),
-0 25px 70px rgba(0,0,0,1);
-transition:.28s cubic-bezier(.2,.8,.2,1);
-}
-
-.card:hover{
-transform:translateY(-10px) scale(1.015);
-box-shadow:
-inset 0 4px 14px rgba(255,255,255,.45),
-inset 0 -10px 30px rgba(0,0,0,.7),
-0 0 40px rgba(80,130,255,.35),
-0 35px 90px rgba(0,0,0,1);
-}
-
+.card{background: radial-gradient(circle at 50% 20%, var(--cardTop) 0%, var(--cardMid) 45%, var(--cardBot) 100%);border-radius:28px;padding:34px 26px 28px;box-shadow:inset 0 2px 6px rgba(255,255,255,0.25),0 18px 45px rgba(0,0,0,0.9);transition:.25s}
+.card:hover{transform:translateY(-6px) scale(1.01);box-shadow:inset 0 2px 10px rgba(255,255,255,0.35),0 30px 70px rgba(0,0,0,1)}
 
 .head{display:flex;align-items:center;gap:16px}
-.logo{
-width:74px;
-height:74px;
-background:linear-gradient(180deg,#ffffff,#eef2ff);
-border-radius:20px;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:
-inset 0 3px 6px rgba(0,0,0,.25),
-0 10px 25px rgba(0,0,0,.6),
-0 0 0 1px rgba(255,255,255,.6);
-margin-bottom:10px;
-overflow:hidden;
-}
+.logo{width:74px;height:74px;background:linear-gradient(180deg,#ffffff,#eef2ff);border-radius:20px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 3px 6px rgba(0,0,0,.25),0 10px 25px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.6);overflow:hidden}
+.logo img{max-width:80%;max-height:80%;object-fit:contain}
 
-.logo img{
-max-width:80%;
-max-height:80%;
-width:auto;
-height:auto;
-object-fit:contain;
-display:block;
-}
+.title{font-size:20px;font-weight:700;margin-top:6px}
+.brand{font-size:13px;color:#a9b9ff;margin-top:4px}
 
+.price{color:#ff2e2e;font-size:34px;font-weight:800;margin:22px 0 26px;text-align:center;text-shadow:0 0 10px rgba(255,0,0,.55)}
 
-.title{
-font-size:20px;
-font-weight:700;
-margin-top:6px;
-letter-spacing:.3px;
-}
+.actions{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+button{border:none;border-radius:16px;height:50px;font-weight:700;cursor:pointer;font-size:14px;letter-spacing:.3px;transition:.15s}
 
-.brand{
-font-size:13px;
-color:#a9b9ff;
-margin-top:4px;
-}
+.paypal{background:linear-gradient(180deg,#ffe27a,#ffb300);color:#000;box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 8px 18px rgba(0,0,0,.45),0 4px 0 #b87b00}
+.paypal:active{transform:translateY(4px);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 2px 0 #b87b00}
 
-.price{
-color:#ff3b3b;
-font-size:36px;
-font-weight:900;
-margin:24px 0 28px;
-text-align:center;
-text-shadow:
-0 0 8px rgba(255,40,40,.9),
-0 0 18px rgba(255,0,0,.7),
-0 0 28px rgba(255,0,0,.5);
-letter-spacing:.5px;
-}
+.whatsapp{background:linear-gradient(180deg,#3be07f,#16b85f);color:#fff;box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 8px 18px rgba(0,0,0,.45),0 4px 0 #0d8e49}
+.whatsapp:active{transform:translateY(4px);box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 2px 0 #0d8e49}
 
-
-
-.spacer{flex:1}
-
-.actions{
-display:flex;
-flex-direction:column;
-gap:14px;
-margin-top:10px;
-}
-
-button{
-border:none;
-border-radius:16px;
-height:50px;
-font-weight:700;
-cursor:pointer;
-font-size:14px;
-letter-spacing:.3px;
-transition:.15s;
-}
-
-/* PAYPAL */
-.paypal{
-background:linear-gradient(180deg,#ffe484,#ffb300);
-color:#000;
-box-shadow:
-inset 0 3px 0 rgba(255,255,255,.7),
-0 10px 18px rgba(0,0,0,.55),
-0 5px 0 #b87b00;
-}
-
-.paypal:hover{filter:brightness(1.08)}
-
-.paypal:active{
-transform:translateY(5px);
-box-shadow:
-inset 0 3px 0 rgba(255,255,255,.7),
-0 2px 0 #b87b00;
-}
-
-
-/* WHATSAPP */
-.whatsapp{
-background:linear-gradient(180deg,#43f08c,#19b861);
-color:#fff;
-box-shadow:
-inset 0 3px 0 rgba(255,255,255,.6),
-0 10px 18px rgba(0,0,0,.55),
-0 5px 0 #0d8e49;
-}
-
-.whatsapp:hover{filter:brightness(1.08)}
-
-.whatsapp:active{
-transform:translateY(5px);
-box-shadow:
-inset 0 3px 0 rgba(255,255,255,.6),
-0 2px 0 #0d8e49;
-}
-
-
-footer{
-text-align:center;
-padding:45px;
-color:#7d8dd1;
-font-size:13px;
-opacity:.8;
-}
-
+footer{text-align:center;padding:45px;color:#7d8dd1;font-size:13px;opacity:.8}
 </style>
 </head>
 <body>
-
 <div class="topbar">WCF PERFORMANCE</div>
 <nav>
-<a href="index.html">Accueil</a>
-<a href="chiptuning.html">Chiptuning</a>
-<a href="remote.html">Remote Support</a>
-<a href="update.html">Software Update</a>
-<a href="contact.html">Contact</a>
+<a href="#">Accueil</a>
+<a href="#">Chiptuning</a>
+<a href="#">Remote Support</a>
+<a href="#">Software Update</a>
+<a href="#">Contact</a>
 </nav>
 
 <section class="hero">
@@ -196,17 +77,51 @@ opacity:.8;
 <section class="section">
 <div class="grid">
 
-<div class="card"><div class="head"><div class="logo"><img src="logos/cummins.png"></div><div><div class="title">Cummins INSITE + Calterm</div><div class="brand">Cummins Engines</div></div></div><div class="price">390€</div><div class="spacer"></div><div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div></div>
+<!-- CARD -->
+<div class="card">
+<div class="head">
+<div class="logo"><img src="img/cummins.png"></div>
+<div>
+<div class="title">Cummins INSITE + Calterm</div>
+<div class="brand">Cummins Engines</div>
+</div>
+</div>
+<div class="price">390€</div>
+<div class="actions">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
+</div>
 
-<div class="card"><div class="head"><div class="logo"><img src="logos/volvo.png"></div><div><div class="title">Volvo TechTool (PTT)</div><div class="brand">Volvo Trucks</div></div></div><div class="price">450€</div><div class="spacer"></div><div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div></div>
+<div class="card">
+<div class="head">
+<div class="logo"><img src="img/volvo.png"></div>
+<div>
+<div class="title">Volvo TechTool (PTT)</div>
+<div class="brand">Volvo Trucks</div>
+</div>
+</div>
+<div class="price">450€</div>
+<div class="actions">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
+</div>
 
-<div class="card"><div class="head"><div class="logo"><img src="logos/scania.png"></div><div><div class="title">Scania SDP3</div><div class="brand">Scania Dealer Tool</div></div></div><div class="price">190€</div><div class="spacer"></div><div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div></div>
-
-<div class="card"><div class="head"><div class="logo"><img src="logos/xentry.png"></div><div><div class="title">Mercedes Xentry</div><div class="brand">Mercedes Trucks</div></div></div><div class="price">250€</div><div class="spacer"></div><div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div></div>
-
-<div class="card"><div class="head"><div class="logo"><img src="logos/cat.png"></div><div><div class="title">CAT Electronic Technician</div><div class="brand">Caterpillar</div></div></div><div class="price">250€</div><div class="spacer"></div><div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div></div>
-
-<div class="card"><div class="head"><div class="logo"><img src="logos/jaltest.png"></div><div><div class="title">Jaltest / TEXA IDC5</div><div class="brand">Multi Brand</div></div></div><div class="price">190€</div><div class="spacer"></div><div class="actions"><button class="paypal">Secure Payment</button><button class="whatsapp">Contact WhatsApp</button></div></div>
+<div class="card">
+<div class="head">
+<div class="logo"><img src="img/scania.png"></div>
+<div>
+<div class="title">Scania SDP3</div>
+<div class="brand">Scania Dealer Tool</div>
+</div>
+</div>
+<div class="price">190€</div>
+<div class="actions">
+<button class="paypal">Secure Payment</button>
+<button class="whatsapp">Contact WhatsApp</button>
+</div>
+</div>
 
 </div>
 </section>
