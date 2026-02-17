@@ -4,195 +4,123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Software Store - WCF Performance</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-
-/* ===== GLOBAL ===== */
-body{
-margin:0;
-font-family:Poppins, sans-serif;
-color:white;
-background: radial-gradient(circle at 50% 0%, #081428 0%, #050a18 40%, #020611 100%);
+:root{
+  --bg1:#050b18;
+  --bg2:#0b1c38;
+  --card1:#24385f;
+  --card2:#162949;
+  --accent:#ff3b3b;
+  --yellow:#ffc72b;
+  --green:#29cc5f;
 }
 
-/* ===== HEADER ===== */
-.topbar{
-background:linear-gradient(90deg,#a30000,#ff0000);
-padding:18px;
-text-align:center;
-font-weight:800;
-letter-spacing:4px;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Poppins, sans-serif;
+  background:radial-gradient(circle at 50% 0%, #0d2347 0%, #040914 60%, #02050c 100%);
+  color:white;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(90deg,#5a0000,#ff0000,#5a0000);
+  text-align:center;
+  padding:18px 0;
+  font-weight:800;
+  letter-spacing:4px;
 }
 
 nav{
-background:#020611;
-text-align:center;
-padding:14px 0;
-border-bottom:1px solid #0e1a3a;
+  background:#05070d;
+  text-align:center;
+  padding:14px 0;
+  border-bottom:1px solid #111;
 }
-
 nav a{
-color:#c9d6ff;
-text-decoration:none;
-margin:0 18px;
-font-size:14px;
+  color:#c9d6ff;
+  text-decoration:none;
+  margin:0 18px;
+  font-size:14px;
 }
+nav a:hover{color:white}
 
-nav a:hover{
-color:white;
-}
+/* HERO */
+.hero{padding:70px 20px;text-align:center}
+.hero h1{color:var(--accent);font-size:42px;margin-bottom:14px}
+.hero p{color:#9fb2ff;max-width:700px;margin:auto}
 
-/* ===== HERO ===== */
-.hero{
-text-align:center;
-padding:60px 20px 20px;
-}
+/* GRID */
+.section{max-width:1200px;margin:40px auto 90px;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.grid{grid-template-columns:1fr}}
 
-.hero h1{
-color:#ff3b3b;
-font-size:42px;
-margin:0;
-}
-
-.hero p{
-color:#a9b7ff;
-margin-top:12px;
-}
-
-/* ===== GRID ===== */
-.grid{
-max-width:1250px;
-margin:40px auto;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:35px;
-padding:0 20px;
-}
-
-/* ===== CARD ===== */
+/* CARD */
 .card{
-background:linear-gradient(180deg,#1d2f57,#14244a);
-border-radius:26px;
-padding:28px;
-box-shadow:0 20px 50px rgba(0,0,0,.6);
-transition:.25s;
+  background:linear-gradient(180deg,var(--card1),var(--card2));
+  border-radius:26px;
+  padding:30px;
+  box-shadow:0 25px 60px rgba(0,0,0,.7);
+  text-align:center;
 }
+.card:hover{transform:translateY(-6px);transition:.25s}
 
-.card:hover{
-transform:translateY(-8px) scale(1.01);
-box-shadow:0 30px 80px rgba(0,0,0,.9);
-}
-
-/* ===== LOGO ===== */
 .logoBox{
-width:70px;
-height:70px;
-background:white;
-border-radius:18px;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 4px 18px rgba(0,0,0,.35);
-margin-bottom:12px;
+  width:78px;height:78px;
+  margin:auto;
+  background:#e9eef8;
+  border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
 }
+.logoBox img{max-width:60px;max-height:60px}
 
-.logoBox img{
-max-width:80%;
-max-height:80%;
-object-fit:contain;
-}
+.title{font-weight:700;font-size:18px;margin-bottom:2px}
+.subtitle{opacity:.7;font-size:13px;margin-bottom:14px}
+.price{color:var(--accent);font-weight:800;font-size:30px;margin:14px 0 20px}
 
-/* ===== TEXT ===== */
-.title{
-font-weight:700;
-font-size:20px;
-}
-
-.brand{
-color:#9db0ff;
-font-size:14px;
-margin-bottom:10px;
-}
-
-/* ===== PRICE ===== */
-.price{
-color:#ff2e2e;
-font-weight:800;
-font-size:34px;
-text-align:center;
-margin:20px 0;
-text-shadow:0 0 14px rgba(255,0,0,.5);
-}
-
-/* ===== BUTTONS ===== */
 .btn{
-display:block;
-width:100%;
-padding:14px;
-border:none;
-border-radius:14px;
-font-weight:700;
-margin-top:10px;
-cursor:pointer;
+  display:block;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  font-weight:700;
+  margin-top:10px;
+  cursor:pointer;
 }
+.pay{background:var(--yellow);color:black}
+.wa{background:var(--green);color:white}
 
-.pay{
-background:linear-gradient(180deg,#ffd14d,#ffb300);
-box-shadow:0 6px 0 #c68c00,0 10px 20px rgba(0,0,0,.5);
-}
-
-.pay:active{
-transform:translateY(4px);
-box-shadow:0 2px 0 #c68c00;
-}
-
-.wa{
-background:linear-gradient(180deg,#36d96c,#1fa84c);
-box-shadow:0 6px 0 #117a36,0 10px 20px rgba(0,0,0,.5);
-}
-
-.wa:active{
-transform:translateY(4px);
-box-shadow:0 2px 0 #117a36;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:1000px){
-.grid{grid-template-columns:repeat(2,1fr);}
-}
-@media(max-width:600px){
-.grid{grid-template-columns:1fr;}
-}
-
+footer{text-align:center;color:#7f90c0;margin:50px 0 40px}
 </style>
 </head>
-
 <body>
 
-<div class="topbar">WCF PERFORMANCE</div>
-
+<div class="header">WCF PERFORMANCE</div>
 <nav>
 <a href="index.html">Accueil</a>
 <a href="chiptuning.html">Chiptuning</a>
-<a href="remote_support.html">Remote Support</a>
+<a href="remote.html">Remote Support</a>
 <a href="update.html">Software Update</a>
 <a href="contact.html">Contact</a>
 </nav>
 
 <section class="hero">
 <h1>Professional Diagnostic Software Store</h1>
-<p>Official engineering & dealer tools for trucks and heavy equipment. Ready-to-use installation and remote activation included.</p>
+<p>Official engineering & dealer tools for trucks and heavy equipment. Ready‑to‑use installation and remote activation included.</p>
 </section>
 
-<section class="grid">
+<section class="section">
+<div class="grid">
 
-<!-- CARD -->
 <div class="card">
 <div class="logoBox"><img src="logos/cummins.png"></div>
 <div class="title">Cummins INSITE + Calterm</div>
-<div class="brand">Cummins Engines</div>
+<div class="subtitle">Cummins Engines</div>
 <div class="price">390€</div>
 <button class="btn pay">Secure Payment</button>
 <button class="btn wa">Contact WhatsApp</button>
@@ -201,7 +129,7 @@ box-shadow:0 2px 0 #117a36;
 <div class="card">
 <div class="logoBox"><img src="logos/volvo.png"></div>
 <div class="title">Volvo TechTool (PTT)</div>
-<div class="brand">Volvo Trucks</div>
+<div class="subtitle">Volvo Trucks</div>
 <div class="price">450€</div>
 <button class="btn pay">Secure Payment</button>
 <button class="btn wa">Contact WhatsApp</button>
@@ -210,13 +138,45 @@ box-shadow:0 2px 0 #117a36;
 <div class="card">
 <div class="logoBox"><img src="logos/scania.png"></div>
 <div class="title">Scania SDP3</div>
-<div class="brand">Scania Dealer Tool</div>
+<div class="subtitle">Scania Dealer Tool</div>
 <div class="price">190€</div>
 <button class="btn pay">Secure Payment</button>
 <button class="btn wa">Contact WhatsApp</button>
 </div>
 
+<div class="card">
+<div class="logoBox"><img src="logos/xentry.png"></div>
+<div class="title">Mercedes Xentry</div>
+<div class="subtitle">Mercedes Trucks</div>
+<div class="price">250€</div>
+<button class="btn pay">Secure Payment</button>
+<button class="btn wa">Contact WhatsApp</button>
+</div>
+
+<div class="card">
+<div class="logoBox"><img src="logos/cat.png"></div>
+<div class="title">CAT Electronic Technician</div>
+<div class="subtitle">Caterpillar</div>
+<div class="price">250€</div>
+<button class="btn pay">Secure Payment</button>
+<button class="btn wa">Contact WhatsApp</button>
+</div>
+
+<div class="card">
+<div class="logoBox" style="gap:6px">
+<img src="logos/jaltest.png">
+<img src="logos/texa.png">
+</div>
+<div class="title">Jaltest / TEXA IDC5</div>
+<div class="subtitle">Multi Brand</div>
+<div class="price">190€</div>
+<button class="btn pay">Secure Payment</button>
+<button class="btn wa">Contact WhatsApp</button>
+</div>
+
+</div>
 </section>
 
+<footer>© WCF Performance</footer>
 </body>
 </html>
