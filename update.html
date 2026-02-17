@@ -34,7 +34,7 @@ nav a:hover{color:#fff}
 @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.grid{grid-template-columns:1fr}}
 
-/* CARD */
+/* CARD PREMIUM */
 .card{
 position:relative;
 background: radial-gradient(circle at 50% 15%, #3a6bff 0%, #1e3c8f 45%, #0b1c4a 100%);
@@ -42,10 +42,17 @@ border-radius:28px;
 padding:34px 26px 28px;
 overflow:hidden;
 
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+
+min-height:420px; /* HAUTEUR IDENTIQUE */
+
 box-shadow:
 0 25px 60px rgba(0,0,0,0.9),
 inset 0 2px 12px rgba(255,255,255,0.25),
 inset 0 -18px 35px rgba(0,0,0,0.55);
+
 transition:.25s;
 }
 
@@ -73,10 +80,7 @@ box-shadow:
 inset 0 2px 18px rgba(255,255,255,0.35),
 inset 0 -20px 40px rgba(0,0,0,0.6);
 }
-.card{
-display:flex;
-flex-direction:column;
-}
+
 
 
 .head{display:flex;align-items:center;gap:16px}
@@ -88,6 +92,14 @@ margin:auto;
 
 .title{font-size:20px;font-weight:700;margin-top:6px}
 .brand{font-size:13px;color:#a9b9ff;margin-top:4px}
+.info{
+margin-top:18px;
+}
+
+.price{
+margin:22px 0 18px;
+}
+
 .info{
 flex:1;
 display:flex;
@@ -108,7 +120,7 @@ text-shadow:0 1px 0 rgba(0,0,0,.6);
 display:flex;
 flex-direction:column;
 gap:14px;
-margin-top:auto;
+margin-top:auto; /* colle les boutons en bas */
 }
 
 button{border:none;border-radius:16px;height:50px;font-weight:700;cursor:pointer;font-size:14px;letter-spacing:.3px;transition:.15s}
