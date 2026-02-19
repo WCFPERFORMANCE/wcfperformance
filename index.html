@@ -13,7 +13,6 @@
 <meta name="author" content="WCF Performance">
 <meta name="geo.region" content="Worldwide">
 <meta name="language" content="en">
-<meta name="revisit-after" content="1 days">
 
 <meta property="og:title" content="WCF Performance - Remote ECU File Service">
 <meta property="og:description" content="Professional ECU tuning file service. Stage 1, DPF OFF, EGR OFF, Adblue OFF and truck solutions for tuners worldwide.">
@@ -30,7 +29,7 @@ text-align:center;
 padding:20px;
 }
 
-.container{max-width:750px;margin:auto;}
+.container{max-width:760px;margin:auto;}
 
 h1{color:#ff2a2a;font-size:42px;margin-bottom:10px;}
 p{font-size:18px;opacity:0.9;}
@@ -74,6 +73,12 @@ border-radius:6px;
 font-weight:bold;
 margin-top:10px;
 cursor:pointer;
+opacity:0.5;
+}
+
+button:enabled{
+opacity:1;
+cursor:pointer;
 }
 </style>
 </head>
@@ -110,17 +115,18 @@ Remote assistance available for reading, writing and diagnostics.
 
 <h2>Send a File Request</h2>
 
-<form action="https://formsubmit.co/files@wcfperformance.com" method="POST" enctype="multipart/form-data">
+<form id="tuningForm" action="https://formsubmit.co/files@wcfperformance.com" method="POST" enctype="multipart/form-data">
 
 <input type="hidden" name="_subject" value="New File Request WCF Performance">
 <input type="hidden" name="_captcha" value="false">
 
 <input type="text" name="name" placeholder="Name / Company" required>
 
-<input type="tel" name="phone" placeholder="Phone with country code (ex: +33612345678)" 
+<input id="phone" type="tel" name="phone"
+placeholder="Phone with country code (ex: +33612345678)"
 pattern="^\+?[0-9\s\-]{8,20}$" required>
 
-<input type="text" name="vehicle" placeholder="Vehicle model" required>
+<input type="text" name="vehicle" placeholder="Brand / Model (ex: BMW 320d F30)" required>
 
 <input type="text" name="ecu" placeholder="ECU type (EDC17, MD1, SID...)" required>
 
@@ -129,9 +135,16 @@ pattern="^\+?[0-9\s\-]{8,20}$" required>
 <label style="display:block;margin-top:15px;color:#aaa">
 Attach original file / photo ECU (required)
 </label>
-<input type="file" name="attachment" accept=".bin,.ori,.mod,.zip,.rar,.jpg,.png,.pdf" required>
 
-<button type="submit">Send File Request</button>
+<input id="fileInput" type="file" name="attachment"
+accept=".bin,.ori,.mod,.zip,.rar,.jpg,.png,.pdf" required>
+
+<button id="sendBtn" type="submit" disabled>Send File Request</button>
+
+<p id="errorMsg" style="color:#ff4d4d;margin-top:10px;display:none">
+Please enter a valid phone number and attach a file
+</p>
+
 </form>
 
 <p style="margin-top:25px;font-size:14px;color:#888;">
@@ -140,6 +153,29 @@ Official website currently under finalization — Services already available rem
 
 </div>
 </div>
+
+<script>
+const phone = document.getElementById('phone');
+const fileInput = document.getElementById('fileInput');
+const sendBtn = document.getElementById('sendBtn');
+const errorMsg = document.getElementById('errorMsg');
+
+function validateForm() {
+    const phoneValid = /^\+?[0-9\s\-]{8,20}$/.test(phone.value);
+    const fileValid = fileInput.files.length > 0;
+
+    if(phoneValid && fileValid){
+        sendBtn.disabled = false;
+        errorMsg.style.display = "none";
+    } else {
+        sendBtn.disabled = true;
+        errorMsg.style.display = "block";
+    }
+}
+
+phone.addEventListener('input', validateForm);
+fileInput.addEventListener('change', validateForm);
+</script>
 
 </body>
 </html>
