@@ -3,131 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WCF Performance</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<title>Maintenance - WCF Performance</title>
 <style>
-:root{--red:#ff2e2e;--blue:#0b1220;--card:#131c33;--soft:#9fb0ff}
-*{box-sizing:border-box}
-body{margin:0;font-family:Poppins;background:linear-gradient(180deg,#05070f,#0b1220 40%,#0a1a35);color:white}
-
-/* TOP LOGO BAR */
-.topbar{background:radial-gradient(circle at 30% 50%, rgba(255,0,0,.35), transparent 60%),linear-gradient(90deg,#1a0000,#2b0000,#120000);padding:18px 0;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.7)}
-.topbar img{height:60px;filter:drop-shadow(0 0 14px rgba(255,0,0,.6))}
-
-/* NAV */
-nav{position:sticky;top:0;z-index:10;background:rgba(10,10,12,.9);backdrop-filter:blur(8px);border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;display:flex;gap:26px;align-items:center;padding:14px 28px}
-nav a{color:#cfd8ff;text-decoration:none;font-size:14px}
-nav a:hover{color:white}
-.search{margin-left:auto;background:#0b1220;border:1px solid #1f2c4f;border-radius:12px;padding:8px 12px;color:white;width:220px}
-
-/* HERO */
-.hero{padding:120px 20px 110px;text-align:center;background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=1600');background-size:cover;background-position:center}
-.hero h1{font-size:46px;margin:0;color:var(--red);text-shadow:0 0 18px rgba(255,46,46,.5)}
-.hero p{max-width:760px;margin:16px auto 26px;color:#d0d8ff}
-.hero .badges{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:20px;color:#b9c7ff;font-size:14px}
-.cta{display:inline-block;margin-top:28px;padding:16px 28px;border-radius:14px;background:linear-gradient(90deg,#ff2e2e,#ff6a00);color:white;text-decoration:none;font-weight:600;box-shadow:0 10px 30px rgba(255,0,0,.35)}
-
-/* SECTIONS */
-.section{max-width:1200px;margin:70px auto;padding:0 20px}
-.section h2{text-align:center;margin-bottom:28px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
-.card{background:linear-gradient(180deg,#151f3a,#0f172d);padding:30px;border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.6);text-align:center;transition:.25s}
-.card:hover{transform:translateY(-6px);box-shadow:0 25px 80px rgba(0,0,0,.8)}
-.card h3{margin:0 0 10px}
-.card p{color:#a8b6ff}
-.card a{display:inline-block;margin-top:16px;padding:12px 22px;border-radius:10px;background:#1a2550;color:white;text-decoration:none}
-
-/* TRUST */
-.trust{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;color:#a8b6ff;margin-top:10px}
-.trust div{padding:10px 16px;border:1px solid #233060;border-radius:10px}
-
-footer{text-align:center;padding:40px;color:#6e7fb3;margin-top:60px}
-  footer{text-align:center;padding:40px;color:#6e7fb3;margin-top:60px}
-
-/* <<< TU AJOUTES ICI >>> */
-
-.search{
-margin-left:auto;
-background:#0b1220;
-border:1px solid #1f2c4f;
-border-radius:10px;
-padding:8px 12px;
-color:white;
-width:200px;
-transition:.25s;
-}
-
-.search:focus{
-outline:none;
-border-color:#ff2e2e;
-box-shadow:0 0 10px rgba(255,46,46,.4);
-}
-
+    body{
+        margin:0;
+        font-family:Arial, Helvetica, sans-serif;
+        background:#0f172a;
+        color:#fff;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        height:100vh;
+        text-align:center;
+    }
+    .box{
+        max-width:600px;
+        padding:40px 25px;
+        background:#020617;
+        border-radius:18px;
+        box-shadow:0 10px 40px rgba(0,0,0,.6);
+    }
+    h1{
+        font-size:2.2rem;
+        margin-bottom:15px;
+        color:#38bdf8;
+    }
+    p{
+        opacity:.85;
+        line-height:1.6;
+    }
+    .badge{
+        display:inline-block;
+        margin-top:25px;
+        padding:12px 22px;
+        background:#22c55e;
+        color:#022c22;
+        border-radius:12px;
+        text-decoration:none;
+        font-weight:bold;
+        transition:.2s;
+    }
+    .badge:hover{
+        transform:translateY(-2px);
+        box-shadow:0 5px 18px rgba(34,197,94,.4);
+    }
+    .small{
+        margin-top:18px;
+        font-size:.85rem;
+        opacity:.6;
+    }
 </style>
 </head>
 <body>
-
-<div class="topbar"><img src="logo.png" alt="WCF Performance"></div>
-
-<nav>
-<div class="logo">WCF</div>
-
-<a href="index.html">Accueil</a>
-<a href="chiptuning.html">Chiptuning</a>
-<a href="remote_support.html">Remote Support</a>
-<a href="update.html">Software Update</a>
-<a href="contact.html">Contact</a>
-
-<input class="search" placeholder="Rechercher service...">
-</nav>
-
-
-<section class="hero">
-<h1>Worldwide remote expertise in diagnostics, calibration and system integration</h1>
-<p>Professional remote ECU services for workshops and technicians. Secure process, fast turnaround and direct engineer support.</p>
-<div class="badges">
-<span>✔ Paiement sécurisé</span>
-<span>✔ Support ingénieur</span>
-<span>✔ Intervention rapide</span>
-</div>
-  <div class="expertise">
-ECU CALIBRATION • FLASHING • IMMO • CLONING • CODING • PROGRAMMING
-</div>
-
-<a class="cta" href="contact.html">Envoyer un fichier</a>
-</section>
-
-<section class="section">
-<h2>Nos pôles d'expertise</h2>
-<div class="grid">
-<div class="card">
-<h3>Chiptuning</h3>
-<p>Optimisation moteur Stage 1, solutions EGR / DPF / Adblue OFF et calibrations sur mesure.</p>
-<a href="chiptuning.html">Voir les services</a>
-</div>
-<div class="card">
-<h3>Remote Support</h3>
-<p>Assistance technique en direct pour installations outils, lectures ECU et procédures complexes.</p>
-<a href="remote.html">Obtenir de l'aide</a>
-</div>
-<div class="card">
-<h3>Diagnostic Software Update</h3>
-<p>Mise à jour calculateurs et corrections logicielles pour plateformes automobiles.</p>
-<a href="update.html">Accéder</a>
-</div>
-</div>
-</section>
-
-<section class="section">
-<h2>Fiabilité & Sécurité</h2>
-<div class="trust">
-<div>+1000 fichiers traités</div>
-<div>Support 7j/7</div>
-<div>Compatibilité multi-outils</div>
-<div>Livraison rapide</div>
-</div>
-</section>
-
-<footer>© WCF Performance</footer>
+    <div class="box">
+        <h1>🚧 Site en maintenance</h1>
+        <p>
+            Le site <strong>WCF Performance</strong> est actuellement en cours d'amélioration.<br>
+            Nous préparons une version plus propre, plus claire et plus complète.
+        </p>
+        <p>
+            Vous pouvez toujours nous contacter directement pour vos demandes de :<br>
+            Reprogrammation • EGR • FAP • AdBlue • Support
+        </p>
+        <a class="badge" href="https://wa.me/message/NMAYVYZADORVF1">Contacter sur WhatsApp</a>
+        <div class="small">Merci pour votre patience 🙏</div>
+    </div>
 </body>
 </html>
