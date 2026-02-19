@@ -26,28 +26,14 @@ margin:0;
 font-family:Arial, Helvetica, sans-serif;
 background:#0b0b0b;
 color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-height:100vh;
 text-align:center;
 padding:20px;
 }
 
-.container{
-max-width:700px;
-}
+.container{max-width:750px;margin:auto;}
 
-h1{
-color:#ff2a2a;
-font-size:42px;
-margin-bottom:10px;
-}
-
-p{
-font-size:18px;
-opacity:0.9;
-}
+h1{color:#ff2a2a;font-size:42px;margin-bottom:10px;}
+p{font-size:18px;opacity:0.9;}
 
 .box{
 margin-top:30px;
@@ -57,11 +43,7 @@ border-radius:12px;
 border:1px solid #222;
 }
 
-.services{
-margin-top:20px;
-line-height:1.9;
-color:#ccc;
-}
+.services{margin-top:20px;line-height:1.9;color:#ccc;}
 
 .whatsapp{
 display:inline-block;
@@ -73,6 +55,26 @@ border-radius:8px;
 font-weight:bold;
 text-decoration:none;
 }
+
+input, textarea{
+width:100%;
+padding:12px;
+margin:8px 0;
+background:#0b0b0b;
+border:1px solid #333;
+color:white;
+}
+
+button{
+background:#ff2a2a;
+color:white;
+padding:14px 25px;
+border:none;
+border-radius:6px;
+font-weight:bold;
+margin-top:10px;
+cursor:pointer;
+}
 </style>
 </head>
 
@@ -81,7 +83,6 @@ text-decoration:none;
 <div class="container">
 
 <h1>WCF PERFORMANCE</h1>
-
 <p>Worldwide Remote ECU File Service for automotive professionals</p>
 
 <div class="box">
@@ -104,6 +105,23 @@ Remote assistance available for reading, writing and diagnostics.
 </p>
 
 <a class="whatsapp" href="https://wa.me/message/NMAYVYZADORVF1">Contact via WhatsApp</a>
+
+<hr style="margin:40px 0;border-color:#222">
+
+<h2>Send a File Request</h2>
+
+<form action="https://formsubmit.co/files@wcfperformance.com" method="POST">
+<input type="hidden" name="_subject" value="New File Request WCF Performance">
+<input type="hidden" name="_captcha" value="false">
+
+<input type="text" name="name" placeholder="Your name / Company" required>
+<input type="email" name="email" placeholder="Your email" required>
+<input type="text" name="vehicle" placeholder="Vehicle model" required>
+<input type="text" name="ecu" placeholder="ECU type (EDC17, MD1, SID...)" required>
+<textarea name="request" placeholder="Stage / DPF / EGR / Adblue / Problem description" required></textarea>
+
+<button type="submit">Send Request</button>
+</form>
 
 <p style="margin-top:25px;font-size:14px;color:#888;">
 Official website currently under finalization — Services already available remotely.
