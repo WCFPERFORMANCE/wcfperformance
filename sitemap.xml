@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://wcfperformance.com/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://wcfperformance.com/chiptuning.html</loc>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://wcfperformance.com/remote.html</loc>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://wcfperformance.com/update.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://wcfperformance.com/contact.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+</urlset>
