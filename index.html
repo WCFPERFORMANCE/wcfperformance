@@ -110,17 +110,28 @@ Remote assistance available for reading, writing and diagnostics.
 
 <h2>Send a File Request</h2>
 
-<form action="https://formsubmit.co/files@wcfperformance.com" method="POST">
+<form action="https://formsubmit.co/files@wcfperformance.com" method="POST" enctype="multipart/form-data">
+
 <input type="hidden" name="_subject" value="New File Request WCF Performance">
 <input type="hidden" name="_captcha" value="false">
 
-<input type="text" name="name" placeholder="Your name / Company" required>
-<input type="email" name="email" placeholder="Your email" required>
+<input type="text" name="name" placeholder="Name / Company" required>
+
+<input type="tel" name="phone" placeholder="Phone with country code (ex: +33612345678)" 
+pattern="^\+?[0-9\s\-]{8,20}$" required>
+
 <input type="text" name="vehicle" placeholder="Vehicle model" required>
+
 <input type="text" name="ecu" placeholder="ECU type (EDC17, MD1, SID...)" required>
+
 <textarea name="request" placeholder="Stage / DPF / EGR / Adblue / Problem description" required></textarea>
 
-<button type="submit">Send Request</button>
+<label style="display:block;margin-top:15px;color:#aaa">
+Attach original file / photo ECU (required)
+</label>
+<input type="file" name="attachment" accept=".bin,.ori,.mod,.zip,.rar,.jpg,.png,.pdf" required>
+
+<button type="submit">Send File Request</button>
 </form>
 
 <p style="margin-top:25px;font-size:14px;color:#888;">
