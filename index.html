@@ -10,76 +10,18 @@
 <meta name="keywords" content="ecu file service, remote tuning files, dpf off, egr off, adblue off, truck tuning files, winols file service">
 <meta name="robots" content="index, follow">
 
-<meta name="author" content="WCF Performance">
-<meta name="geo.region" content="Worldwide">
-<meta name="language" content="en">
-
-<meta property="og:title" content="WCF Performance - Remote ECU File Service">
-<meta property="og:description" content="Professional ECU tuning file service. Stage 1, DPF OFF, EGR OFF, Adblue OFF and truck solutions for tuners worldwide.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://wcfperformance.com/">
-
 <style>
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#0b0b0b;
-color:white;
-text-align:center;
-padding:20px;
-}
-
+body{margin:0;font-family:Arial;background:#0b0b0b;color:white;text-align:center;padding:20px;}
 .container{max-width:760px;margin:auto;}
-
 h1{color:#ff2a2a;font-size:42px;margin-bottom:10px;}
-p{font-size:18px;opacity:0.9;}
-
-.box{
-margin-top:30px;
-background:#111;
-padding:25px;
-border-radius:12px;
-border:1px solid #222;
-}
-
+.box{margin-top:30px;background:#111;padding:25px;border-radius:12px;border:1px solid #222;}
 .services{margin-top:20px;line-height:1.9;color:#ccc;}
-
-.whatsapp{
-display:inline-block;
-margin-top:25px;
-background:#25D366;
-color:black;
-padding:14px 22px;
-border-radius:8px;
-font-weight:bold;
-text-decoration:none;
-}
-
-input, textarea{
-width:100%;
-padding:12px;
-margin:8px 0;
-background:#0b0b0b;
-border:1px solid #333;
-color:white;
-}
-
-button{
-background:#ff2a2a;
-color:white;
-padding:14px 25px;
-border:none;
-border-radius:6px;
-font-weight:bold;
-margin-top:10px;
-cursor:pointer;
-opacity:0.5;
-}
-
-button:enabled{
-opacity:1;
-cursor:pointer;
-}
+.whatsapp{display:inline-block;margin-top:25px;background:#25D366;color:black;padding:14px 22px;border-radius:8px;font-weight:bold;text-decoration:none;}
+input,textarea{width:100%;padding:12px;margin:8px 0;background:#0b0b0b;border:1px solid #333;color:white;}
+label{display:block;text-align:left;margin-top:12px;color:#ddd;font-size:14px}
+.required{color:#ff2a2a}
+button{background:#ff2a2a;color:white;padding:14px 25px;border:none;border-radius:6px;font-weight:bold;margin-top:10px;cursor:pointer;opacity:0.5;}
+button:enabled{opacity:1;}
 </style>
 </head>
 
@@ -92,8 +34,6 @@ cursor:pointer;
 
 <div class="box">
 
-<p><strong>Available services:</strong></p>
-
 <div class="services">
 DPF OFF / EGR OFF / ADBLUE OFF<br>
 Stage 1 - Stage 2 - Stage 3<br>
@@ -101,13 +41,6 @@ Truck & Heavy Equipment Solutions<br>
 Custom WinOLS File Service<br>
 Remote Support for Tuners
 </div>
-
-<p style="margin-top:25px;color:#999;font-size:15px;line-height:1.7">
-WCF Performance provides professional ECU tuning file services for cars, trucks and heavy equipment.
-We support Bosch EDC16, EDC17, MD1, MG1, Siemens SID, Delphi and Continental ECUs.
-Our engineers deliver custom Stage 1, Stage 2, DPF OFF, EGR OFF and AdBlue OFF solutions for tuners worldwide.
-Remote assistance available for reading, writing and diagnostics.
-</p>
 
 <a class="whatsapp" href="https://wa.me/message/NMAYVYZADORVF1">Contact via WhatsApp</a>
 
@@ -120,29 +53,28 @@ Remote assistance available for reading, writing and diagnostics.
 <input type="hidden" name="_subject" value="New File Request WCF Performance">
 <input type="hidden" name="_captcha" value="false">
 
-<input type="text" name="name" placeholder="Name / Company" required>
+<label>Name / Company <span class="required">*</span></label>
+<input type="text" name="name" required>
 
-<input id="phone" type="tel" name="phone"
-placeholder="Phone with country code (ex: +33612345678)"
-pattern="^\+?[0-9\s\-]{8,20}$" required>
+<label>Phone with country code <span class="required">*</span></label>
+<input id="phone" type="tel" name="phone" placeholder="+33612345678" pattern="^\+?[0-9\s\-]{8,20}$" required>
 
-<input type="text" name="vehicle" placeholder="Brand / Model (ex: BMW 320d F30)" required>
+<label>Brand / Model <span class="required">*</span></label>
+<input type="text" name="vehicle" required>
 
-<input type="text" name="ecu" placeholder="ECU type (EDC17, MD1, SID...)" required>
+<label>ECU type <span class="required">*</span></label>
+<input type="text" name="ecu" required>
 
-<textarea name="request" placeholder="Stage / DPF / EGR / Adblue / Problem description" required></textarea>
+<label>Request details <span class="required">*</span></label>
+<textarea name="request" required></textarea>
 
-<label style="display:block;margin-top:15px;color:#aaa">
-Attach original file / photo ECU (required)
-</label>
-
-<input id="fileInput" type="file" name="attachment"
-accept=".bin,.ori,.mod,.zip,.rar,.jpg,.png,.pdf" required>
+<label>Attach original file / photo ECU <span class="required">*</span></label>
+<input id="fileInput" type="file" name="attachment" accept=".bin,.ori,.mod,.zip,.rar,.jpg,.png,.pdf" required>
 
 <button id="sendBtn" type="submit" disabled>Send File Request</button>
 
 <p id="errorMsg" style="color:#ff4d4d;margin-top:10px;display:none">
-Please enter a valid phone number and attach a file
+Phone number and file are required to send request
 </p>
 
 </form>
@@ -155,26 +87,26 @@ Official website currently under finalization — Services already available rem
 </div>
 
 <script>
-const phone = document.getElementById('phone');
-const fileInput = document.getElementById('fileInput');
-const sendBtn = document.getElementById('sendBtn');
-const errorMsg = document.getElementById('errorMsg');
+const phone=document.getElementById('phone');
+const fileInput=document.getElementById('fileInput');
+const sendBtn=document.getElementById('sendBtn');
+const errorMsg=document.getElementById('errorMsg');
 
-function validateForm() {
-    const phoneValid = /^\+?[0-9\s\-]{8,20}$/.test(phone.value);
-    const fileValid = fileInput.files.length > 0;
+function validateForm(){
+const phoneValid=/^\+?[0-9\s\-]{8,20}$/.test(phone.value);
+const fileValid=fileInput.files.length>0;
 
-    if(phoneValid && fileValid){
-        sendBtn.disabled = false;
-        errorMsg.style.display = "none";
-    } else {
-        sendBtn.disabled = true;
-        errorMsg.style.display = "block";
-    }
+if(phoneValid&&fileValid){
+sendBtn.disabled=false;
+errorMsg.style.display="none";
+}else{
+sendBtn.disabled=true;
+errorMsg.style.display="block";
+}
 }
 
-phone.addEventListener('input', validateForm);
-fileInput.addEventListener('change', validateForm);
+phone.addEventListener('input',validateForm);
+fileInput.addEventListener('change',validateForm);
 </script>
 
 </body>
