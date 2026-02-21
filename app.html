@@ -67,17 +67,17 @@ border:1px solid var(--border);padding:25px;border-radius:12px
 <p>Select the service you need</p>
 
 <div class="services">
-<div class="card">
+<div class="card" id="fileServiceBtn">
 <h3>FILE SERVICE</h3>
 <p>Send ECU file for modification</p>
 </div>
 
-<div class="card">
+<div class="card" id="remoteBtn">
 <h3>REMOTE SESSION</h3>
 <p>Live intervention on vehicle</p>
 </div>
 
-<div class="card">
+<div class="card" id="supportBtn">
 <h3>TECH SUPPORT</h3>
 <p>Get help from an engineer</p>
 </div>
@@ -89,44 +89,58 @@ border:1px solid var(--border);padding:25px;border-radius:12px
 <span class="badge progress">In progress</span>
 <span class="badge ready">Ready download</span>
 </div>
-
 </div>
+
 <script>
 const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
 const WHATSAPP_LINK = "https://wa.me/message/NMAYVYZADORVF1";
 
-document.getElementById("requestForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+/* FILE SERVICE */
+document.getElementById("fileServiceBtn").addEventListener("click", async () => {
 
-  const form = e.target;
+  const name = prompt("Your name");
+  if(!name) return;
+
+  const email = prompt("Your email");
+  if(!email) return;
+
+  const vehicle = prompt("Vehicle model");
+  if(!vehicle) return;
+
+  const ecu = prompt("ECU model");
+  if(!ecu) return;
 
   const data = {
-    name: form.name.value,
-    email: form.email.value,
-    tool: form.tool.value,
-    vehicle: form.vehicle.value,
-    ecu: form.ecu.value,
-    service: form.service.value,
-    notes: form.notes.value
+    name,
+    email,
+    vehicle,
+    ecu,
+    service: "File Service",
+    notes: "Client portal request"
   };
 
   try {
-    await fetch(FUNCTION_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+    await fetch(FUNCTION_URL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(data)
     });
-
-    // ouverture WhatsApp automatique
     window.location.href = WHATSAPP_LINK;
-
-  } catch (err) {
-    alert("Connection error. Contact support on WhatsApp.");
+  } catch {
     window.location.href = WHATSAPP_LINK;
   }
 });
+
+/* REMOTE SESSION */
+document.getElementById("remoteBtn").addEventListener("click",()=>{
+  window.location.href = WHATSAPP_LINK;
+});
+
+/* TECH SUPPORT */
+document.getElementById("supportBtn").addEventListener("click",()=>{
+  window.location.href = WHATSAPP_LINK;
+});
 </script>
+
 </body>
 </html>
