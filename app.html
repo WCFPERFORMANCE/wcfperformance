@@ -96,19 +96,36 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 const supabase = createClient(
   "https://rjhfpdmbupznwckrvcsv.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqaGZwZG1idXB6bndja3J2Y3N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3MDU3NzQsImV4cCI6MjA4NzI4MTc3NH0.JFjuVEV7bMzC3qXeQbFHkUA_YIZFkM16NBkrqdG5yXY"
+  "TA_CLE_ANON_ICI"
 );
 
+// ===== CHECK LOGIN AU CHARGEMENT =====
+const { data: { session } } = await supabase.auth.getSession();
+
+if(session){
+  document.body.innerHTML = `
+  <div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:Arial;background:#0b0b0b;color:white">
+    <div>
+      <h2>Welcome ${session.user.email}</h2>
+      <p>You are connected to WCF Workspace</p>
+    </div>
+  </div>`;
+}
+
+// ===== LOGIN =====
 async function login(){
   const email = prompt("Enter your workshop email");
   if(!email) return;
 
   const { error } = await supabase.auth.signInWithOtp({
-    email: email
+    email: email,
+    options:{
+      emailRedirectTo:"https://wcfperformance.com/app.html"
+    }
   });
 
   if(error){
-    alert("Error: " + error.message);
+    alert(error.message);
   } else {
     alert("Magic link sent to your email");
   }
