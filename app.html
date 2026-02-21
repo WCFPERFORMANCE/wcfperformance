@@ -91,15 +91,15 @@ border:1px solid var(--border);padding:25px;border-radius:12px
 </div>
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
 
-const supabase = window.supabase.createClient(
+const supabase = createClient(
   "https://rjhfpdmbupznwckrvcsv.supabase.co",
-  "TA_PUBLISHABLE_KEY_ICI"
+  "COLLE_TA_PUBLISHABLE_KEY_ICI"
 );
 
-async function login() {
+async function login(){
   const email = prompt("Enter your workshop email");
   if(!email) return;
 
@@ -107,14 +107,16 @@ async function login() {
     email: email
   });
 
-  if(error) alert("Error sending link");
-  else alert("Check your email to access your workspace");
+  if(error){
+    alert("Error: " + error.message);
+  } else {
+    alert("Magic link sent to your email");
+  }
 }
 
-document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('click', login);
+document.querySelectorAll(".card").forEach(card=>{
+  card.addEventListener("click", login);
 });
-
 </script>
 </body>
 </html>
