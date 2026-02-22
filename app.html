@@ -1,3 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCF Client Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{--bg:#0b0b0b;--panel:#121212;--accent:#ff2a2a;--border:#1f1f1f;--text:#eaeaea}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial;display:flex;height:100vh}
+
+.sidebar{
+width:240px;background:#090909;border-right:1px solid var(--border);
+display:flex;flex-direction:column;padding:25px 15px
+}
+.logo{font-family:Orbitron;font-size:22px;margin-bottom:40px}
+.logo span{color:var(--accent)}
+
+.menu a{
+display:block;padding:12px 10px;margin:8px 0;
+color:#ccc;text-decoration:none;border-radius:6px
+}
+.menu a:hover{background:var(--panel);color:#fff}
+
+.main{flex:1;padding:40px;overflow:auto}
+h1{font-family:Orbitron;margin-top:0}
+
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;margin-top:40px}
+
+.card{
+background:var(--panel);border:1px solid var(--border);
+padding:25px;border-radius:12px;cursor:pointer;
+transition:.2s
+}
+.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+
+.status{
+margin-top:50px;background:var(--panel);
+border:1px solid var(--border);padding:25px;border-radius:12px
+}
+.badge{padding:6px 12px;border-radius:20px;font-size:13px;margin-right:10px}
+.wait{background:#3a3a3a}
+.progress{background:#1e3a5f}
+.ready{background:#1f5f2b}
+
+/* FILE SERVICE PAGE */
+.hidden{display:none}
+
+.file-box{
+max-width:600px;
+margin:60px auto;
+background:var(--panel);
+border:1px solid var(--border);
+padding:35px;
+border-radius:16px;
+}
+
+.file-box input{
+width:100%;
+padding:14px;
+margin:10px 0;
+background:#0f0f0f;
+border:1px solid #222;
+color:white;
+border-radius:8px;
+}
+
+.btn{
+background:var(--accent);
+border:none;
+padding:14px;
+width:100%;
+margin-top:10px;
+border-radius:8px;
+color:white;
+cursor:pointer;
+}
+
+.status-msg{
+margin-top:15px;
+text-align:center;
+color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<div class="logo">WCF <span>PORTAL</span></div>
+<div class="menu">
+<a href="#">New Request</a>
+<a href="#">My Requests</a>
+<a href="#">Technical Support</a>
+<a href="#">Account</a>
+</div>
+</div>
+
+<div class="main">
+
+<!-- DASHBOARD -->
+<div id="dashboardView">
+<h1>Welcome to your workspace</h1>
+<p>Select the service you need</p>
+
+<div class="services">
+<div class="card" onclick="openFileService()">
+<h3>FILE SERVICE</h3>
+<p>Send ECU file for modification</p>
+</div>
+
+<div class="card">
+<h3>REMOTE SESSION</h3>
+<p>Live intervention on vehicle</p>
+</div>
+
+<div class="card">
+<h3>TECH SUPPORT</h3>
+<p>Get help from an engineer</p>
+</div>
+</div>
+
+<div class="status">
+<h3>Request status example</h3>
+<span class="badge wait">Waiting</span>
+<span class="badge progress">In progress</span>
+<span class="badge ready">Ready download</span>
+</div>
+</div>
+
+<!-- FILE SERVICE PAGE -->
+<div id="fileServiceView" class="hidden">
+<div style="margin-bottom:20px;">
+  <span onclick="backToDashboard()" style="cursor:pointer;color:#ff2a2a;font-weight:600;">
+    ← Back to Dashboard
+  </span>
+</div>
+<h1>File Service Request</h1>
+
+<div class="file-box">
+<form id="fileForm">
+<input type="text" name="name" placeholder="Your name" required>
+<input type="email" name="email" placeholder="Email address" required>
+<input type="text" name="vehicle" placeholder="Vehicle model" required>
+<input type="text" name="ecu" placeholder="ECU type" required>
+<button type="submit" class="btn">SEND REQUEST</button>
+</form>
+
+<div class="status-msg" id="statusMsg"></div>
+</div>
+
+</div>
+
+</div>
+
+
 <script>
 
 // NAVIGATION
@@ -73,3 +231,5 @@ Thank you.
   }
 });
 </script>
+</body>
+</html>
