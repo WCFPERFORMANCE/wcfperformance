@@ -18,12 +18,6 @@ display:flex;flex-direction:column;padding:25px 15px
 .logo{font-family:Orbitron;font-size:22px;margin-bottom:40px}
 .logo span{color:var(--accent)}
 
-.menu a{
-display:block;padding:12px 10px;margin:8px 0;
-color:#ccc;text-decoration:none;border-radius:6px
-}
-.menu a:hover{background:var(--panel);color:#fff}
-
 .main{flex:1;padding:40px;overflow:auto}
 h1{font-family:Orbitron;margin-top:0}
 
@@ -35,15 +29,6 @@ padding:25px;border-radius:12px;cursor:pointer;
 transition:.2s
 }
 .card:hover{border-color:var(--accent);transform:translateY(-3px)}
-
-.status{
-margin-top:50px;background:var(--panel);
-border:1px solid var(--border);padding:25px;border-radius:12px
-}
-.badge{padding:6px 12px;border-radius:20px;font-size:13px;margin-right:10px}
-.wait{background:#3a3a3a}
-.progress{background:#1e3a5f}
-.ready{background:#1f5f2b}
 
 .hidden{display:none}
 
@@ -71,7 +56,7 @@ background:var(--accent);
 border:none;
 padding:14px;
 width:100%;
-margin-top:10px;
+margin-top:15px;
 border-radius:8px;
 color:white;
 cursor:pointer;
@@ -159,6 +144,32 @@ color:#ff2a2a;
 font-weight:600;
 letter-spacing:1px;
 }
+
+/* PROGRESS BAR */
+
+.progress-wrapper{
+width:100%;
+height:8px;
+background:#1a1a1a;
+border-radius:10px;
+margin-top:15px;
+overflow:hidden;
+display:none;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#ff2a2a;
+transition:width 0.2s ease;
+}
+
+.progress-text{
+text-align:center;
+margin-top:8px;
+font-size:13px;
+color:#aaa;
+}
 </style>
 </head>
 
@@ -170,19 +181,34 @@ letter-spacing:1px;
 
 <div class="main">
 
+<!-- DASHBOARD -->
 <div id="dashboardView">
 <h1>Welcome to your workspace</h1>
 <p>Select the service you need</p>
 
 <div class="services">
+
 <div class="card" onclick="openFileService()">
 <h3>FILE SERVICE</h3>
 <p>Send ECU file for modification</p>
 </div>
+
+<div class="card">
+<h3>REMOTE SESSION</h3>
+<p>Live intervention on vehicle</p>
+</div>
+
+<div class="card">
+<h3>TECH SUPPORT</h3>
+<p>Get help from an engineer</p>
+</div>
+
 </div>
 </div>
 
+<!-- FILE SERVICE PAGE -->
 <div id="fileServiceView" class="hidden">
+
 <div style="margin-bottom:20px;">
 <span onclick="backToDashboard()" style="cursor:pointer;color:#ff2a2a;font-weight:600;">
 ← Back to Dashboard
@@ -211,6 +237,12 @@ letter-spacing:1px;
 </div>
 
 <button type="submit" class="btn">SEND REQUEST</button>
+
+<div class="progress-wrapper" id="progressWrapper">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+<div class="progress-text" id="progressText"></div>
+
 </form>
 
 <div class="status-msg" id="statusMsg"></div>
@@ -234,12 +266,9 @@ document.getElementById("dashboardView").classList.remove("hidden");
 const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
 
 const form = document.getElementById("fileForm");
-const statusBox = document.getElementById("statusMsg");
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", function(e){
 e.preventDefault();
-
-statusBox.innerText = "Uploading file and sending request...";
 
 const file = document.getElementById("ecuFile").files[0];
 
@@ -251,16 +280,31 @@ formData.append("ecu", form.ecu.value);
 formData.append("service", "File Service");
 formData.append("file", file);
 
-try {
-const res = await fetch(FUNCTION_URL, {
-method: "POST",
-body: formData
-});
+const xhr = new XMLHttpRequest();
+xhr.open("POST", FUNCTION_URL, true);
 
-const result = await res.json();
+const progressWrapper = document.getElementById("progressWrapper");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
 
-if (result.success) {
+progressWrapper.style.display = "block";
 
+xhr.upload.onprogress = function(e){
+if(e.lengthComputable){
+const percent = Math.round((e.loaded / e.total) * 100);
+progressBar.style.width = percent + "%";
+progressText.innerText = "Uploading... " + percent + "%";
+}
+};
+
+xhr.onload = function(){
+if(xhr.status === 200){
+const result = JSON.parse(xhr.responseText);
+
+if(result.success){
+progressText.innerText = "Upload complete ✔";
+
+setTimeout(()=>{
 const message = `
 WCF PERFORMANCE REQUEST
 
@@ -271,28 +315,22 @@ ECU: ${form.ecu.value}
 Service: File Service
 
 Reference ID: ${result.publicId}
-
-Thank you.
 `;
 
-const whatsappURL =
+window.location.href =
 "https://wa.me/33664784160?text=" +
 encodeURIComponent(message);
+},800);
 
-statusBox.innerText = "Redirecting to WhatsApp...";
-
-setTimeout(() => {
-window.location.href = whatsappURL;
-}, 800);
-
-} else {
-statusBox.innerText = "Server error";
+}else{
+progressText.innerText = "Server error";
 }
-
-} catch (err) {
-statusBox.innerText = "Upload failed";
-console.error(err);
+}else{
+progressText.innerText = "Upload failed";
 }
+};
+
+xhr.send(formData);
 });
 
 // PREMIUM UPLOAD UI
@@ -300,26 +338,24 @@ const uploadArea = document.getElementById("uploadArea");
 const fileInput = document.getElementById("ecuFile");
 const fileName = document.getElementById("fileName");
 
-uploadArea.addEventListener("click", () => {
-fileInput.click();
-});
+uploadArea.addEventListener("click", () => fileInput.click());
 
 fileInput.addEventListener("change", () => {
-if (fileInput.files.length > 0) {
+if(fileInput.files.length > 0){
 fileName.innerText = "FILE LOADED → " + fileInput.files[0].name;
 }
 });
 
-uploadArea.addEventListener("dragover", (e) => {
+uploadArea.addEventListener("dragover", e=>{
 e.preventDefault();
 uploadArea.classList.add("dragover");
 });
 
-uploadArea.addEventListener("dragleave", () => {
+uploadArea.addEventListener("dragleave", ()=>{
 uploadArea.classList.remove("dragover");
 });
 
-uploadArea.addEventListener("drop", (e) => {
+uploadArea.addEventListener("drop", e=>{
 e.preventDefault();
 uploadArea.classList.remove("dragover");
 fileInput.files = e.dataTransfer.files;
