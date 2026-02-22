@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCF Request Tracking</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+background:#0b0b0b;
+color:white;
+font-family:Inter,Arial;
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:#121212;
+padding:40px;
+border-radius:16px;
+width:400px;
+text-align:center;
+border:1px solid #1f1f1f;
+}
+
+h1{
+font-family:Orbitron;
+margin-bottom:10px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-top:20px;
+background:#0f0f0f;
+border:1px solid #222;
+color:white;
+border-radius:8px;
+text-align:center;
+}
+
+button{
+margin-top:20px;
+padding:14px;
+width:100%;
+background:#ff2a2a;
+border:none;
+border-radius:8px;
+color:white;
+cursor:pointer;
+}
+
+.status-box{
+margin-top:30px;
+font-size:18px;
+}
+
+.status-waiting{color:#999;}
+.status-progress{color:#00aaff;}
+.status-ready{color:#00ff9c;}
+
+.back{
+margin-top:25px;
+display:inline-block;
+color:#ff2a2a;
+cursor:pointer;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Track Your Request</h1>
+<p>Enter your Reference ID</p>
+
+<input type="text" id="refId" placeholder="e.g. 1c6312a3">
+<button onclick="checkStatus()">CHECK STATUS</button>
+
+<div class="status-box" id="statusBox"></div>
+
+<div class="back" onclick="goBack()">← Back to Portal</div>
+
+</div>
+
+<script>
+
+const CHECK_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/check-status";
+
+async function checkStatus(){
+
+const ref = document.getElementById("refId").value.trim();
+if(!ref){return;}
+
+document.getElementById("statusBox").innerHTML = "Checking...";
+
+try{
+const res = await fetch(CHECK_URL + "?ref=" + ref);
+const data = await res.json();
+
+if(data.status){
+
+let statusClass = "status-waiting";
+if(data.status === "In Progress"){statusClass = "status-progress";}
+if(data.status === "Ready"){statusClass = "status-ready";}
+
+document.getElementById("statusBox").innerHTML =
+`Status: <span class="${statusClass}">${data.status}</span>`;
+
+}else{
+document.getElementById("statusBox").innerHTML = "Request not found";
+}
+
+}catch(err){
+document.getElementById("statusBox").innerHTML = "Error checking status";
+}
+
+}
+
+function goBack(){
+window.location.href = "app.html";
+}
+
+</script>
+
+</body>
+</html>
