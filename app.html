@@ -140,11 +140,12 @@ color:#aaa;
 <h1>File Service Request</h1>
 
 <div class="file-box">
-<form id="fileForm">
+<form id="fileForm" enctype="multipart/form-data">
 <input type="text" name="name" placeholder="Your name" required>
 <input type="email" name="email" placeholder="Email address" required>
 <input type="text" name="vehicle" placeholder="Vehicle model" required>
 <input type="text" name="ecu" placeholder="ECU type" required>
+<input type="file" name="ecuFile" accept=".bin,.ori" required>
 <button type="submit" class="btn">SEND REQUEST</button>
 </form>
 
