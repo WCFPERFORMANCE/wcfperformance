@@ -170,7 +170,6 @@ function backToDashboard() {
   document.getElementById("dashboardView").classList.remove("hidden");
 }
 
-// FORM
 const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
 
 const form = document.getElementById("fileForm");
@@ -179,21 +178,22 @@ const statusBox = document.getElementById("statusMsg");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  statusBox.innerText = "Sending request...";
+  statusBox.innerText = "Uploading file and sending request...";
 
-  const data = {
-    name: form.name.value,
-    email: form.email.value,
-    vehicle: form.vehicle.value,
-    ecu: form.ecu.value,
-    service: "File Service"
-  };
+  const file = form.ecuFile.files[0];
+
+  const formData = new FormData();
+  formData.append("name", form.name.value);
+  formData.append("email", form.email.value);
+  formData.append("vehicle", form.vehicle.value);
+  formData.append("ecu", form.ecu.value);
+  formData.append("service", "File Service");
+  formData.append("file", file);
 
   try {
     const res = await fetch(FUNCTION_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      body: formData
     });
 
     const result = await res.json();
@@ -203,31 +203,33 @@ form.addEventListener("submit", async (e) => {
       const message = `
 WCF PERFORMANCE REQUEST
 
-Name: ${data.name}
-Email: ${data.email}
-Vehicle: ${data.vehicle}
-ECU: ${data.ecu}
+Name: ${form.name.value}
+Email: ${form.email.value}
+Vehicle: ${form.vehicle.value}
+ECU: ${form.ecu.value}
 Service: File Service
 
-Reference ID: ${result.publicId || "Pending"}
+Reference ID: ${result.publicId}
 
 Thank you.
       `;
 
-      const whatsappURL = "https://wa.me/33664784160?text=" + encodeURIComponent(message);
+      const whatsappURL =
+        "https://wa.me/33664784160?text=" +
+        encodeURIComponent(message);
 
       statusBox.innerText = "Redirecting to WhatsApp...";
 
       setTimeout(() => {
         window.location.href = whatsappURL;
-      }, 700);
+      }, 800);
 
     } else {
       statusBox.innerText = "Server error";
     }
 
   } catch (err) {
-    statusBox.innerText = "Server offline";
+    statusBox.innerText = "Upload failed";
     console.error(err);
   }
 });
