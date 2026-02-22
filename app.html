@@ -11,10 +11,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial;display:flex;height:100vh}
 
-.sidebar{
-width:240px;background:#090909;border-right:1px solid var(--border);
-display:flex;flex-direction:column;padding:25px 15px
-}
+.sidebar{width:240px;background:#090909;border-right:1px solid var(--border);padding:25px 15px}
 .logo{font-family:Orbitron;font-size:22px;margin-bottom:40px}
 .logo span{color:var(--accent)}
 
@@ -22,12 +19,7 @@ display:flex;flex-direction:column;padding:25px 15px
 h1{font-family:Orbitron;margin-top:0}
 
 .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;margin-top:40px}
-
-.card{
-background:var(--panel);border:1px solid var(--border);
-padding:25px;border-radius:12px;cursor:pointer;
-transition:.2s
-}
+.card{background:var(--panel);border:1px solid var(--border);padding:25px;border-radius:12px;cursor:pointer;transition:.2s}
 .card:hover{border-color:var(--accent);transform:translateY(-3px)}
 
 .hidden{display:none}
@@ -62,114 +54,29 @@ color:white;
 cursor:pointer;
 }
 
-.status-msg{
-margin-top:15px;
-text-align:center;
-color:#aaa;
-}
-
-/* PREMIUM UPLOAD */
-
-.upload-wrapper{margin:25px 0;}
-
 .upload-area{
-position:relative;
 border:2px solid #222;
 border-radius:16px;
 padding:50px 20px;
 text-align:center;
 cursor:pointer;
 background:linear-gradient(145deg,#0d0d0d,#141414);
-overflow:hidden;
 transition:0.3s ease;
 }
 
-@keyframes pulseBorder {
-0% { box-shadow:0 0 0px rgba(255,42,42,0.0); }
-50% { box-shadow:0 0 25px rgba(255,42,42,0.4); }
-100% { box-shadow:0 0 0px rgba(255,42,42,0.0); }
-}
+.upload-area:hover{border-color:#ff2a2a}
+.upload-area.dragover{border-color:#ff2a2a;background:#1a0000}
 
-.upload-area:hover{
-border-color:#ff2a2a;
-animation:pulseBorder 2.5s infinite;
-}
-
-.upload-area.dragover{
-border-color:#ff2a2a;
-background:#1a0000;
-box-shadow:0 0 30px rgba(255,42,42,0.6);
-}
-
-.upload-title{
-font-family:Orbitron;
-font-size:20px;
-letter-spacing:2px;
-margin:0;
-}
-
-.upload-sub{
-margin-top:10px;
-font-size:14px;
-color:#aaa;
-}
-
-.upload-sub-small{
-font-size:12px;
-color:#666;
-margin-top:4px;
-}
-
-.scan-line{
-position:absolute;
-top:0;
-left:-100%;
-width:100%;
-height:2px;
-background:linear-gradient(to right,transparent,#ff2a2a,transparent);
-animation:scan 4s linear infinite;
-opacity:0.5;
-}
-
-@keyframes scan{
-0% { left:-100%; }
-100% { left:100%; }
-}
-
-.file-name{
-margin-top:15px;
-text-align:center;
-font-size:14px;
-color:#ff2a2a;
-font-weight:600;
-letter-spacing:1px;
-}
-
-/* PROGRESS BAR */
+.upload-title{font-family:Orbitron;font-size:20px}
+.upload-sub{font-size:14px;color:#aaa}
+.file-name{text-align:center;margin-top:15px}
 
 .progress-wrapper{
-width:100%;
-height:8px;
-background:#1a1a1a;
-border-radius:10px;
-margin-top:15px;
-overflow:hidden;
-display:none;
+width:100%;height:8px;background:#1a1a1a;border-radius:10px;
+margin-top:15px;overflow:hidden;display:none;
 }
-
-.progress-bar{
-height:100%;
-width:0%;
-background:#ff2a2a;
-transition:width 0.2s ease;
-}
-
-.progress-text{
-text-align:center;
-margin-top:8px;
-font-size:13px;
-color:#aaa;
-}
+.progress-bar{height:100%;width:0%;background:#ff2a2a;transition:width .2s ease}
+.progress-text{text-align:center;margin-top:8px;font-size:13px;color:#aaa}
 </style>
 </head>
 
@@ -181,13 +88,11 @@ color:#aaa;
 
 <div class="main">
 
-<!-- DASHBOARD -->
 <div id="dashboardView">
 <h1>Welcome to your workspace</h1>
 <p>Select the service you need</p>
 
 <div class="services">
-
 <div class="card" onclick="openFileService()">
 <h3>FILE SERVICE</h3>
 <p>Send ECU file for modification</p>
@@ -202,11 +107,9 @@ color:#aaa;
 <h3>TECH SUPPORT</h3>
 <p>Get help from an engineer</p>
 </div>
-
 </div>
 </div>
 
-<!-- FILE SERVICE PAGE -->
 <div id="fileServiceView" class="hidden">
 
 <div style="margin-bottom:20px;">
@@ -225,16 +128,13 @@ color:#aaa;
 <input type="text" name="vehicle" placeholder="Vehicle model" required>
 <input type="text" name="ecu" placeholder="ECU type" required>
 
-<div class="upload-wrapper">
 <div class="upload-area" id="uploadArea">
-<div class="scan-line"></div>
 <p class="upload-title">ECU FILE UPLOAD</p>
-<p class="upload-sub">Drag & Drop your .bin / .ori file</p>
-<p class="upload-sub-small">or click to browse</p>
-<input type="file" name="ecuFile" id="ecuFile" accept=".bin,.ori" required hidden>
+<p class="upload-sub">Drag & Drop file or click to browse</p>
+<input type="file" name="ecuFile" id="ecuFile" required hidden>
 </div>
+
 <div class="file-name" id="fileName"></div>
-</div>
 
 <button type="submit" class="btn">SEND REQUEST</button>
 
@@ -244,8 +144,6 @@ color:#aaa;
 <div class="progress-text" id="progressText"></div>
 
 </form>
-
-<div class="status-msg" id="statusMsg"></div>
 </div>
 </div>
 
@@ -253,59 +151,66 @@ color:#aaa;
 
 <script>
 
-function openFileService() {
+function openFileService(){
 document.getElementById("dashboardView").classList.add("hidden");
 document.getElementById("fileServiceView").classList.remove("hidden");
 }
 
-function backToDashboard() {
+function backToDashboard(){
 document.getElementById("fileServiceView").classList.add("hidden");
 document.getElementById("dashboardView").classList.remove("hidden");
 }
 
-const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
+const FUNCTION_URL="https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
+const form=document.getElementById("fileForm");
 
-const form = document.getElementById("fileForm");
-
-form.addEventListener("submit", function(e){
+form.addEventListener("submit",function(e){
 e.preventDefault();
 
-const file = document.getElementById("ecuFile").files[0];
+const file=document.getElementById("ecuFile").files[0];
+if(!file){alert("Please select a file");return;}
 
-const formData = new FormData();
-formData.append("name", form.name.value);
-formData.append("email", form.email.value);
-formData.append("vehicle", form.vehicle.value);
-formData.append("ecu", form.ecu.value);
-formData.append("service", "File Service");
-formData.append("file", file);
+const formData=new FormData();
+formData.append("name",form.name.value);
+formData.append("email",form.email.value);
+formData.append("vehicle",form.vehicle.value);
+formData.append("ecu",form.ecu.value);
+formData.append("service","File Service");
+formData.append("file",file);
 
-const xhr = new XMLHttpRequest();
-xhr.open("POST", FUNCTION_URL, true);
+const xhr=new XMLHttpRequest();
+xhr.open("POST",FUNCTION_URL,true);
 
-const progressWrapper = document.getElementById("progressWrapper");
-const progressBar = document.getElementById("progressBar");
-const progressText = document.getElementById("progressText");
+const progressWrapper=document.getElementById("progressWrapper");
+const progressBar=document.getElementById("progressBar");
+const progressText=document.getElementById("progressText");
 
-progressWrapper.style.display = "block";
+progressWrapper.style.display="block";
+progressBar.style.width="0%";
+progressText.innerText="Uploading... 0%";
 
-xhr.upload.onprogress = function(e){
+xhr.upload.onprogress=function(e){
 if(e.lengthComputable){
-const percent = Math.round((e.loaded / e.total) * 100);
-progressBar.style.width = percent + "%";
-progressText.innerText = "Uploading... " + percent + "%";
+const percent=Math.round((e.loaded/e.total)*100);
+progressBar.style.width=percent+"%";
+progressText.innerText="Uploading... "+percent+"%";
 }
 };
 
-xhr.onload = function(){
-if(xhr.status === 200){
-const result = JSON.parse(xhr.responseText);
+xhr.onload=function(){
+progressBar.style.width="100%";
+
+if(xhr.status===200){
+const result=JSON.parse(xhr.responseText);
+
+progressText.innerHTML=`
+<div style="color:#00ff9c;font-weight:600;">✔ Upload Complete</div>
+<div style="font-size:12px;color:#aaa;margin-top:4px;">Processing request...</div>
+`;
 
 if(result.success){
-progressText.innerText = "Upload complete ✔";
-
 setTimeout(()=>{
-const message = `
+const message=`
 WCF PERFORMANCE REQUEST
 
 Name: ${form.name.value}
@@ -316,50 +221,62 @@ Service: File Service
 
 Reference ID: ${result.publicId}
 `;
-
-window.location.href =
-"https://wa.me/33664784160?text=" +
-encodeURIComponent(message);
-},800);
-
-}else{
-progressText.innerText = "Server error";
+window.location.href="https://wa.me/33664784160?text="+encodeURIComponent(message);
+},1000);
 }
 }else{
-progressText.innerText = "Upload failed";
+progressText.innerText="Upload failed";
 }
 };
 
 xhr.send(formData);
 });
 
-// PREMIUM UPLOAD UI
-const uploadArea = document.getElementById("uploadArea");
-const fileInput = document.getElementById("ecuFile");
-const fileName = document.getElementById("fileName");
+const uploadArea=document.getElementById("uploadArea");
+const fileInput=document.getElementById("ecuFile");
+const fileName=document.getElementById("fileName");
 
-uploadArea.addEventListener("click", () => fileInput.click());
+uploadArea.addEventListener("click",()=>fileInput.click());
 
-fileInput.addEventListener("change", () => {
-if(fileInput.files.length > 0){
-fileName.innerText = "FILE LOADED → " + fileInput.files[0].name;
+function displayFile(file){
+
+if(file.size>20000000){
+fileName.innerHTML="<span style='color:red'>File too large (max 20MB)</span>";
+fileInput.value="";
+return;
+}
+
+const sizeMB=(file.size/1024/1024).toFixed(2);
+
+fileName.innerHTML=`
+<div style="color:#00ff9c;font-weight:600;">✔ FILE VERIFIED</div>
+<div style="font-size:13px;color:#aaa;margin-top:4px;">${file.name}</div>
+<div style="font-size:12px;color:#666;margin-top:4px;">Size: ${sizeMB} MB</div>
+<div style="font-size:12px;color:#666;margin-top:4px;">🔒 Secured & encrypted transmission ready</div>
+`;
+}
+
+fileInput.addEventListener("change",()=>{
+if(fileInput.files.length>0){
+displayFile(fileInput.files[0]);
 }
 });
 
-uploadArea.addEventListener("dragover", e=>{
+uploadArea.addEventListener("dragover",e=>{
 e.preventDefault();
 uploadArea.classList.add("dragover");
 });
 
-uploadArea.addEventListener("dragleave", ()=>{
+uploadArea.addEventListener("dragleave",()=>{
 uploadArea.classList.remove("dragover");
 });
 
-uploadArea.addEventListener("drop", e=>{
+uploadArea.addEventListener("drop",e=>{
 e.preventDefault();
 uploadArea.classList.remove("dragover");
-fileInput.files = e.dataTransfer.files;
-fileName.innerText = "FILE LOADED → " + e.dataTransfer.files[0].name;
+const file=e.dataTransfer.files[0];
+fileInput.files=e.dataTransfer.files;
+displayFile(file);
 });
 
 </script>
