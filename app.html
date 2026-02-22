@@ -11,16 +11,62 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial;display:flex;height:100vh}
 
-.sidebar{width:240px;background:#090909;border-right:1px solid var(--border);padding:25px 15px}
+.sidebar{
+width:240px;background:#090909;border-right:1px solid var(--border);
+padding:25px 15px
+}
 .logo{font-family:Orbitron;font-size:22px;margin-bottom:40px}
 .logo span{color:var(--accent)}
 
 .main{flex:1;padding:40px;overflow:auto}
 h1{font-family:Orbitron;margin-top:0}
 
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;margin-top:40px}
-.card{background:var(--panel);border:1px solid var(--border);padding:25px;border-radius:12px;cursor:pointer;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+/* ENGINEERS ONLINE */
+.engineer-status{
+margin-top:10px;
+font-size:14px;
+color:#00ff9c;
+display:flex;
+align-items:center;
+gap:8px;
+font-weight:500;
+}
+
+.dot{
+width:10px;
+height:10px;
+background:#00ff9c;
+border-radius:50%;
+box-shadow:0 0 8px #00ff9c;
+animation:pulseDot 2s infinite;
+}
+
+@keyframes pulseDot{
+0%{opacity:0.6}
+50%{opacity:1}
+100%{opacity:0.6}
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:40px
+}
+
+.card{
+background:var(--panel);
+border:1px solid var(--border);
+padding:25px;
+border-radius:12px;
+cursor:pointer;
+transition:.2s
+}
+
+.card:hover{
+border-color:var(--accent);
+transform:translateY(-3px)
+}
 
 .hidden{display:none}
 
@@ -54,6 +100,7 @@ color:white;
 cursor:pointer;
 }
 
+/* UPLOAD */
 .upload-area{
 border:2px solid #222;
 border-radius:16px;
@@ -71,12 +118,7 @@ transition:0.3s ease;
 .upload-sub{font-size:14px;color:#aaa}
 .file-name{text-align:center;margin-top:15px}
 
-.progress-wrapper{
-width:100%;height:8px;background:#1a1a1a;border-radius:10px;
-margin-top:15px;overflow:hidden;display:none;
-}
-.progress-bar{height:100%;width:0%;background:#ff2a2a;transition:width .2s ease}
-.progress-text{text-align:center;margin-top:8px;font-size:13px;color:#aaa}
+/* TRUST */
 .trust-badge{
 margin-top:15px;
 text-align:center;
@@ -96,6 +138,31 @@ transition:0.3s;
 color:#00ff9c;
 opacity:1;
 }
+
+/* PROGRESS */
+.progress-wrapper{
+width:100%;
+height:8px;
+background:#1a1a1a;
+border-radius:10px;
+margin-top:15px;
+overflow:hidden;
+display:none;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#ff2a2a;
+transition:width .2s ease
+}
+
+.progress-text{
+text-align:center;
+margin-top:8px;
+font-size:13px;
+color:#aaa
+}
 </style>
 </head>
 
@@ -107,11 +174,19 @@ opacity:1;
 
 <div class="main">
 
+<!-- DASHBOARD -->
 <div id="dashboardView">
 <h1>Welcome to your workspace</h1>
+
+<div class="engineer-status">
+<span class="dot"></span>
+Engineers Online 24/7
+</div>
+
 <p>Select the service you need</p>
 
 <div class="services">
+
 <div class="card" onclick="openFileService()">
 <h3>FILE SERVICE</h3>
 <p>Send ECU file for modification</p>
@@ -126,9 +201,11 @@ opacity:1;
 <h3>TECH SUPPORT</h3>
 <p>Get help from an engineer</p>
 </div>
+
 </div>
 </div>
 
+<!-- FILE SERVICE -->
 <div id="fileServiceView" class="hidden">
 
 <div style="margin-bottom:20px;">
@@ -154,11 +231,13 @@ opacity:1;
 </div>
 
 <div class="file-name" id="fileName"></div>
+
 <div class="trust-badge">
-  <div class="trust-item">🔒 256-bit SSL Encrypted</div>
-  <div class="trust-item">🛡 Secure Engineering Transmission</div>
-  <div class="trust-item">⚙️ Engineering Verified Platform</div>
+<div class="trust-item">🔒 256-bit SSL Encrypted</div>
+<div class="trust-item">🛡 Secure Engineering Transmission</div>
+<div class="trust-item">⚙️ Engineering Verified Platform</div>
 </div>
+
 <button type="submit" class="btn">SEND REQUEST</button>
 
 <div class="progress-wrapper" id="progressWrapper">
@@ -262,7 +341,6 @@ const fileName=document.getElementById("fileName");
 uploadArea.addEventListener("click",()=>fileInput.click());
 
 function displayFile(file){
-
 if(file.size>20000000){
 fileName.innerHTML="<span style='color:red'>File too large (max 20MB)</span>";
 fileInput.value="";
