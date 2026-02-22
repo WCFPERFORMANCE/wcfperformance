@@ -94,11 +94,13 @@ animation: pulse 1.5s infinite;
 </head>
 
 <body>
+
 <script>
 if(localStorage.getItem("wcf_admin") !== "true"){
-window.location.href = "admin.html";
+window.location.href = "index.html";
 }
 </script>
+
 <div class="engineer-status">
 <div class="engineer-dot"></div>
 Engineers Online 24/7
@@ -123,10 +125,10 @@ const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsI
 
 const LIST_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/admin-list";
 const UPDATE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/update-status";
+const UPLOAD_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/upload-modified";
 
 async function loadRequests(){
 
-try{
 const res = await fetch(LIST_URL,{
 headers:{
 "apikey":ANON_KEY,
@@ -155,19 +157,15 @@ row.innerHTML = `
 <button class="wait" onclick="updateStatus('${r.public_id}','Waiting')">Waiting</button>
 <button class="progress" onclick="updateStatus('${r.public_id}','In Progress')">Processing</button>
 <button class="payment" onclick="updateStatus('${r.public_id}','Payment')">Payment</button>
-<button class="ready" onclick="updateStatus('${r.public_id}','Ready')">Ready</button>
+<button class="ready" onclick="triggerUpload('${r.public_id}')">Upload & Ready</button>
 </td>
 `;
 });
-}catch(err){
-console.error("Error loading requests",err);
-}
 }
 
 async function updateStatus(id,status){
 
-try{
-const res = await fetch(UPDATE_URL,{
+await fetch(UPDATE_URL,{
 method:"POST",
 headers:{
 "Content-Type":"application/json",
@@ -177,14 +175,40 @@ headers:{
 body:JSON.stringify({id,status})
 });
 
-const data = await res.json();
-console.log("Update result:",data);
-
 location.reload();
-
-}catch(err){
-console.error("Error updating status",err);
 }
+
+async function triggerUpload(id){
+
+const fileInput = document.createElement("input");
+fileInput.type = "file";
+
+fileInput.onchange = async function(){
+
+const file = fileInput.files[0];
+if(!file) return;
+
+const formData = new FormData();
+formData.append("file", file);
+formData.append("id", id);
+
+const res = await fetch(UPLOAD_URL,{
+method:"POST",
+body:formData
+});
+
+const data = await res.json();
+
+if(data.success){
+alert("File uploaded. Client notified. Status set to READY.");
+location.reload();
+}else{
+alert("Upload failed.");
+}
+
+};
+
+fileInput.click();
 }
 
 loadRequests();
