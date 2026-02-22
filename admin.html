@@ -115,14 +115,22 @@ Engineers Online 24/7
 
 <script>
 
+const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqaGZwZG1idXB6bndja3J2Y3N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3MDU3NzQsImV4cCI6MjA4NzI4MTc3NH0.JFjuVEV7bMzC3qXeQbFHkUA_YIZFkM16NBkrqdG5yXY";
+
 const LIST_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/admin-list";
 const UPDATE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/update-status";
 
 async function loadRequests(){
 
-const res = await fetch(LIST_URL);
-const data = await res.json();
+try{
+const res = await fetch(LIST_URL,{
+headers:{
+"apikey":ANON_KEY,
+"Authorization":"Bearer " + ANON_KEY
+}
+});
 
+const data = await res.json();
 const table = document.getElementById("requestsTable");
 
 data.forEach(r=>{
@@ -147,20 +155,32 @@ row.innerHTML = `
 </td>
 `;
 });
+}catch(err){
+console.error("Error loading requests",err);
+}
 }
 
 async function updateStatus(id,status){
 
-await fetch(UPDATE_URL,{
+try{
+const res = await fetch(UPDATE_URL,{
 method:"POST",
 headers:{
 "Content-Type":"application/json",
-"apikey":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqaGZwZG1idXB6bndja3J2Y3N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3MDU3NzQsImV4cCI6MjA4NzI4MTc3NH0.JFjuVEV7bMzC3qXeQbFHkUA_YIZFkM16NBkrqdG5yXY"
+"apikey":ANON_KEY,
+"Authorization":"Bearer " + ANON_KEY
 },
 body:JSON.stringify({id,status})
 });
 
+const data = await res.json();
+console.log("Update result:",data);
+
 location.reload();
+
+}catch(err){
+console.error("Error updating status",err);
+}
 }
 
 loadRequests();
