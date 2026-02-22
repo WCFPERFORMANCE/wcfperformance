@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>WCF Admin Login</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 body{
 background:#0b0b0b;
-color:white;
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
+color:white;
 font-family:Arial;
 }
 .box{
-background:#121212;
+background:#111;
 padding:40px;
 border-radius:12px;
 width:300px;
@@ -22,15 +24,14 @@ text-align:center;
 input{
 width:100%;
 padding:10px;
-margin-top:15px;
-background:#0f0f0f;
-border:1px solid #222;
+margin:10px 0;
+background:#222;
+border:none;
 color:white;
 }
 button{
-margin-top:20px;
-padding:10px;
 width:100%;
+padding:10px;
 background:#ff2a2a;
 border:none;
 color:white;
@@ -42,21 +43,31 @@ cursor:pointer;
 
 <div class="box">
 <h2>WCF Admin</h2>
-<input type="password" id="pass" placeholder="Enter password">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
 <button onclick="login()">LOGIN</button>
-<p id="error"></p>
+<p id="error" style="color:red;"></p>
 </div>
 
 <script>
-const PASSWORD = "WCF2026Secure";
+const SUPABASE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co";
+const ANON_KEY = "TON_ANON_KEY_ICI";
 
-function login(){
-const p = document.getElementById("pass").value;
-if(p === PASSWORD){
-localStorage.setItem("wcf_admin","true");
-window.location.href = "dashboard.html";
+const supabase = supabase.createClient(SUPABASE_URL, ANON_KEY);
+
+async function login(){
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+const { error } = await supabase.auth.signInWithPassword({
+email,
+password
+});
+
+if(error){
+document.getElementById("error").innerText = "Login failed";
 }else{
-document.getElementById("error").innerText="Wrong password";
+window.location.href = "dashboard.html";
 }
 }
 </script>
