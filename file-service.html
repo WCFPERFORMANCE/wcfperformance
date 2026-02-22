@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCF Portal | File Service</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#0b0b0b;
+--panel:#121212;
+--accent:#ff2a2a;
+--border:#1f1f1f;
+--text:#eaeaea
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Inter,Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+}
+
+.back{
+position:absolute;
+top:30px;
+left:30px;
+color:#aaa;
+text-decoration:none;
+font-size:14px;
+}
+
+.back:hover{
+color:white;
+}
+
+.box{
+width:420px;
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:16px;
+padding:35px;
+}
+
+h1{
+font-family:Orbitron;
+margin-top:0;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:14px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid var(--border);
+background:#0f0f0f;
+color:white;
+font-size:15px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:15px;
+background:var(--accent);
+border:none;
+border-radius:10px;
+color:white;
+font-weight:600;
+cursor:pointer;
+font-size:16px;
+transition:.2s;
+}
+
+button:hover{
+transform:scale(1.02);
+}
+
+.status{
+margin-top:15px;
+text-align:center;
+font-size:14px;
+color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<a class="back" href="app.html">← Back to dashboard</a>
+
+<div class="box">
+
+<h1>FILE SERVICE</h1>
+
+<form id="requestForm">
+
+<input type="text" name="name" placeholder="Your name" required>
+<input type="email" name="email" placeholder="Email address" required>
+<input type="text" name="vehicle" placeholder="Vehicle model" required>
+<input type="text" name="ecu" placeholder="ECU type" required>
+
+<button type="submit">SEND REQUEST</button>
+
+</form>
+
+<div class="status" id="status"></div>
+
+</div>
+
+<script>
+const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
+
+const form = document.getElementById("requestForm");
+const statusBox = document.getElementById("status");
+
+form.addEventListener("submit", async (e) => {
+e.preventDefault();
+
+statusBox.innerText = "Sending request...";
+
+const data = {
+name: form.name.value,
+email: form.email.value,
+vehicle: form.vehicle.value,
+ecu: form.ecu.value,
+service: "file-service"
+};
+
+try {
+
+const res = await fetch(FUNCTION_URL, {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify(data)
+});
+
+if(res.ok){
+statusBox.innerText = "Request sent successfully.";
+form.reset();
+}else{
+statusBox.innerText = "Server error.";
+}
+
+} catch(err){
+statusBox.innerText = "Server offline.";
+}
+});
+</script>
+
+</body>
+</html>
