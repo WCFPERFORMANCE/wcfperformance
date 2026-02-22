@@ -1,149 +1,183 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WCF Client Portal</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
---bg:#0b0b0b;
---panel:#121212;
---accent:#ff2a2a;
---border:#1f1f1f;
---text:#eaeaea
-}
-
-*{box-sizing:border-box}
-
 body{
 margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:Inter,Arial;
+background:#0b0b0b;
+color:#fff;
+font-family:Inter;
 display:flex;
-justify-content:center;
-align-items:center;
-height:100vh
+height:100vh;
 }
 
-.box{
-width:420px;
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:16px;
-padding:35px
+.sidebar{
+width:220px;
+background:#111;
+padding:30px 20px;
+border-right:1px solid #1f1f1f;
 }
 
-h1{
+.sidebar h2{
 font-family:Orbitron;
+color:#ff2a2a;
 margin-top:0;
-text-align:center
+}
+
+.sidebar a{
+display:block;
+color:#aaa;
+margin:15px 0;
+cursor:pointer;
+text-decoration:none;
+}
+
+.sidebar a:hover{
+color:#fff;
+}
+
+.main{
+flex:1;
+padding:40px;
+}
+
+.card{
+background:#151515;
+padding:25px;
+border-radius:12px;
+margin-bottom:20px;
+border:1px solid #1f1f1f;
 }
 
 input{
 width:100%;
-padding:14px;
+padding:12px;
 margin:10px 0;
 border-radius:8px;
-border:1px solid var(--border);
+border:1px solid #222;
 background:#0f0f0f;
 color:white;
-font-size:15px
 }
 
 button{
-width:100%;
-padding:14px;
-margin-top:15px;
-background:var(--accent);
+padding:12px;
+background:#ff2a2a;
 border:none;
-border-radius:10px;
+border-radius:8px;
 color:white;
-font-weight:600;
 cursor:pointer;
-font-size:16px;
-transition:.2s
-}
-
-button:hover{
-transform:scale(1.02)
+width:100%;
 }
 
 .status{
-margin-top:15px;
-text-align:center;
+margin-top:10px;
+color:#aaa;
 font-size:14px;
-color:#aaa
 }
+.hidden{display:none}
 </style>
-
 </head>
 
 <body>
 
-<div class="box">
+<div class="sidebar">
+<h2>WCF PORTAL</h2>
+<a onclick="showSection('dashboard')">Dashboard</a>
+<a onclick="showSection('file')">File Service</a>
+<a onclick="showSection('remote')">Remote Session</a>
+<a onclick="showSection('support')">Tech Support</a>
+</div>
 
-<h1>FILE SERVICE</h1>
+<div class="main">
+
+<div id="dashboard" class="card">
+<h2>Welcome to your workspace</h2>
+<p>Select the service you need.</p>
+</div>
+
+<div id="file" class="card hidden">
+<h2>File Service</h2>
 
 <form id="requestForm">
-
 <input type="text" name="name" placeholder="Your name" required>
 <input type="email" name="email" placeholder="Email address" required>
 <input type="text" name="vehicle" placeholder="Vehicle model" required>
 <input type="text" name="ecu" placeholder="ECU type" required>
-
 <button type="submit">SEND REQUEST</button>
-
 </form>
 
 <div class="status" id="status"></div>
+</div>
+
+<div id="remote" class="card hidden">
+<h2>Remote Session</h2>
+<p>Live intervention on vehicle.</p>
+</div>
+
+<div id="support" class="card hidden">
+<h2>Technical Support</h2>
+<p>Contact an engineer.</p>
+</div>
 
 </div>
 
 <script>
 const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
-const WHATSAPP_LINK = "https://wa.me/message/NMAYVYZADORVF1";
+const PHONE_NUMBER = "33664784160"; // TON NUMERO
+
+function showSection(section){
+document.querySelectorAll(".card").forEach(el=>el.classList.add("hidden"));
+document.getElementById(section).classList.remove("hidden");
+}
 
 const form = document.getElementById("requestForm");
 const statusBox = document.getElementById("status");
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", async (e)=>{
 e.preventDefault();
 
-statusBox.innerText = "Sending request...";
+statusBox.innerText="Sending request...";
 
-const data = {
-name: form.name.value,
-email: form.email.value,
-vehicle: form.vehicle.value,
-ecu: form.ecu.value
+const data={
+name:form.name.value,
+email:form.email.value,
+vehicle:form.vehicle.value,
+ecu:form.ecu.value
 };
 
-console.log("DATA SENT:", data);
+try{
 
-try {
-
-const res = await fetch(FUNCTION_URL, {
-method: "POST",
-headers: { "Content-Type": "application/json" },
-body: JSON.stringify(data)
+await fetch(FUNCTION_URL,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(data)
 });
 
-console.log("SERVER RESPONSE:", await res.text());
+statusBox.innerText="Opening WhatsApp...";
 
-statusBox.innerText = "Opening WhatsApp...";
+const message=`🚗 WCF FILE SERVICE REQUEST
+
+Name: ${data.name}
+Email: ${data.email}
+Vehicle: ${data.vehicle}
+ECU: ${data.ecu}
+
+I would like to proceed.`;
+
+const url=`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
 
 setTimeout(()=>{
-window.location.href = WHATSAPP_LINK;
+window.open(url,"_blank");
 },700);
 
-} catch(err){
-statusBox.innerText = "Server offline";
-console.error(err);
+}catch(err){
+statusBox.innerText="Server error";
 }
 });
 </script>
