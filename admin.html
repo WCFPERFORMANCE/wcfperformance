@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WCF Admin Login</title>
-
+<title>WCF Admin</title>
 <style>
 body{
 background:#0b0b0b;
@@ -12,15 +10,15 @@ display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
+margin:0;
 font-family:Arial;
 color:white;
-margin:0;
 }
 
-.card{
+.box{
 background:#111;
 padding:40px;
-border-radius:12px;
+border-radius:10px;
 width:320px;
 text-align:center;
 }
@@ -45,59 +43,46 @@ font-weight:bold;
 border-radius:6px;
 cursor:pointer;
 }
-
-.error{
-color:red;
-margin-top:10px;
-font-size:14px;
-}
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="box">
 <h2>WCF Admin</h2>
-
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
-
-<button onclick="login()">LOGIN</button>
-
-<div id="error" class="error"></div>
+<button id="loginBtn">LOGIN</button>
 </div>
 
-<!-- Supabase CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 const SUPABASE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqaGZwZG1idXB6bndja3J2Y3N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3MDU3NzQsImV4cCI6MjA4NzI4MTc3NH0.JFjuVEV7bMzC3qXeQbFHkUA_YIZFkM16NBkrqdG5yXY";
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
 
-async function login(){
+document.getElementById("loginBtn").addEventListener("click", async () => {
 
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
-const errorBox = document.getElementById("error");
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-errorBox.innerText = "";
+  const { error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
 
-const { data, error } = await supabase.auth.signInWithPassword({
-email: email,
-password: password
+  if(error){
+    alert("Login failed");
+    return;
+  }
+
+  window.location.href = "dashboard.html";
 });
-
-if(error){
-errorBox.innerText = "Wrong email or password";
-return;
-}
-
-// accès autorisé
-localStorage.setItem("wcf_admin","true");
-window.location.href = "dashboard.html";
-}
 </script>
 
 </body>
