@@ -10,197 +10,140 @@
 
 <style>
 :root{
---bg:#070707;
---panel:#111;
---panel2:#161616;
---accent:#e11b1b;
---text:#eaeaea;
---muted:#888;
---border:#222;
+--bg:#0b0b0b;
+--panel:#121212;
+--accent:#ff2a2a;
+--border:#1f1f1f;
+--text:#eaeaea
 }
+
+*{box-sizing:border-box}
 
 body{
 margin:0;
-background:linear-gradient(180deg,#050505,#0b0b0b);
+background:var(--bg);
 color:var(--text);
 font-family:Inter,Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh
 }
 
-.main{
-max-width:1100px;
-margin:auto;
-padding:60px 30px;
+.box{
+width:420px;
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:16px;
+padding:35px
 }
 
 h1{
 font-family:Orbitron;
-font-size:32px;
-letter-spacing:1px;
-margin-bottom:10px;
-}
-
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-margin-top:40px;
-}
-
-.card{
-background:linear-gradient(145deg,#111,#0b0b0b);
-border:1px solid var(--border);
-padding:30px;
-border-radius:14px;
-cursor:pointer;
-transition:.25s;
-position:relative;
-overflow:hidden;
-}
-
-.card:hover{
-border-color:var(--accent);
-transform:translateY(-5px);
-box-shadow:0 0 25px rgba(225,27,27,.25);
-}
-
-.card h3{
-margin:0 0 10px 0;
-font-family:Orbitron;
-}
-
-.card p{
-color:var(--muted);
-margin:0;
-}
-
-.popup{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.65);
-display:none;
-align-items:center;
-justify-content:center;
-}
-
-.popup.active{display:flex}
-
-.formbox{
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:14px;
-padding:30px;
-width:420px;
-}
-
-.formbox h2{
 margin-top:0;
-font-family:Orbitron;
+text-align:center
 }
 
-.formbox input{
+input{
 width:100%;
-padding:12px;
-margin:8px 0;
-background:var(--panel2);
-border:1px solid var(--border);
-color:white;
+padding:14px;
+margin:10px 0;
 border-radius:8px;
+border:1px solid var(--border);
+background:#0f0f0f;
+color:white;
+font-size:15px
 }
 
-.formbox button{
+button{
 width:100%;
-padding:12px;
-margin-top:10px;
+padding:14px;
+margin-top:15px;
 background:var(--accent);
 border:none;
-border-radius:8px;
+border-radius:10px;
 color:white;
 font-weight:600;
 cursor:pointer;
-transition:.2s;
+font-size:16px;
+transition:.2s
 }
 
-.formbox button:hover{opacity:.85}
+button:hover{
+transform:scale(1.02)
+}
+
+.status{
+margin-top:15px;
+text-align:center;
+font-size:14px;
+color:#aaa
+}
 </style>
 
 </head>
 
 <body>
 
-<div class="main">
-<h1>Welcome to your workspace</h1>
-<p>Select the service you need</p>
+<div class="box">
 
-<div class="services">
+<h1>FILE SERVICE</h1>
 
-<div class="card" onclick="openForm()">
-<h3>FILE SERVICE</h3>
-<p>Send ECU file for modification</p>
-</div>
+<form id="requestForm">
 
-<div class="card" onclick="alert('Soon available')">
-<h3>REMOTE SESSION</h3>
-<p>Live intervention on vehicle</p>
-</div>
-
-<div class="card" onclick="window.location.href='https://wa.me/message/NMAYVYZADORVF1'">
-<h3>TECH SUPPORT</h3>
-<p>Talk directly with engineer</p>
-</div>
-
-</div>
-</div>
-
-<div class="popup" id="popup">
-<form class="formbox" id="requestForm">
-<h2>File Service Request</h2>
-
-<input name="name" placeholder="Your name" required>
-<input name="email" placeholder="Email address" required>
-<input name="vehicle" placeholder="Vehicle model" required>
-<input name="ecu" placeholder="ECU type" required>
+<input type="text" name="name" placeholder="Your name" required>
+<input type="email" name="email" placeholder="Email address" required>
+<input type="text" name="vehicle" placeholder="Vehicle model" required>
+<input type="text" name="ecu" placeholder="ECU type" required>
 
 <button type="submit">SEND REQUEST</button>
 
 </form>
+
+<div class="status" id="status"></div>
+
 </div>
 
 <script>
-const FUNCTION_URL="https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
-const WHATSAPP_LINK="https://wa.me/message/NMAYVYZADORVF1";
+const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
+const WHATSAPP_LINK = "https://wa.me/message/NMAYVYZADORVF1";
 
-function openForm(){
-document.getElementById("popup").classList.add("active");
-}
+const form = document.getElementById("requestForm");
+const statusBox = document.getElementById("status");
 
-document.addEventListener("click",e=>{
-if(e.target.id==="popup")
-document.getElementById("popup").classList.remove("active");
-});
-
-document.getElementById("requestForm").addEventListener("submit",async(e)=>{
+form.addEventListener("submit", async (e) => {
 e.preventDefault();
 
-const form=e.target;
+statusBox.innerText = "Sending request...";
 
-const data={
-name:form.name.value,
-email:form.email.value,
-vehicle:form.vehicle.value,
-ecu:form.ecu.value
+const data = {
+name: form.name.value,
+email: form.email.value,
+vehicle: form.vehicle.value,
+ecu: form.ecu.value
 };
 
-try{
-await fetch(FUNCTION_URL,{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify(data)
+console.log("DATA SENT:", data);
+
+try {
+
+const res = await fetch(FUNCTION_URL, {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify(data)
 });
-window.location.href=WHATSAPP_LINK;
-}catch(err){
-window.location.href=WHATSAPP_LINK;
+
+console.log("SERVER RESPONSE:", await res.text());
+
+statusBox.innerText = "Opening WhatsApp...";
+
+setTimeout(()=>{
+window.location.href = WHATSAPP_LINK;
+},700);
+
+} catch(err){
+statusBox.innerText = "Server offline";
+console.error(err);
 }
 });
 </script>
