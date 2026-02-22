@@ -16,13 +16,49 @@ display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
+overflow:hidden;
 }
 
+/* ENGINEERS ONLINE BADGE */
+.engineer-status {
+position: fixed;
+top: 20px;
+right: 20px;
+background: rgba(0,0,0,0.7);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(0,255,136,0.3);
+padding: 8px 14px;
+border-radius: 30px;
+font-size: 12px;
+color: #00ff88;
+display: flex;
+align-items: center;
+gap: 8px;
+z-index: 9999;
+box-shadow: 0 0 15px rgba(0,255,136,0.2);
+}
+
+.engineer-dot {
+width: 10px;
+height: 10px;
+background: #00ff88;
+border-radius: 50%;
+box-shadow: 0 0 10px #00ff88;
+animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+0% { box-shadow: 0 0 5px #00ff88; }
+50% { box-shadow: 0 0 20px #00ff88; }
+100% { box-shadow: 0 0 5px #00ff88; }
+}
+
+/* CONTAINER */
 .container{
 background:#121212;
 padding:40px;
 border-radius:16px;
-width:400px;
+width:450px;
 text-align:center;
 border:1px solid #1f1f1f;
 }
@@ -55,13 +91,9 @@ cursor:pointer;
 }
 
 .status-box{
-margin-top:30px;
-font-size:18px;
+margin-top:25px;
+font-size:16px;
 }
-
-.status-waiting{color:#999;}
-.status-progress{color:#00aaff;}
-.status-ready{color:#00ff9c;}
 
 .back{
 margin-top:25px;
@@ -70,10 +102,93 @@ color:#ff2a2a;
 cursor:pointer;
 font-size:14px;
 }
+
+/* PREMIUM PROGRESS */
+.progress-wrapper {
+margin-top: 40px;
+position: relative;
+}
+
+.progress-line {
+position: absolute;
+top: 20px;
+left: 0;
+height: 4px;
+width: 100%;
+background: #333;
+border-radius: 10px;
+}
+
+.progress-fill {
+position: absolute;
+top: 20px;
+left: 0;
+height: 4px;
+width: 0%;
+background: linear-gradient(90deg,#ff2a2a,#ff0000);
+box-shadow: 0 0 15px #ff2a2a;
+border-radius: 10px;
+transition: width 0.6s ease;
+}
+
+.progress-steps {
+display: flex;
+justify-content: space-between;
+position: relative;
+}
+
+.step {
+text-align: center;
+width: 25%;
+position: relative;
+z-index: 2;
+}
+
+.step-circle {
+width: 35px;
+height: 35px;
+border-radius: 50%;
+background: #222;
+border: 2px solid #444;
+margin: 0 auto;
+transition: 0.4s;
+}
+
+.step.active .step-circle {
+background: #ff2a2a;
+border-color: #ff2a2a;
+box-shadow: 0 0 20px #ff2a2a;
+}
+
+.step.completed .step-circle {
+background: #00ff88;
+border-color: #00ff88;
+box-shadow: 0 0 20px #00ff88;
+}
+
+.step-label {
+margin-top: 10px;
+font-size: 12px;
+color: #ccc;
+letter-spacing: 1px;
+}
+
+.step.active .step-label {
+color: #ff2a2a;
+}
+
+.step.completed .step-label {
+color: #00ff88;
+}
 </style>
 </head>
 
 <body>
+
+<div class="engineer-status">
+<div class="engineer-dot"></div>
+Engineers Online 24/7
+</div>
 
 <div class="container">
 
@@ -84,6 +199,35 @@ font-size:14px;
 <button onclick="checkStatus()">CHECK STATUS</button>
 
 <div class="status-box" id="statusBox"></div>
+
+<div id="progressSection" style="display:none;">
+<div class="progress-wrapper">
+<div class="progress-line"></div>
+<div class="progress-fill" id="progressFill"></div>
+
+<div class="progress-steps">
+<div class="step" id="step1">
+<div class="step-circle"></div>
+<div class="step-label">Received</div>
+</div>
+
+<div class="step" id="step2">
+<div class="step-circle"></div>
+<div class="step-label">Processing</div>
+</div>
+
+<div class="step" id="step3">
+<div class="step-circle"></div>
+<div class="step-label">Payment</div>
+</div>
+
+<div class="step" id="step4">
+<div class="step-circle"></div>
+<div class="step-label">Completed</div>
+</div>
+</div>
+</div>
+</div>
 
 <div class="back" onclick="goBack()">← Back to Portal</div>
 
@@ -106,12 +250,8 @@ const data = await res.json();
 
 if(data.status){
 
-let statusClass = "status-waiting";
-if(data.status === "In Progress"){statusClass = "status-progress";}
-if(data.status === "Ready"){statusClass = "status-ready";}
-
-document.getElementById("statusBox").innerHTML =
-`Status: <span class="${statusClass}">${data.status}</span>`;
+document.getElementById("statusBox").innerHTML = "Status: " + data.status;
+updateProgress(data.status);
 
 }else{
 document.getElementById("statusBox").innerHTML = "Request not found";
@@ -121,6 +261,46 @@ document.getElementById("statusBox").innerHTML = "Request not found";
 document.getElementById("statusBox").innerHTML = "Error checking status";
 }
 
+}
+
+function updateProgress(status) {
+
+document.getElementById("progressSection").style.display = "block";
+
+const steps = ["step1","step2","step3","step4"];
+steps.forEach(step => {
+document.getElementById(step).classList.remove("active","completed");
+});
+
+let progressWidth = 0;
+
+if (status === "Waiting") {
+document.getElementById("step1").classList.add("active");
+progressWidth = 10;
+}
+
+if (status === "In Progress") {
+document.getElementById("step1").classList.add("completed");
+document.getElementById("step2").classList.add("active");
+progressWidth = 40;
+}
+
+if (status === "Payment") {
+document.getElementById("step1").classList.add("completed");
+document.getElementById("step2").classList.add("completed");
+document.getElementById("step3").classList.add("active");
+progressWidth = 70;
+}
+
+if (status === "Ready") {
+document.getElementById("step1").classList.add("completed");
+document.getElementById("step2").classList.add("completed");
+document.getElementById("step3").classList.add("completed");
+document.getElementById("step4").classList.add("active");
+progressWidth = 100;
+}
+
+document.getElementById("progressFill").style.width = progressWidth + "%";
 }
 
 function goBack(){
