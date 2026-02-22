@@ -94,7 +94,11 @@ animation: pulse 1.5s infinite;
 </head>
 
 <body>
-
+<script>
+if(localStorage.getItem("wcf_admin") !== "true"){
+window.location.href = "admin.html";
+}
+</script>
 <div class="engineer-status">
 <div class="engineer-dot"></div>
 Engineers Online 24/7
