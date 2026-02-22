@@ -66,10 +66,22 @@ border:1px solid var(--border);padding:25px;border-radius:12px
 <h1>Welcome to your workspace</h1>
 <p>Select the service you need</p>
 
-<div class="services">
-<div class="card" id="fileServiceBtn">
+<div class="card">
 <h3>FILE SERVICE</h3>
 <p>Send ECU file for modification</p>
+
+<form id="requestForm" style="margin-top:15px;display:flex;flex-direction:column;gap:10px">
+
+<input type="text" name="name" placeholder="Your name" required>
+<input type="email" name="email" placeholder="Email address" required>
+<input type="text" name="vehicle" placeholder="Vehicle model" required>
+<input type="text" name="ecu" placeholder="ECU type" required>
+
+<button type="submit" style="background:#ff2a2a;border:none;padding:12px;border-radius:8px;color:white;font-weight:bold;cursor:pointer">
+SEND REQUEST
+</button>
+
+</form>
 </div>
 
 <div class="card" id="remoteBtn">
