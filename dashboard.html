@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WCF Admin Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -14,28 +17,23 @@ font-family:Inter,Arial;
 margin:0;
 padding:40px;
 }
-
 h1{
 font-family:Orbitron;
 margin-bottom:30px;
 }
-
 table{
 width:100%;
 border-collapse:collapse;
 }
-
 th,td{
 padding:12px;
 border-bottom:1px solid #222;
 text-align:left;
 }
-
 th{
 color:#888;
 font-weight:500;
 }
-
 button{
 padding:6px 10px;
 margin-right:5px;
@@ -44,23 +42,19 @@ border-radius:6px;
 cursor:pointer;
 font-size:12px;
 }
-
 .wait{background:#444;color:white;}
 .progress{background:#007bff;color:white;}
 .payment{background:#ff9900;color:white;}
 .ready{background:#00cc66;color:white;}
-
 .status-badge{
 padding:4px 8px;
 border-radius:20px;
 font-size:12px;
 }
-
 .status-waiting{background:#555;}
 .status-progress{background:#007bff;}
 .status-payment{background:#ff9900;}
 .status-ready{background:#00cc66;}
-
 .engineer-status {
 position: fixed;
 top: 20px;
@@ -75,7 +69,6 @@ align-items: center;
 gap: 8px;
 box-shadow: 0 0 15px rgba(0,255,136,0.2);
 }
-
 .engineer-dot {
 width: 10px;
 height: 10px;
@@ -84,7 +77,6 @@ border-radius: 50%;
 box-shadow: 0 0 10px #00ff88;
 animation: pulse 1.5s infinite;
 }
-
 @keyframes pulse {
 0% { box-shadow: 0 0 5px #00ff88; }
 50% { box-shadow: 0 0 20px #00ff88; }
@@ -94,12 +86,6 @@ animation: pulse 1.5s infinite;
 </head>
 
 <body>
-
-<script>
-if(localStorage.getItem("wcf_admin") !== "true"){
-window.location.href = "index.html";
-}
-</script>
 
 <div class="engineer-status">
 <div class="engineer-dot"></div>
@@ -120,8 +106,19 @@ Engineers Online 24/7
 </table>
 
 <script>
-
+const SUPABASE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co";
 const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqaGZwZG1idXB6bndja3J2Y3N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3MDU3NzQsImV4cCI6MjA4NzI4MTc3NH0.JFjuVEV7bMzC3qXeQbFHkUA_YIZFkM16NBkrqdG5yXY";
+
+const supabaseClient = supabase.createClient(SUPABASE_URL, ANON_KEY);
+
+// 🔐 Vérifie session
+supabaseClient.auth.getSession().then(({ data }) => {
+  if (!data.session) {
+    window.location.href = "admin.html";
+  } else {
+    loadRequests();
+  }
+});
 
 const LIST_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/admin-list";
 const UPDATE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/update-status";
@@ -164,7 +161,6 @@ row.innerHTML = `
 }
 
 async function updateStatus(id,status){
-
 await fetch(UPDATE_URL,{
 method:"POST",
 headers:{
@@ -174,17 +170,14 @@ headers:{
 },
 body:JSON.stringify({id,status})
 });
-
 location.reload();
 }
 
 async function triggerUpload(id){
-
 const fileInput = document.createElement("input");
 fileInput.type = "file";
 
 fileInput.onchange = async function(){
-
 const file = fileInput.files[0];
 if(!file) return;
 
@@ -192,27 +185,19 @@ const formData = new FormData();
 formData.append("file", file);
 formData.append("id", id);
 
-const res = await fetch(UPLOAD_URL,{
+await fetch(UPLOAD_URL,{
 method:"POST",
+headers:{
+"apikey":ANON_KEY,
+"Authorization":"Bearer " + ANON_KEY
+},
 body:formData
 });
 
-const data = await res.json();
-
-if(data.success){
-alert("File uploaded. Client notified. Status set to READY.");
 location.reload();
-}else{
-alert("Upload failed.");
-}
-
 };
-
 fileInput.click();
 }
-
-loadRequests();
-
 </script>
 
 </body>
