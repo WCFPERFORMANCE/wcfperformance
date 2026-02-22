@@ -132,7 +132,11 @@ color:#aaa;
 
 <!-- FILE SERVICE PAGE -->
 <div id="fileServiceView" class="hidden">
-
+<div style="margin-bottom:20px;">
+  <span onclick="backToDashboard()" style="cursor:pointer;color:#ff2a2a;font-weight:600;">
+    ← Back to Dashboard
+  </span>
+</div>
 <h1>File Service Request</h1>
 
 <div class="file-box">
@@ -204,6 +208,11 @@ window.open(url,"_blank");
 statusBox.innerText="Server error";
 }
 });
+
+function backToDashboard(){
+  document.getElementById("fileServiceView").classList.add("hidden");
+  document.getElementById("dashboardView").classList.remove("hidden");
+}
 </script>
 
 </body>
