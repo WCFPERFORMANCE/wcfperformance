@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCF Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+background:#0b0b0b;
+color:white;
+font-family:Inter,Arial;
+margin:0;
+padding:40px;
+}
+
+h1{
+font-family:Orbitron;
+margin-bottom:30px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #222;
+text-align:left;
+}
+
+th{
+color:#888;
+font-weight:500;
+}
+
+button{
+padding:6px 10px;
+margin-right:5px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:12px;
+}
+
+.wait{background:#444;color:white;}
+.progress{background:#007bff;color:white;}
+.payment{background:#ff9900;color:white;}
+.ready{background:#00cc66;color:white;}
+
+.status-badge{
+padding:4px 8px;
+border-radius:20px;
+font-size:12px;
+}
+
+.status-waiting{background:#555;}
+.status-progress{background:#007bff;}
+.status-payment{background:#ff9900;}
+.status-ready{background:#00cc66;}
+
+.engineer-status {
+position: fixed;
+top: 20px;
+right: 20px;
+background: rgba(0,0,0,0.7);
+padding: 8px 14px;
+border-radius: 30px;
+font-size: 12px;
+color: #00ff88;
+display: flex;
+align-items: center;
+gap: 8px;
+box-shadow: 0 0 15px rgba(0,255,136,0.2);
+}
+
+.engineer-dot {
+width: 10px;
+height: 10px;
+background: #00ff88;
+border-radius: 50%;
+box-shadow: 0 0 10px #00ff88;
+animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+0% { box-shadow: 0 0 5px #00ff88; }
+50% { box-shadow: 0 0 20px #00ff88; }
+100% { box-shadow: 0 0 5px #00ff88; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="engineer-status">
+<div class="engineer-dot"></div>
+Engineers Online 24/7
+</div>
+
+<h1>WCF Admin Dashboard</h1>
+
+<table id="requestsTable">
+<tr>
+<th>Reference ID</th>
+<th>Client</th>
+<th>Email</th>
+<th>Vehicle</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</table>
+
+<script>
+
+const LIST_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/admin-list";
+const UPDATE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/update-status";
+
+async function loadRequests(){
+
+const res = await fetch(LIST_URL);
+const data = await res.json();
+
+const table = document.getElementById("requestsTable");
+
+data.forEach(r=>{
+
+let statusClass = "status-waiting";
+if(r.status === "In Progress"){statusClass = "status-progress";}
+if(r.status === "Payment"){statusClass = "status-payment";}
+if(r.status === "Ready"){statusClass = "status-ready";}
+
+const row = table.insertRow();
+row.innerHTML = `
+<td>${r.public_id}</td>
+<td>${r.name}</td>
+<td>${r.user_email}</td>
+<td>${r.vehicle}</td>
+<td><span class="status-badge ${statusClass}">${r.status}</span></td>
+<td>
+<button class="wait" onclick="updateStatus('${r.public_id}','Waiting')">Waiting</button>
+<button class="progress" onclick="updateStatus('${r.public_id}','In Progress')">Processing</button>
+<button class="payment" onclick="updateStatus('${r.public_id}','Payment')">Payment</button>
+<button class="ready" onclick="updateStatus('${r.public_id}','Ready')">Ready</button>
+</td>
+`;
+});
+}
+
+async function updateStatus(id,status){
+
+await fetch(UPDATE_URL,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({id,status})
+});
+
+location.reload();
+}
+
+loadRequests();
+
+</script>
+
+</body>
+</html>
