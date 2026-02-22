@@ -4,142 +4,166 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WCF Client Portal</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body{
-margin:0;
-background:#0b0b0b;
-color:#fff;
-font-family:Inter;
-display:flex;
-height:100vh;
-}
+:root{--bg:#0b0b0b;--panel:#121212;--accent:#ff2a2a;--border:#1f1f1f;--text:#eaeaea}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial;display:flex;height:100vh}
 
 .sidebar{
-width:220px;
-background:#111;
-padding:30px 20px;
-border-right:1px solid #1f1f1f;
+width:240px;background:#090909;border-right:1px solid var(--border);
+display:flex;flex-direction:column;padding:25px 15px
 }
+.logo{font-family:Orbitron;font-size:22px;margin-bottom:40px}
+.logo span{color:var(--accent)}
 
-.sidebar h2{
-font-family:Orbitron;
-color:#ff2a2a;
-margin-top:0;
+.menu a{
+display:block;padding:12px 10px;margin:8px 0;
+color:#ccc;text-decoration:none;border-radius:6px
 }
+.menu a:hover{background:var(--panel);color:#fff}
 
-.sidebar a{
-display:block;
-color:#aaa;
-margin:15px 0;
-cursor:pointer;
-text-decoration:none;
-}
+.main{flex:1;padding:40px;overflow:auto}
+h1{font-family:Orbitron;margin-top:0}
 
-.sidebar a:hover{
-color:#fff;
-}
-
-.main{
-flex:1;
-padding:40px;
-}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;margin-top:40px}
 
 .card{
-background:#151515;
-padding:25px;
-border-radius:12px;
-margin-bottom:20px;
-border:1px solid #1f1f1f;
+background:var(--panel);border:1px solid var(--border);
+padding:25px;border-radius:12px;cursor:pointer;
+transition:.2s
+}
+.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+
+.status{
+margin-top:50px;background:var(--panel);
+border:1px solid var(--border);padding:25px;border-radius:12px
+}
+.badge{padding:6px 12px;border-radius:20px;font-size:13px;margin-right:10px}
+.wait{background:#3a3a3a}
+.progress{background:#1e3a5f}
+.ready{background:#1f5f2b}
+
+/* FILE SERVICE PAGE */
+.hidden{display:none}
+
+.file-box{
+max-width:600px;
+margin:60px auto;
+background:var(--panel);
+border:1px solid var(--border);
+padding:35px;
+border-radius:16px;
 }
 
-input{
+.file-box input{
 width:100%;
-padding:12px;
+padding:14px;
 margin:10px 0;
-border-radius:8px;
-border:1px solid #222;
 background:#0f0f0f;
+border:1px solid #222;
 color:white;
+border-radius:8px;
 }
 
-button{
-padding:12px;
-background:#ff2a2a;
+.btn{
+background:var(--accent);
 border:none;
+padding:14px;
+width:100%;
+margin-top:10px;
 border-radius:8px;
 color:white;
 cursor:pointer;
-width:100%;
 }
 
-.status{
-margin-top:10px;
+.status-msg{
+margin-top:15px;
+text-align:center;
 color:#aaa;
-font-size:14px;
 }
-.hidden{display:none}
 </style>
 </head>
 
 <body>
 
 <div class="sidebar">
-<h2>WCF PORTAL</h2>
-<a onclick="showSection('dashboard')">Dashboard</a>
-<a onclick="showSection('file')">File Service</a>
-<a onclick="showSection('remote')">Remote Session</a>
-<a onclick="showSection('support')">Tech Support</a>
+<div class="logo">WCF <span>PORTAL</span></div>
+<div class="menu">
+<a href="#">New Request</a>
+<a href="#">My Requests</a>
+<a href="#">Technical Support</a>
+<a href="#">Account</a>
+</div>
 </div>
 
 <div class="main">
 
-<div id="dashboard" class="card">
-<h2>Welcome to your workspace</h2>
-<p>Select the service you need.</p>
+<!-- DASHBOARD -->
+<div id="dashboardView">
+<h1>Welcome to your workspace</h1>
+<p>Select the service you need</p>
+
+<div class="services">
+<div class="card" onclick="openFileService()">
+<h3>FILE SERVICE</h3>
+<p>Send ECU file for modification</p>
 </div>
 
-<div id="file" class="card hidden">
-<h2>File Service</h2>
+<div class="card">
+<h3>REMOTE SESSION</h3>
+<p>Live intervention on vehicle</p>
+</div>
 
-<form id="requestForm">
+<div class="card">
+<h3>TECH SUPPORT</h3>
+<p>Get help from an engineer</p>
+</div>
+</div>
+
+<div class="status">
+<h3>Request status example</h3>
+<span class="badge wait">Waiting</span>
+<span class="badge progress">In progress</span>
+<span class="badge ready">Ready download</span>
+</div>
+</div>
+
+<!-- FILE SERVICE PAGE -->
+<div id="fileServiceView" class="hidden">
+
+<h1>File Service Request</h1>
+
+<div class="file-box">
+<form id="fileForm">
 <input type="text" name="name" placeholder="Your name" required>
 <input type="email" name="email" placeholder="Email address" required>
 <input type="text" name="vehicle" placeholder="Vehicle model" required>
 <input type="text" name="ecu" placeholder="ECU type" required>
-<button type="submit">SEND REQUEST</button>
+<button type="submit" class="btn">SEND REQUEST</button>
 </form>
 
-<div class="status" id="status"></div>
+<div class="status-msg" id="statusMsg"></div>
 </div>
 
-<div id="remote" class="card hidden">
-<h2>Remote Session</h2>
-<p>Live intervention on vehicle.</p>
-</div>
-
-<div id="support" class="card hidden">
-<h2>Technical Support</h2>
-<p>Contact an engineer.</p>
 </div>
 
 </div>
 
 <script>
-const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
-const PHONE_NUMBER = "33664784160"; // TON NUMERO
+const FUNCTION_URL="https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
+const PHONE_NUMBER="336XXXXXXXX"; // 🔥 MET TON NUMERO SANS +
 
-function showSection(section){
-document.querySelectorAll(".card").forEach(el=>el.classList.add("hidden"));
-document.getElementById(section).classList.remove("hidden");
+function openFileService(){
+document.getElementById("dashboardView").classList.add("hidden");
+document.getElementById("fileServiceView").classList.remove("hidden");
 }
 
-const form = document.getElementById("requestForm");
-const statusBox = document.getElementById("status");
+const form=document.getElementById("fileForm");
+const statusBox=document.getElementById("statusMsg");
 
-form.addEventListener("submit", async (e)=>{
+form.addEventListener("submit",async(e)=>{
 e.preventDefault();
 
 statusBox.innerText="Sending request...";
@@ -168,13 +192,13 @@ Email: ${data.email}
 Vehicle: ${data.vehicle}
 ECU: ${data.ecu}
 
-I would like to proceed.`;
+I would like to proceed with file service.`;
 
 const url=`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
 
 setTimeout(()=>{
 window.open(url,"_blank");
-},700);
+},800);
 
 }catch(err){
 statusBox.innerText="Server error";
