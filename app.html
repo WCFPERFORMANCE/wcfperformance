@@ -156,63 +156,71 @@ color:#aaa;
 </div>
 
 <script>
-const FUNCTION_URL="https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
-const PHONE_NUMBER="33664784160"; // 🔥 MET TON NUMERO SANS +
+<script>
 
-function openFileService(){
-document.getElementById("dashboardView").classList.add("hidden");
-document.getElementById("fileServiceView").classList.remove("hidden");
-}
+const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
 
-const form=document.getElementById("fileForm");
-const statusBox=document.getElementById("statusMsg");
+const form = document.getElementById("requestForm");
+const statusBox = document.getElementById("status");
 
-form.addEventListener("submit",async(e)=>{
-e.preventDefault();
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-statusBox.innerText="Sending request...";
+  statusBox.innerText = "Sending request...";
 
-const data={
-name:form.name.value,
-email:form.email.value,
-vehicle:form.vehicle.value,
-ecu:form.ecu.value
-};
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    vehicle: form.vehicle.value,
+    ecu: form.ecu.value,
+    service: "File Service"
+  };
 
-try{
+  try {
 
-await fetch(FUNCTION_URL,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify(data)
-});
+    const res = await fetch(FUNCTION_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
 
-statusBox.innerText="Opening WhatsApp...";
+    const result = await res.json();
 
-const message=`🚗 WCF FILE SERVICE REQUEST
+    if(result.success){
+
+      const message = `
+WCF PERFORMANCE REQUEST
 
 Name: ${data.name}
 Email: ${data.email}
 Vehicle: ${data.vehicle}
 ECU: ${data.ecu}
+Service: File Service
 
-I would like to proceed with file service.`;
+Reference ID: ${result.publicId || "Pending"}
 
-const url=`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+Thank you.
+      `;
 
-setTimeout(()=>{
-window.open(url,"_blank");
-},800);
+      const whatsappURL = "https://wa.me/33664784160?text=" + encodeURIComponent(message);
 
-}catch(err){
-statusBox.innerText="Server error";
-}
+      statusBox.innerText = "Redirecting to WhatsApp...";
+
+      setTimeout(()=>{
+        window.location.href = whatsappURL;
+      },700);
+
+    } else {
+      statusBox.innerText = "Server error";
+    }
+
+  } catch(err){
+    statusBox.innerText = "Server offline";
+    console.error(err);
+  }
 });
 
-function backToDashboard(){
-  document.getElementById("fileServiceView").classList.add("hidden");
-  document.getElementById("dashboardView").classList.remove("hidden");
-}
+</script>
 </script>
 
 </body>
