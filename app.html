@@ -5,151 +5,203 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WCF Client Portal</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{--bg:#0b0b0b;--panel:#121212;--accent:#ff2a2a;--border:#1f1f1f;--text:#eaeaea}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial;display:flex;height:100vh}
-
-.sidebar{
-width:240px;background:#090909;border-right:1px solid var(--border);
-display:flex;flex-direction:column;padding:25px 15px
+:root{
+--bg:#070707;
+--panel:#111;
+--panel2:#161616;
+--accent:#e11b1b;
+--text:#eaeaea;
+--muted:#888;
+--border:#222;
 }
-.logo{font-family:Orbitron;font-size:22px;margin-bottom:40px}
-.logo span{color:var(--accent)}
 
-.menu a{
-display:block;padding:12px 10px;margin:8px 0;
-color:#ccc;text-decoration:none;border-radius:6px
+body{
+margin:0;
+background:linear-gradient(180deg,#050505,#0b0b0b);
+color:var(--text);
+font-family:Inter,Arial;
 }
-.menu a:hover{background:var(--panel);color:#fff}
 
-.main{flex:1;padding:40px}
-h1{font-family:Orbitron;margin-top:0}
+.main{
+max-width:1100px;
+margin:auto;
+padding:60px 30px;
+}
 
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;margin-top:40px}
+h1{
+font-family:Orbitron;
+font-size:32px;
+letter-spacing:1px;
+margin-bottom:10px;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+margin-top:40px;
+}
 
 .card{
-background:var(--panel);border:1px solid var(--border);
-padding:25px;border-radius:12px;cursor:pointer;
-transition:.2s
+background:linear-gradient(145deg,#111,#0b0b0b);
+border:1px solid var(--border);
+padding:30px;
+border-radius:14px;
+cursor:pointer;
+transition:.25s;
+position:relative;
+overflow:hidden;
 }
-.card:hover{border-color:var(--accent);transform:translateY(-3px)}
 
-.status{
-margin-top:50px;background:var(--panel);
-border:1px solid var(--border);padding:25px;border-radius:12px
+.card:hover{
+border-color:var(--accent);
+transform:translateY(-5px);
+box-shadow:0 0 25px rgba(225,27,27,.25);
 }
-.badge{padding:6px 12px;border-radius:20px;font-size:13px;margin-right:10px}
-.wait{background:#3a3a3a}
-.progress{background:#1e3a5f}
-.ready{background:#1f5f2b}
+
+.card h3{
+margin:0 0 10px 0;
+font-family:Orbitron;
+}
+
+.card p{
+color:var(--muted);
+margin:0;
+}
+
+.popup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+display:none;
+align-items:center;
+justify-content:center;
+}
+
+.popup.active{display:flex}
+
+.formbox{
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:14px;
+padding:30px;
+width:420px;
+}
+
+.formbox h2{
+margin-top:0;
+font-family:Orbitron;
+}
+
+.formbox input{
+width:100%;
+padding:12px;
+margin:8px 0;
+background:var(--panel2);
+border:1px solid var(--border);
+color:white;
+border-radius:8px;
+}
+
+.formbox button{
+width:100%;
+padding:12px;
+margin-top:10px;
+background:var(--accent);
+border:none;
+border-radius:8px;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:.2s;
+}
+
+.formbox button:hover{opacity:.85}
 </style>
 
 </head>
 
 <body>
 
-<div class="sidebar">
-<div class="logo">WCF <span>PORTAL</span></div>
-
-<div class="menu">
-<a href="#">New Request</a>
-<a href="#">My Requests</a>
-<a href="#">Technical Support</a>
-<a href="#">Account</a>
-</div>
-</div>
-
 <div class="main">
 <h1>Welcome to your workspace</h1>
 <p>Select the service you need</p>
 
-<div class="card">
+<div class="services">
+
+<div class="card" onclick="openForm()">
 <h3>FILE SERVICE</h3>
 <p>Send ECU file for modification</p>
-
-<form id="requestForm" style="margin-top:15px;display:flex;flex-direction:column;gap:10px">
-
-<input type="text" name="name" placeholder="Your name" required>
-<input type="email" name="email" placeholder="Email address" required>
-<input type="text" name="vehicle" placeholder="Vehicle model" required>
-<input type="text" name="ecu" placeholder="ECU type" required>
-
-<button type="submit" style="background:#ff2a2a;border:none;padding:12px;border-radius:8px;color:white;font-weight:bold;cursor:pointer">
-SEND REQUEST
-</button>
-
-</form>
 </div>
 
-<div class="card" id="remoteBtn">
+<div class="card" onclick="alert('Soon available')">
 <h3>REMOTE SESSION</h3>
 <p>Live intervention on vehicle</p>
 </div>
 
-<div class="card" id="supportBtn">
+<div class="card" onclick="window.location.href='https://wa.me/message/NMAYVYZADORVF1'">
 <h3>TECH SUPPORT</h3>
-<p>Get help from an engineer</p>
+<p>Talk directly with engineer</p>
+</div>
+
 </div>
 </div>
 
-<div class="status">
-<h3>Request status example</h3>
-<span class="badge wait">Waiting</span>
-<span class="badge progress">In progress</span>
-<span class="badge ready">Ready download</span>
-</div>
+<div class="popup" id="popup">
+<form class="formbox" id="requestForm">
+<h2>File Service Request</h2>
+
+<input name="name" placeholder="Your name" required>
+<input name="email" placeholder="Email address" required>
+<input name="vehicle" placeholder="Vehicle model" required>
+<input name="ecu" placeholder="ECU type" required>
+
+<button type="submit">SEND REQUEST</button>
+
+</form>
 </div>
 
 <script>
-const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
-const WHATSAPP_LINK = "https://wa.me/message/NMAYVYZADORVF1";
+const FUNCTION_URL="https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
+const WHATSAPP_LINK="https://wa.me/message/NMAYVYZADORVF1";
 
-window.addEventListener("DOMContentLoaded", () => {
+function openForm(){
+document.getElementById("popup").classList.add("active");
+}
 
-  const form = document.getElementById("requestForm");
-  if (!form) return;
+document.addEventListener("click",e=>{
+if(e.target.id==="popup")
+document.getElementById("popup").classList.remove("active");
+});
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+document.getElementById("requestForm").addEventListener("submit",async(e)=>{
+e.preventDefault();
 
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      vehicle: form.vehicle.value,
-      ecu: form.ecu.value
-    };
+const form=e.target;
 
-    try {
+const data={
+name:form.name.value,
+email:form.email.value,
+vehicle:form.vehicle.value,
+ecu:form.ecu.value
+};
 
-      await fetch(FUNCTION_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-
-      // ouvrir WhatsApp avec résumé
-      const msg =
-`New WCF request
-Name: ${data.name}
-Email: ${data.email}
-Vehicle: ${data.vehicle}
-ECU: ${data.ecu}`;
-
-      window.location.href =
-        WHATSAPP_LINK + "?text=" + encodeURIComponent(msg);
-
-    } catch (err) {
-      alert("Server error — opening WhatsApp");
-      window.location.href = WHATSAPP_LINK;
-    }
-
-  });
-
+try{
+await fetch(FUNCTION_URL,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify(data)
+});
+window.location.href=WHATSAPP_LINK;
+}catch(err){
+window.location.href=WHATSAPP_LINK;
+}
 });
 </script>
 
