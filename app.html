@@ -107,50 +107,49 @@ SEND REQUEST
 const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
 const WHATSAPP_LINK = "https://wa.me/message/NMAYVYZADORVF1";
 
-/* FILE SERVICE */
-document.getElementById("fileServiceBtn").addEventListener("click", async () => {
+window.addEventListener("DOMContentLoaded", () => {
 
-  const name = prompt("Your name");
-  if(!name) return;
+  const form = document.getElementById("requestForm");
+  if (!form) return;
 
-  const email = prompt("Your email");
-  if(!email) return;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const vehicle = prompt("Vehicle model");
-  if(!vehicle) return;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      vehicle: form.vehicle.value,
+      ecu: form.ecu.value
+    };
 
-  const ecu = prompt("ECU model");
-  if(!ecu) return;
+    try {
 
-  const data = {
-    name,
-    email,
-    vehicle,
-    ecu,
-    service: "File Service",
-    notes: "Client portal request"
-  };
+      await fetch(FUNCTION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
 
-  try {
-    await fetch(FUNCTION_URL,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(data)
-    });
-    window.location.href = WHATSAPP_LINK;
-  } catch {
-    window.location.href = WHATSAPP_LINK;
-  }
-});
+      // ouvrir WhatsApp avec résumé
+      const msg =
+`New WCF request
+Name: ${data.name}
+Email: ${data.email}
+Vehicle: ${data.vehicle}
+ECU: ${data.ecu}`;
 
-/* REMOTE SESSION */
-document.getElementById("remoteBtn").addEventListener("click",()=>{
-  window.location.href = WHATSAPP_LINK;
-});
+      window.location.href =
+        WHATSAPP_LINK + "?text=" + encodeURIComponent(msg);
 
-/* TECH SUPPORT */
-document.getElementById("supportBtn").addEventListener("click",()=>{
-  window.location.href = WHATSAPP_LINK;
+    } catch (err) {
+      alert("Server error — opening WhatsApp");
+      window.location.href = WHATSAPP_LINK;
+    }
+
+  });
+
 });
 </script>
 
