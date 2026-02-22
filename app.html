@@ -45,7 +45,6 @@ border:1px solid var(--border);padding:25px;border-radius:12px
 .progress{background:#1e3a5f}
 .ready{background:#1f5f2b}
 
-/* FILE SERVICE PAGE */
 .hidden{display:none}
 
 .file-box{
@@ -83,6 +82,83 @@ margin-top:15px;
 text-align:center;
 color:#aaa;
 }
+
+/* PREMIUM UPLOAD */
+
+.upload-wrapper{margin:25px 0;}
+
+.upload-area{
+position:relative;
+border:2px solid #222;
+border-radius:16px;
+padding:50px 20px;
+text-align:center;
+cursor:pointer;
+background:linear-gradient(145deg,#0d0d0d,#141414);
+overflow:hidden;
+transition:0.3s ease;
+}
+
+@keyframes pulseBorder {
+0% { box-shadow:0 0 0px rgba(255,42,42,0.0); }
+50% { box-shadow:0 0 25px rgba(255,42,42,0.4); }
+100% { box-shadow:0 0 0px rgba(255,42,42,0.0); }
+}
+
+.upload-area:hover{
+border-color:#ff2a2a;
+animation:pulseBorder 2.5s infinite;
+}
+
+.upload-area.dragover{
+border-color:#ff2a2a;
+background:#1a0000;
+box-shadow:0 0 30px rgba(255,42,42,0.6);
+}
+
+.upload-title{
+font-family:Orbitron;
+font-size:20px;
+letter-spacing:2px;
+margin:0;
+}
+
+.upload-sub{
+margin-top:10px;
+font-size:14px;
+color:#aaa;
+}
+
+.upload-sub-small{
+font-size:12px;
+color:#666;
+margin-top:4px;
+}
+
+.scan-line{
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:2px;
+background:linear-gradient(to right,transparent,#ff2a2a,transparent);
+animation:scan 4s linear infinite;
+opacity:0.5;
+}
+
+@keyframes scan{
+0% { left:-100%; }
+100% { left:100%; }
+}
+
+.file-name{
+margin-top:15px;
+text-align:center;
+font-size:14px;
+color:#ff2a2a;
+font-weight:600;
+letter-spacing:1px;
+}
 </style>
 </head>
 
@@ -90,17 +166,10 @@ color:#aaa;
 
 <div class="sidebar">
 <div class="logo">WCF <span>PORTAL</span></div>
-<div class="menu">
-<a href="#">New Request</a>
-<a href="#">My Requests</a>
-<a href="#">Technical Support</a>
-<a href="#">Account</a>
-</div>
 </div>
 
 <div class="main">
 
-<!-- DASHBOARD -->
 <div id="dashboardView">
 <h1>Welcome to your workspace</h1>
 <p>Select the service you need</p>
@@ -110,64 +179,56 @@ color:#aaa;
 <h3>FILE SERVICE</h3>
 <p>Send ECU file for modification</p>
 </div>
-
-<div class="card">
-<h3>REMOTE SESSION</h3>
-<p>Live intervention on vehicle</p>
-</div>
-
-<div class="card">
-<h3>TECH SUPPORT</h3>
-<p>Get help from an engineer</p>
 </div>
 </div>
 
-<div class="status">
-<h3>Request status example</h3>
-<span class="badge wait">Waiting</span>
-<span class="badge progress">In progress</span>
-<span class="badge ready">Ready download</span>
-</div>
-</div>
-
-<!-- FILE SERVICE PAGE -->
 <div id="fileServiceView" class="hidden">
 <div style="margin-bottom:20px;">
-  <span onclick="backToDashboard()" style="cursor:pointer;color:#ff2a2a;font-weight:600;">
-    ← Back to Dashboard
-  </span>
+<span onclick="backToDashboard()" style="cursor:pointer;color:#ff2a2a;font-weight:600;">
+← Back to Dashboard
+</span>
 </div>
+
 <h1>File Service Request</h1>
 
 <div class="file-box">
 <form id="fileForm" enctype="multipart/form-data">
+
 <input type="text" name="name" placeholder="Your name" required>
 <input type="email" name="email" placeholder="Email address" required>
 <input type="text" name="vehicle" placeholder="Vehicle model" required>
 <input type="text" name="ecu" placeholder="ECU type" required>
-<input type="file" name="ecuFile" accept=".bin,.ori" required>
+
+<div class="upload-wrapper">
+<div class="upload-area" id="uploadArea">
+<div class="scan-line"></div>
+<p class="upload-title">ECU FILE UPLOAD</p>
+<p class="upload-sub">Drag & Drop your .bin / .ori file</p>
+<p class="upload-sub-small">or click to browse</p>
+<input type="file" name="ecuFile" id="ecuFile" accept=".bin,.ori" required hidden>
+</div>
+<div class="file-name" id="fileName"></div>
+</div>
+
 <button type="submit" class="btn">SEND REQUEST</button>
 </form>
 
 <div class="status-msg" id="statusMsg"></div>
 </div>
-
 </div>
 
 </div>
-
 
 <script>
 
-// NAVIGATION
 function openFileService() {
-  document.getElementById("dashboardView").classList.add("hidden");
-  document.getElementById("fileServiceView").classList.remove("hidden");
+document.getElementById("dashboardView").classList.add("hidden");
+document.getElementById("fileServiceView").classList.remove("hidden");
 }
 
 function backToDashboard() {
-  document.getElementById("fileServiceView").classList.add("hidden");
-  document.getElementById("dashboardView").classList.remove("hidden");
+document.getElementById("fileServiceView").classList.add("hidden");
+document.getElementById("dashboardView").classList.remove("hidden");
 }
 
 const FUNCTION_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/super-worker";
@@ -176,31 +237,31 @@ const form = document.getElementById("fileForm");
 const statusBox = document.getElementById("statusMsg");
 
 form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+e.preventDefault();
 
-  statusBox.innerText = "Uploading file and sending request...";
+statusBox.innerText = "Uploading file and sending request...";
 
-  const file = form.ecuFile.files[0];
+const file = document.getElementById("ecuFile").files[0];
 
-  const formData = new FormData();
-  formData.append("name", form.name.value);
-  formData.append("email", form.email.value);
-  formData.append("vehicle", form.vehicle.value);
-  formData.append("ecu", form.ecu.value);
-  formData.append("service", "File Service");
-  formData.append("file", file);
+const formData = new FormData();
+formData.append("name", form.name.value);
+formData.append("email", form.email.value);
+formData.append("vehicle", form.vehicle.value);
+formData.append("ecu", form.ecu.value);
+formData.append("service", "File Service");
+formData.append("file", file);
 
-  try {
-    const res = await fetch(FUNCTION_URL, {
-      method: "POST",
-      body: formData
-    });
+try {
+const res = await fetch(FUNCTION_URL, {
+method: "POST",
+body: formData
+});
 
-    const result = await res.json();
+const result = await res.json();
 
-    if (result.success) {
+if (result.success) {
 
-      const message = `
+const message = `
 WCF PERFORMANCE REQUEST
 
 Name: ${form.name.value}
@@ -212,27 +273,59 @@ Service: File Service
 Reference ID: ${result.publicId}
 
 Thank you.
-      `;
+`;
 
-      const whatsappURL =
-        "https://wa.me/33664784160?text=" +
-        encodeURIComponent(message);
+const whatsappURL =
+"https://wa.me/33664784160?text=" +
+encodeURIComponent(message);
 
-      statusBox.innerText = "Redirecting to WhatsApp...";
+statusBox.innerText = "Redirecting to WhatsApp...";
 
-      setTimeout(() => {
-        window.location.href = whatsappURL;
-      }, 800);
+setTimeout(() => {
+window.location.href = whatsappURL;
+}, 800);
 
-    } else {
-      statusBox.innerText = "Server error";
-    }
+} else {
+statusBox.innerText = "Server error";
+}
 
-  } catch (err) {
-    statusBox.innerText = "Upload failed";
-    console.error(err);
-  }
+} catch (err) {
+statusBox.innerText = "Upload failed";
+console.error(err);
+}
 });
+
+// PREMIUM UPLOAD UI
+const uploadArea = document.getElementById("uploadArea");
+const fileInput = document.getElementById("ecuFile");
+const fileName = document.getElementById("fileName");
+
+uploadArea.addEventListener("click", () => {
+fileInput.click();
+});
+
+fileInput.addEventListener("change", () => {
+if (fileInput.files.length > 0) {
+fileName.innerText = "FILE LOADED → " + fileInput.files[0].name;
+}
+});
+
+uploadArea.addEventListener("dragover", (e) => {
+e.preventDefault();
+uploadArea.classList.add("dragover");
+});
+
+uploadArea.addEventListener("dragleave", () => {
+uploadArea.classList.remove("dragover");
+});
+
+uploadArea.addEventListener("drop", (e) => {
+e.preventDefault();
+uploadArea.classList.remove("dragover");
+fileInput.files = e.dataTransfer.files;
+fileName.innerText = "FILE LOADED → " + e.dataTransfer.files[0].name;
+});
+
 </script>
 </body>
 </html>
