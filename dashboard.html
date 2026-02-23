@@ -106,12 +106,12 @@ Engineers Online 24/7
 </table>
 
 <script>
+
 const SUPABASE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co";
 const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqaGZwZG1idXB6bndja3J2Y3N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3MDU3NzQsImV4cCI6MjA4NzI4MTc3NH0.JFjuVEV7bMzC3qXeQbFHkUA_YIZFkM16NBkrqdG5yXY";
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, ANON_KEY);
 
-// 🔐 Vérifie session
 supabaseClient.auth.getSession().then(({ data }) => {
   if (!data.session) {
     window.location.href = "admin.html";
@@ -174,10 +174,12 @@ location.reload();
 }
 
 async function triggerUpload(id){
+
 const fileInput = document.createElement("input");
 fileInput.type = "file";
 
 fileInput.onchange = async function(){
+
 const file = fileInput.files[0];
 if(!file) return;
 
@@ -185,19 +187,33 @@ const formData = new FormData();
 formData.append("file", file);
 formData.append("id", id);
 
-await fetch(UPLOAD_URL,{
+try {
+
+const res = await fetch(UPLOAD_URL,{
 method:"POST",
-headers:{
-"apikey":ANON_KEY,
-"Authorization":"Bearer " + ANON_KEY
-},
 body:formData
 });
 
+const data = await res.json();
+console.log("Upload response:", data);
+
+if(data.success){
+alert("Upload successful ✅");
 location.reload();
+}else{
+alert("Upload failed ❌");
+}
+
+} catch(err){
+console.error(err);
+alert("Upload error ❌");
+}
+
 };
+
 fileInput.click();
 }
+
 </script>
 
 </body>
