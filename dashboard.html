@@ -46,7 +46,6 @@ font-size:12px;
 .progress{background:#007bff;color:white;}
 .payment{background:#ff9900;color:white;}
 .ready{background:#00cc66;color:white;}
-.download{background:#00ccff;color:black;}
 .status-badge{
 padding:4px 8px;
 border-radius:20px;
@@ -140,19 +139,9 @@ const table = document.getElementById("requestsTable");
 data.forEach(r=>{
 
 let statusClass = "status-waiting";
-if(r.status === "In Progress") statusClass = "status-progress";
-if(r.status === "Payment") statusClass = "status-payment";
-if(r.status === "Ready") statusClass = "status-ready";
-
-let downloadButton = "";
-
-if(r.status === "Ready" && r.download_url){
-downloadButton = `
-<a href="${r.download_url}" target="_blank">
-<button class="download">Download</button>
-</a>
-`;
-}
+if(r.status === "In Progress"){statusClass = "status-progress";}
+if(r.status === "Payment"){statusClass = "status-payment";}
+if(r.status === "Ready"){statusClass = "status-ready";}
 
 const row = table.insertRow();
 row.innerHTML = `
@@ -166,7 +155,6 @@ row.innerHTML = `
 <button class="progress" onclick="updateStatus('${r.public_id}','In Progress')">Processing</button>
 <button class="payment" onclick="updateStatus('${r.public_id}','Payment')">Payment</button>
 <button class="ready" onclick="triggerUpload('${r.public_id}')">Upload & Ready</button>
-${downloadButton}
 </td>
 `;
 });
@@ -206,17 +194,27 @@ method:"POST",
 body:formData
 });
 
-const data = await res.json();
+let text = await res.text();
+console.log("RAW RESPONSE:", text);
+
+let data;
+try {
+  data = JSON.parse(text);
+} catch {
+  alert("Server returned non JSON:\n\n" + text);
+  return;
+}
 
 if(data.success){
 alert("Upload successful ✅");
 location.reload();
 }else{
-alert("Upload failed ❌");
+alert("Upload failed ❌\n\n" + JSON.stringify(data));
 }
 
 } catch(err){
-alert("Upload error ❌");
+console.error(err);
+alert("Network error ❌");
 }
 
 };
