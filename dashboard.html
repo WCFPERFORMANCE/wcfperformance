@@ -79,24 +79,23 @@ font-size:12px;
 const SUPABASE_URL = "https://hhubssfupghziafmdgtn.supabase.co";
 const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhodWJzc2Z1cGdoemlhZm1kZ3RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNDE4MzUsImV4cCI6MjA4NzcxNzgzNX0.JFbcLof107qPIYRrC2bM07YD441BFuw56sKWuLw6Pcg";
 
-/* 🔥 NOUVELLES FUNCTIONS */
+/* 🔥 EDGE FUNCTIONS */
 const LIST_URL   = "https://hhubssfupghziafmdgtn.supabase.co/functions/v1/admin-list";
 const UPDATE_URL = "https://hhubssfupghziafmdgtn.supabase.co/functions/v1/update-status";
 const UPLOAD_URL = "https://hhubssfupghziafmdgtn.supabase.co/functions/v1/upload-modified";
 
-const supabaseClient = supabase.createClient(SUPABASE_URL, ANON_KEY);
-
 loadRequests();
 
+/* ========================= */
+/* LOAD REQUESTS */
+/* ========================= */
 async function loadRequests(){
 
-const res = await fetch(UPLOAD_URL,{
-  method:"POST",
+const res = await fetch(LIST_URL,{
   headers:{
     "apikey": ANON_KEY,
-    "Authorization": "Bearer " + ANON_KEY
-  },
-  body:formData
+    "Authorization":"Bearer " + ANON_KEY
+  }
 });
 
 const data = await res.json();
@@ -126,7 +125,11 @@ row.innerHTML = `
 });
 }
 
+/* ========================= */
+/* UPDATE STATUS */
+/* ========================= */
 async function updateStatus(id,status){
+
 await fetch(UPDATE_URL,{
 method:"POST",
 headers:{
@@ -136,9 +139,13 @@ headers:{
 },
 body:JSON.stringify({id,status})
 });
+
 location.reload();
 }
 
+/* ========================= */
+/* UPLOAD MODIFIED FILE */
+/* ========================= */
 async function triggerUpload(id){
 
 const fileInput = document.createElement("input");
@@ -157,10 +164,14 @@ try {
 
 const res = await fetch(UPLOAD_URL,{
 method:"POST",
+headers:{
+"apikey": ANON_KEY,
+"Authorization":"Bearer " + ANON_KEY
+},
 body:formData
 });
 
-let data = await res.json();
+const data = await res.json();
 
 if(data.success){
 alert("Upload successful ✅");
