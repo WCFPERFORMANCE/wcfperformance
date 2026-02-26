@@ -90,11 +90,13 @@ loadRequests();
 
 async function loadRequests(){
 
-const res = await fetch(LIST_URL,{
-headers:{
-"apikey":ANON_KEY,
-"Authorization":"Bearer " + ANON_KEY
-}
+const res = await fetch(UPLOAD_URL,{
+  method:"POST",
+  headers:{
+    "apikey": ANON_KEY,
+    "Authorization": "Bearer " + ANON_KEY
+  },
+  body:formData
 });
 
 const data = await res.json();
