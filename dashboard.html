@@ -55,42 +55,10 @@ font-size:12px;
 .status-progress{background:#007bff;}
 .status-payment{background:#ff9900;}
 .status-ready{background:#00cc66;}
-.engineer-status {
-position: fixed;
-top: 20px;
-right: 20px;
-background: rgba(0,0,0,0.7);
-padding: 8px 14px;
-border-radius: 30px;
-font-size: 12px;
-color: #00ff88;
-display: flex;
-align-items: center;
-gap: 8px;
-box-shadow: 0 0 15px rgba(0,255,136,0.2);
-}
-.engineer-dot {
-width: 10px;
-height: 10px;
-background: #00ff88;
-border-radius: 50%;
-box-shadow: 0 0 10px #00ff88;
-animation: pulse 1.5s infinite;
-}
-@keyframes pulse {
-0% { box-shadow: 0 0 5px #00ff88; }
-50% { box-shadow: 0 0 20px #00ff88; }
-100% { box-shadow: 0 0 5px #00ff88; }
-}
 </style>
 </head>
 
 <body>
-
-<div class="engineer-status">
-<div class="engineer-dot"></div>
-Engineers Online 24/7
-</div>
 
 <h1>WCF Admin Dashboard</h1>
 
@@ -107,22 +75,18 @@ Engineers Online 24/7
 
 <script>
 
-const SUPABASE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co";
-const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqaGZwZG1idXB6bndja3J2Y3N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3MDU3NzQsImV4cCI6MjA4NzI4MTc3NH0.JFjuVEV7bMzC3qXeQbFHkUA_YIZFkM16NBkrqdG5yXY";
+/* 🔥 NOUVEAU PROJET */
+const SUPABASE_URL = "https://hhubssfupghziafmdgtn.supabase.co";
+const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhodWJzc2Z1cGdoemlhZm1kZ3RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNDE4MzUsImV4cCI6MjA4NzcxNzgzNX0.JFbcLof107qPIYRrC2bM07YD441BFuw56sKWuLw6Pcg";
+
+/* 🔥 NOUVELLES FUNCTIONS */
+const LIST_URL   = "https://hhubssfupghziafmdgtn.supabase.co/functions/v1/admin-list";
+const UPDATE_URL = "https://hhubssfupghziafmdgtn.supabase.co/functions/v1/update-status";
+const UPLOAD_URL = "https://hhubssfupghziafmdgtn.supabase.co/functions/v1/upload-modified";
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, ANON_KEY);
 
-supabaseClient.auth.getSession().then(({ data }) => {
-  if (!data.session) {
-    window.location.href = "admin.html";
-  } else {
-    loadRequests();
-  }
-});
-
-const LIST_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/admin-list";
-const UPDATE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/update-status";
-const UPLOAD_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/upload-modified";
+loadRequests();
 
 async function loadRequests(){
 
@@ -145,16 +109,16 @@ if(r.status === "Ready"){statusClass = "status-ready";}
 
 const row = table.insertRow();
 row.innerHTML = `
-<td>${r.public_id}</td>
+<td>${r.id}</td>
 <td>${r.name}</td>
 <td>${r.user_email}</td>
 <td>${r.vehicle}</td>
 <td><span class="status-badge ${statusClass}">${r.status}</span></td>
 <td>
-<button class="wait" onclick="updateStatus('${r.public_id}','Waiting')">Waiting</button>
-<button class="progress" onclick="updateStatus('${r.public_id}','In Progress')">Processing</button>
-<button class="payment" onclick="updateStatus('${r.public_id}','Payment')">Payment</button>
-<button class="ready" onclick="triggerUpload('${r.public_id}')">Upload & Ready</button>
+<button class="wait" onclick="updateStatus('${r.id}','Waiting')">Waiting</button>
+<button class="progress" onclick="updateStatus('${r.id}','In Progress')">Processing</button>
+<button class="payment" onclick="updateStatus('${r.id}','Payment')">Payment</button>
+<button class="ready" onclick="triggerUpload('${r.id}')">Upload & Ready</button>
 </td>
 `;
 });
@@ -194,16 +158,7 @@ method:"POST",
 body:formData
 });
 
-let text = await res.text();
-console.log("RAW RESPONSE:", text);
-
-let data;
-try {
-  data = JSON.parse(text);
-} catch {
-  alert("Server returned non JSON:\n\n" + text);
-  return;
-}
+let data = await res.json();
 
 if(data.success){
 alert("Upload successful ✅");
