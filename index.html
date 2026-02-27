@@ -11,7 +11,7 @@
 :root{
 --red:#ff2a2a;
 --dark:#0b0b0b;
---card:#111;
+--card:#121212;
 --border:#1f1f1f;
 }
 
@@ -45,15 +45,25 @@ font-weight:700;
 
 .logo span{color:var(--red)}
 
+nav{
+display:flex;
+align-items:center;
+}
+
 nav a{
 color:#fff;
 text-decoration:none;
 margin-left:30px;
 font-size:14px;
-opacity:.8;
+opacity:.85;
 }
 
-nav a:hover{opacity:1}
+.client-btn{
+margin-left:40px;
+padding:8px 18px;
+border:1px solid #555;
+border-radius:6px;
+}
 
 .hero{
 height:100vh;
@@ -63,25 +73,21 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:0 20px;
-background:
-radial-gradient(circle at center, rgba(255,0,0,.3) 0%, rgba(0,0,0,1) 60%);
 }
 
 .hero h1{
 font-family:Orbitron;
 font-size:56px;
 margin-bottom:20px;
-letter-spacing:2px;
 }
 
 .hero h1 span{
 color:var(--red);
-text-shadow:0 0 25px rgba(255,0,0,.8);
 }
 
 .hero p{
-opacity:.85;
 margin-bottom:40px;
+opacity:.85;
 }
 
 .hero-buttons{
@@ -92,26 +98,20 @@ justify-content:center;
 }
 
 .btn{
-padding:15px 35px;
-border-radius:8px;
+padding:14px 35px;
+border-radius:6px;
 text-decoration:none;
 font-weight:600;
-transition:.3s;
 }
 
-.btn-primary{
+.btn-red{
 background:var(--red);
 color:#fff;
-box-shadow:0 0 20px rgba(255,0,0,.6);
 }
 
 .btn-outline{
-border:1px solid var(--red);
+border:1px solid #555;
 color:#fff;
-}
-
-.btn:hover{
-transform:translateY(-4px);
 }
 
 .section{
@@ -120,29 +120,18 @@ max-width:1200px;
 margin:auto;
 }
 
-.section h2{
-text-align:center;
-font-family:Orbitron;
-margin-bottom:60px;
-}
-
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:40px;
+margin-top:60px;
 }
 
 .card{
-background:#0f0f0f;
-border:1px solid #1a1a1a;
-border-radius:15px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:10px;
 overflow:hidden;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 40px rgba(255,0,0,.4);
 }
 
 .card img{
@@ -162,12 +151,11 @@ margin-bottom:20px;
 
 .card-content ul{
 list-style:none;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 .card-content li{
-margin-bottom:10px;
-opacity:.85;
+margin-bottom:8px;
 }
 
 .why{
@@ -175,14 +163,14 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:40px;
 text-align:center;
-margin-top:40px;
+margin-top:60px;
 }
 
 .why-box{
 padding:30px;
-background:#0f0f0f;
-border:1px solid #1a1a1a;
-border-radius:15px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:10px;
 }
 
 .footer{
@@ -190,7 +178,7 @@ text-align:center;
 padding:50px;
 border-top:1px solid #111;
 color:#aaa;
-margin-top:60px;
+margin-top:80px;
 }
 </style>
 </head>
@@ -199,26 +187,28 @@ margin-top:60px;
 
 <header>
 <div class="logo">WCF <span>PERFORMANCE</span></div>
+
 <nav>
 <a href="#">Home</a>
 <a href="#">ECU File Service</a>
 <a href="#">Remote Service</a>
 <a href="#">Software Installation</a>
+<a href="#" class="client-btn">Client Login</a>
 </nav>
 </header>
 
 <section class="hero">
 <h1>PROFESSIONAL <span>ECU & REMOTE</span> SOLUTIONS</h1>
 <p>Trucks • Heavy Duty • Automotive • Professional Workshops</p>
+
 <div class="hero-buttons">
-<a class="btn btn-primary" href="#">UPLOAD YOUR FILE</a>
-<a class="btn btn-outline" href="#">BOOK REMOTE SESSION</a>
-<a class="btn btn-outline" href="#">REQUEST INSTALLATION</a>
+<a href="#" class="btn btn-red">UPLOAD YOUR FILE</a>
+<a href="#" class="btn btn-outline">BOOK REMOTE SESSION</a>
+<a href="#" class="btn btn-outline">REQUEST INSTALLATION</a>
 </div>
 </section>
 
 <section class="section">
-<h2>OUR SERVICES</h2>
 
 <div class="cards">
 
@@ -232,7 +222,7 @@ margin-top:60px;
 <li>✔ Custom Remaps</li>
 <li>✔ Secure & Fast Delivery</li>
 </ul>
-<a class="btn btn-primary" href="#">UPLOAD FILE</a>
+<a href="#" class="btn btn-red">UPLOAD FILE</a>
 </div>
 </div>
 
@@ -246,7 +236,7 @@ margin-top:60px;
 <li>✔ Truck & Heavy Duty</li>
 <li>✔ Real-Time Support</li>
 </ul>
-<a class="btn btn-primary" href="#">BOOK SESSION</a>
+<a href="#" class="btn btn-red">BOOK SESSION</a>
 </div>
 </div>
 
@@ -260,7 +250,7 @@ margin-top:60px;
 <li>✔ OBD & Bench Tools</li>
 <li>✔ Full Configuration</li>
 </ul>
-<a class="btn btn-primary" href="#">GET STARTED</a>
+<a href="#" class="btn btn-red">GET STARTED</a>
 </div>
 </div>
 
@@ -268,26 +258,31 @@ margin-top:60px;
 </section>
 
 <section class="section">
-<h2>WHY CHOOSE WCF PERFORMANCE?</h2>
+<h2 style="text-align:center;font-family:Orbitron;">WHY CHOOSE WCF PERFORMANCE?</h2>
+
 <div class="why">
+
 <div class="why-box">
 <h3>EXPERT ENGINEERS</h3>
 <p>Professional Tuning Specialists.</p>
 </div>
+
 <div class="why-box">
 <h3>24/7 SUPPORT</h3>
 <p>Assistance Anytime.</p>
 </div>
+
 <div class="why-box">
 <h3>SECURE PAYMENT</h3>
 <p>Safe & Easy Transactions.</p>
 </div>
+
 </div>
 </section>
 
-<section class="section">
-<h2>CONTACT US</h2>
-<p style="text-align:center;margin-top:20px;">
+<section class="section" style="text-align:center;">
+<h2 style="font-family:Orbitron;">CONTACT US</h2>
+<p style="margin-top:20px;">
 info@wcfperformance.com<br>
 +33 6 12 34 56 78
 </p>
