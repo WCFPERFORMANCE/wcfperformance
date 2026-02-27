@@ -10,17 +10,18 @@
 <style>
 :root{
 --red:#ff2a2a;
---dark:#0b0b0b;
---card:#141414;
---border:#222;
+--dark:#070707;
+--card:#121212;
+--border:#1f1f1f;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-background:#050505;
+background:radial-gradient(circle at center,#0b0b0b 0%,#050505 60%);
 color:#fff;
 font-family:'Rajdhani',sans-serif;
+overflow-x:hidden;
 }
 
 /* HEADER */
@@ -28,15 +29,15 @@ font-family:'Rajdhani',sans-serif;
 header{
 position:fixed;
 top:0;
-left:0;
 width:100%;
 padding:18px 60px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:#0a0a0a;
+background:rgba(0,0,0,.9);
 border-bottom:1px solid #111;
 z-index:1000;
+backdrop-filter:blur(6px);
 }
 
 .logo{
@@ -52,12 +53,11 @@ margin-left:30px;
 text-decoration:none;
 color:#fff;
 font-size:16px;
-font-weight:500;
 }
 
 .client-btn{
 padding:6px 18px;
-border:1px solid #444;
+border:1px solid #333;
 border-radius:6px;
 }
 
@@ -65,70 +65,60 @@ border-radius:6px;
 
 .hero{
 padding-top:120px;
-padding-bottom:50px;
+padding-bottom:60px;
 text-align:center;
-background:#0a0a0a;
 position:relative;
-overflow:hidden;
 }
 
 .hero::before{
 content:"";
 position:absolute;
-top:60%;
+top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-width:700px;
-height:110px;
-background:linear-gradient(to right,transparent,rgba(255,0,0,.85),transparent);
-filter:blur(45px);
-opacity:.8;
-z-index:0;
+width:900px;
+height:140px;
+background:linear-gradient(to right,transparent,rgba(255,0,0,.9),transparent);
+filter:blur(60px);
+opacity:.9;
+z-index:-1;
 }
 
 .hero h1{
 font-family:'Teko',sans-serif;
-font-size:60px;
+font-size:70px;
 letter-spacing:3px;
 line-height:1;
-position:relative;
-z-index:2;
 }
 
 .hero span{color:var(--red)}
 
 .hero p{
 margin-top:15px;
-font-size:18px;
 opacity:.8;
-position:relative;
-z-index:2;
+font-size:18px;
 }
 
 .hero-buttons{
-margin-top:25px;
+margin-top:30px;
 display:flex;
 justify-content:center;
-gap:18px;
-position:relative;
-z-index:2;
+gap:20px;
 flex-wrap:wrap;
 }
 
 .btn{
-padding:14px 30px;
+padding:14px 35px;
 border-radius:6px;
 text-decoration:none;
 font-weight:600;
-font-size:16px;
 transition:.3s;
-display:inline-block;
 }
 
 .btn-red{
 background:linear-gradient(180deg,#ff3c3c,#a80000);
 color:#fff;
-box-shadow:0 0 20px rgba(255,0,0,.6);
+box-shadow:0 0 25px rgba(255,0,0,.7);
 }
 
 .btn-dark{
@@ -141,12 +131,22 @@ color:#fff;
 transform:translateY(-3px);
 }
 
+/* SEPARATOR LINE */
+
+.separator{
+width:100%;
+height:2px;
+background:linear-gradient(to right,transparent,var(--red),transparent);
+margin:60px 0;
+opacity:.7;
+}
+
 /* SERVICES */
 
 .services{
-padding:60px 60px 90px;
 max-width:1200px;
 margin:auto;
+padding:0 60px 100px;
 }
 
 .service-grid{
@@ -156,32 +156,44 @@ gap:40px;
 }
 
 .service-box{
-background:#111;
-border:1px solid #222;
+background:linear-gradient(145deg,#111,#0b0b0b);
+border:1px solid var(--border);
 padding:30px;
-border-radius:12px;
-box-shadow:0 0 25px rgba(255,0,0,.08);
+border-radius:14px;
 text-align:center;
 display:flex;
 flex-direction:column;
-align-items:center;
 justify-content:space-between;
-min-height:520px;
+min-height:550px;
 transition:.3s;
+position:relative;
+overflow:hidden;
+}
+
+.service-box::after{
+content:"";
+position:absolute;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:60%;
+height:2px;
+background:linear-gradient(to right,transparent,var(--red),transparent);
+opacity:.6;
 }
 
 .service-box:hover{
-transform:translateY(-5px);
+transform:translateY(-6px);
 box-shadow:0 0 35px rgba(255,0,0,.15);
 }
 
 .service-box img{
 width:100%;
-height:220px;
+height:230px;
 object-fit:cover;
-border-radius:8px;
+border-radius:10px;
 margin-bottom:20px;
-filter:brightness(1.1) contrast(1.1);
+filter:brightness(1.15) contrast(1.1);
 }
 
 .service-box h3{
@@ -194,30 +206,24 @@ margin-bottom:20px;
 .service-box ul{
 list-style:none;
 margin-bottom:20px;
-padding:0;
 }
 
 .service-box li{
 margin-bottom:10px;
-font-size:16px;
 color:#ddd;
-}
-
-.service-box a{
-margin-top:auto;
 }
 
 /* WHY */
 
 .why{
-padding:90px 60px;
 text-align:center;
-background:#0c0c0c;
+padding:80px 60px;
+background:#080808;
 }
 
 .why h2{
 font-family:'Teko',sans-serif;
-font-size:42px;
+font-size:45px;
 letter-spacing:2px;
 margin-bottom:60px;
 }
@@ -231,10 +237,10 @@ margin:auto;
 }
 
 .why-box{
-padding:40px;
-border:1px solid #222;
-border-radius:10px;
 background:#111;
+border:1px solid #1f1f1f;
+padding:40px;
+border-radius:12px;
 }
 
 .icon{
@@ -249,8 +255,7 @@ footer{
 text-align:center;
 padding:60px;
 border-top:1px solid #111;
-color:#888;
-font-size:15px;
+color:#777;
 }
 </style>
 </head>
@@ -279,11 +284,13 @@ font-size:15px;
 </div>
 </section>
 
+<div class="separator"></div>
+
 <section class="services">
 <div class="service-grid">
 
 <div class="service-box">
-<img src="assets/ecu-service.png" alt="ECU Service">
+<img src="assets/ecu-service.png">
 <h3>ECU FILE SERVICE</h3>
 <ul>
 <li>✔ Stage 1 & Tuning</li>
@@ -295,7 +302,7 @@ font-size:15px;
 </div>
 
 <div class="service-box">
-<img src="assets/remote-service.png" alt="Remote Service">
+<img src="assets/remote-service.png">
 <h3>REMOTE SERVICE</h3>
 <ul>
 <li>✔ Live Diagnostics</li>
@@ -307,7 +314,7 @@ font-size:15px;
 </div>
 
 <div class="service-box">
-<img src="assets/software-install.png" alt="Software Installation">
+<img src="assets/software-install.png">
 <h3>SOFTWARE INSTALLATION</h3>
 <ul>
 <li>✔ WinOLS & Tools Setup</li>
@@ -325,7 +332,6 @@ font-size:15px;
 <h2>WHY CHOOSE WCF PERFORMANCE?</h2>
 
 <div class="why-grid">
-
 <div class="why-box">
 <div class="icon">👨‍🔧</div>
 <h3>EXPERT ENGINEERS</h3>
@@ -343,7 +349,6 @@ font-size:15px;
 <h3>SECURE PAYMENT</h3>
 <p>Safe & Easy Transactions.</p>
 </div>
-
 </div>
 </section>
 
