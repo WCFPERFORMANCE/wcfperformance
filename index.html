@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<h1 style="color:red">TEST 123</h1>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>WCF Performance | Professional ECU Solutions</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCF Performance | Professional ECU & Remote Solutions</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -12,310 +11,240 @@
 :root{
 --red:#ff2a2a;
 --dark:#0b0b0b;
---card:#121212;
+--card:#111;
 --border:#1f1f1f;
 }
 
-*{box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-margin:0;
 background:var(--dark);
 color:#fff;
 font-family:Inter,Arial;
 }
 
-section{
-padding:90px 20px;
-max-width:1200px;
-margin:auto;
+header{
+position:fixed;
+width:100%;
+top:0;
+left:0;
+background:#000;
+padding:20px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+border-bottom:1px solid #111;
 }
 
-h2{
-text-align:center;
+.logo{
 font-family:Orbitron;
-margin-bottom:50px;
-position:relative;
+font-size:24px;
+font-weight:700;
 }
 
-h2:after{
-content:"";
-display:block;
-width:80px;
-height:3px;
-background:var(--red);
-margin:15px auto 0;
-box-shadow:0 0 15px var(--red);
+.logo span{
+color:var(--red);
 }
 
-/* HERO */
+nav a{
+color:#fff;
+text-decoration:none;
+margin-left:25px;
+font-weight:500;
+opacity:.8;
+}
+
+nav a:hover{opacity:1}
 
 .hero{
-position:relative;
-min-height:100vh;
+height:100vh;
 display:flex;
-align-items:center;
+flex-direction:column;
 justify-content:center;
-background:url("assets/hero.jpg") center/cover no-repeat;
+align-items:center;
 text-align:center;
-}
-
-.hero-overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,rgba(0,0,0,.7),rgba(0,0,0,.95));
-}
-
-.hero-content{
-position:relative;
-max-width:900px;
-padding:20px;
+padding:0 20px;
+background:radial-gradient(circle at center,#1a0000 0%,#000 60%);
 }
 
 .hero h1{
 font-family:Orbitron;
-font-size:58px;
-margin:0;
+font-size:60px;
+margin-bottom:20px;
 }
 
-.hero span{
-color:var(--red);
-text-shadow:0 0 15px var(--red);
-}
+.hero h1 span{color:var(--red)}
 
-.subtitle{
-font-size:22px;
+.hero p{
+font-size:20px;
 opacity:.9;
-margin-top:15px;
-}
-
-.hero-points{
-display:flex;
-gap:25px;
-justify-content:center;
-margin-top:35px;
-flex-wrap:wrap;
-font-weight:600;
+margin-bottom:40px;
 }
 
 .hero-buttons{
-margin-top:45px;
 display:flex;
 gap:20px;
-justify-content:center;
 flex-wrap:wrap;
+justify-content:center;
 }
 
 .btn{
-display:inline-block;
-background:var(--red);
-color:#fff;
-padding:15px 30px;
-border-radius:7px;
+padding:15px 35px;
+border-radius:8px;
 text-decoration:none;
 font-weight:600;
-transition:0.3s;
-box-shadow:0 0 20px rgba(255,42,42,0.5);
+transition:.3s;
 }
 
-.btn:hover{
-background:#ff1a1a;
-box-shadow:0 0 40px rgba(255,42,42,0.9);
+.btn-primary{
+background:var(--red);
+color:#fff;
+box-shadow:0 0 20px rgba(255,0,0,.4);
 }
 
-.btn-outline{
-background:transparent;
+.btn-secondary{
 border:1px solid var(--red);
+color:#fff;
 }
 
-/* SERVICES */
+.btn:hover{transform:translateY(-3px)}
+
+.section{
+padding:100px 40px;
+max-width:1200px;
+margin:auto;
+}
+
+.section h2{
+text-align:center;
+font-family:Orbitron;
+margin-bottom:60px;
+font-size:32px;
+}
 
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-margin-top:40px;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:40px;
 }
 
-.service-card{
+.card{
 background:var(--card);
-border-radius:14px;
 border:1px solid var(--border);
+border-radius:15px;
 overflow:hidden;
-transition:0.4s;
+transition:.3s;
 }
 
-.service-card img{
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px rgba(255,0,0,.3);
+}
+
+.card img{
 width:100%;
 height:220px;
 object-fit:cover;
-opacity:0.85;
-transition:0.4s;
-}
-
-.service-card:hover img{
-transform:scale(1.08);
-opacity:1;
-}
-
-.service-card:hover{
-box-shadow:0 0 40px rgba(255,42,42,0.6);
-border-color:var(--red);
 }
 
 .card-content{
 padding:25px;
-text-align:center;
 }
 
 .card-content h3{
 font-family:Orbitron;
-margin-bottom:15px;
+margin-bottom:20px;
 }
 
-.card-content p{
-opacity:0.85;
-font-weight:400;
-line-height:1.6;
+.card-content ul{
+list-style:none;
+margin-bottom:20px;
 }
 
-/* NOTICE */
-
-.notice{
-background:var(--card);
-border:1px solid var(--border);
-padding:35px;
-border-radius:16px;
-text-align:center;
-max-width:750px;
-margin:40px auto;
-font-size:18px;
+.card-content li{
+margin-bottom:10px;
+opacity:.85;
 }
-
-/* STEPS */
-
-.steps{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:25px;
-margin-top:40px;
-}
-
-.step{
-background:var(--card);
-padding:25px;
-border-radius:14px;
-border:1px solid var(--border);
-text-align:center;
-transition:0.3s;
-}
-
-.step:hover{
-border-color:var(--red);
-box-shadow:0 0 25px rgba(255,42,42,0.4);
-}
-
-/* FOOTER */
 
 .footer{
 text-align:center;
 padding:40px;
+border-top:1px solid #111;
 color:#aaa;
-border-top:1px solid var(--border);
 margin-top:60px;
 }
-
 </style>
 </head>
 
 <body>
 
+<header>
+<div class="logo">WCF <span>PERFORMANCE</span></div>
+<nav>
+<a href="#">Home</a>
+<a href="#">ECU File Service</a>
+<a href="#">Remote Service</a>
+<a href="#">Software Installation</a>
+</nav>
+</header>
+
 <section class="hero">
-<div class="hero-overlay"></div>
-<div class="hero-content">
-<h1>WCF <span>PERFORMANCE</span></h1>
-<p class="subtitle">
-ECU File Service & Remote Solutions for Tuning Professionals<br>
-Trucks • Heavy Duty • Automotive
-</p>
-
-<div class="hero-points">
-<div>✔ Tested & Safe Solutions</div>
-<div>✔ Workshop oriented support</div>
-<div>✔ Worldwide professional service</div>
-</div>
-
+<h1>PROFESSIONAL <span>ECU & REMOTE</span> SOLUTIONS</h1>
+<p>Trucks • Heavy Duty • Automotive • Professional Workshops</p>
 <div class="hero-buttons">
-<a class="btn" href="https://wa.me/message/NMAYVYZADORVF1">CONTACT ON WHATSAPP</a>
-<a class="btn btn-outline" href="app.html">CLIENT PORTAL</a>
-</div>
+<a class="btn btn-primary" href="#">UPLOAD YOUR FILE</a>
+<a class="btn btn-secondary" href="#">BOOK REMOTE SESSION</a>
 </div>
 </section>
 
-<section>
+<section class="section">
 <h2>OUR SERVICES</h2>
 
 <div class="cards">
 
-<div class="service-card">
-<img src="images/ecu-service.png" alt="">
+<div class="card">
+<img src="assets/ecu-service.PNG" alt="ECU Service">
 <div class="card-content">
-<h3>ECU File Service</h3>
-<p>
-Stage 1 / 2 / 3 Calibration<br>
-DPF • EGR • SCR • AdBlue OFF
-</p>
+<h3>ECU FILE SERVICE</h3>
+<ul>
+<li>✔ Stage 1 / 2 / 3</li>
+<li>✔ EGR / DPF / SCR OFF</li>
+<li>✔ Custom Remaps</li>
+<li>✔ Secure & Fast Delivery</li>
+</ul>
+<a class="btn btn-primary" href="#">UPLOAD FILE</a>
 </div>
 </div>
 
-<div class="service-card">
-<img src="images/remote-service.png" alt="">
+<div class="card">
+<img src="assets/remote-service.PNG" alt="Remote Service">
 <div class="card-content">
-<h3>Remote Service</h3>
-<p>
-Live Diagnostics<br>
-Truck & Heavy Equipment Specialists
-</p>
+<h3>REMOTE SERVICE</h3>
+<ul>
+<li>✔ Live Diagnostics</li>
+<li>✔ SCR & AdBlue OFF</li>
+<li>✔ Trucks & Heavy Duty</li>
+<li>✔ Real-Time Support</li>
+</ul>
+<a class="btn btn-primary" href="#">BOOK SESSION</a>
 </div>
 </div>
 
-<div class="service-card">
-<img src="images/software-install.png" alt="">
+<div class="card">
+<img src="assets/software-install.PNG" alt="Software Installation">
 <div class="card-content">
-<h3>Software Installation</h3>
-<p>
-WinOLS • Tools Setup<br>
-Professional Configuration
-</p>
+<h3>SOFTWARE INSTALLATION</h3>
+<ul>
+<li>✔ WinOLS Setup</li>
+<li>✔ Tuning Software Install</li>
+<li>✔ OBD & Bench Tools</li>
+<li>✔ Full Configuration</li>
+</ul>
+<a class="btn btn-primary" href="#">GET STARTED</a>
 </div>
 </div>
 
-</div>
-</section>
-
-<section>
-<h2>FOR PROFESSIONALS ONLY</h2>
-<div class="notice">
-Our services are provided exclusively to garages, workshops and tuning companies.<br>
-We do not sell to private vehicle owners.
-</div>
-</section>
-
-<section>
-<h2>HOW IT WORKS</h2>
-<div class="steps">
-<div class="step">Read Original File</div>
-<div class="step">Send File via WhatsApp</div>
-<div class="step">Engineering & Testing</div>
-<div class="step">Deliver & Support</div>
-</div>
-</section>
-
-<section>
-<h2>CONTACT</h2>
-<p style="text-align:center">Available 7 Days a Week</p>
-<div style="text-align:center;margin-top:20px">
-<a class="btn" href="https://wa.me/message/NMAYVYZADORVF1">OPEN WHATSAPP</a>
 </div>
 </section>
 
