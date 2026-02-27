@@ -45,9 +45,7 @@ font-size:28px;
 letter-spacing:2px;
 }
 
-.logo span{
-color:var(--red);
-}
+.logo span{color:var(--red)}
 
 nav a{
 margin-left:30px;
@@ -66,8 +64,8 @@ border-radius:6px;
 /* HERO */
 
 .hero{
-padding-top:130px;
-padding-bottom:70px;
+padding-top:120px;
+padding-bottom:50px;
 text-align:center;
 background:#0a0a0a;
 position:relative;
@@ -77,29 +75,27 @@ overflow:hidden;
 .hero::before{
 content:"";
 position:absolute;
-top:55%;
+top:60%;
 left:50%;
 transform:translate(-50%,-50%);
-width:850px;
-height:130px;
+width:700px;
+height:110px;
 background:linear-gradient(to right,transparent,rgba(255,0,0,.85),transparent);
-filter:blur(40px);
-opacity:.9;
+filter:blur(45px);
+opacity:.8;
 z-index:0;
 }
 
 .hero h1{
 font-family:'Teko',sans-serif;
-font-size:70px;
+font-size:60px;
 letter-spacing:3px;
 line-height:1;
 position:relative;
 z-index:2;
 }
 
-.hero span{
-color:var(--red);
-}
+.hero span{color:var(--red)}
 
 .hero p{
 margin-top:15px;
@@ -110,7 +106,7 @@ z-index:2;
 }
 
 .hero-buttons{
-margin-top:30px;
+margin-top:25px;
 display:flex;
 justify-content:center;
 gap:18px;
@@ -120,12 +116,13 @@ flex-wrap:wrap;
 }
 
 .btn{
-padding:14px 35px;
+padding:14px 30px;
 border-radius:6px;
 text-decoration:none;
 font-weight:600;
 font-size:16px;
 transition:.3s;
+display:inline-block;
 }
 
 .btn-red{
@@ -154,16 +151,37 @@ margin:auto;
 
 .service-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+grid-template-columns:repeat(3,1fr);
 gap:40px;
 }
 
 .service-box{
 background:#111;
 border:1px solid #222;
-padding:35px;
-border-radius:10px;
+padding:30px;
+border-radius:12px;
 box-shadow:0 0 25px rgba(255,0,0,.08);
+text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:space-between;
+min-height:520px;
+transition:.3s;
+}
+
+.service-box:hover{
+transform:translateY(-5px);
+box-shadow:0 0 35px rgba(255,0,0,.15);
+}
+
+.service-box img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:8px;
+margin-bottom:20px;
+filter:brightness(1.1) contrast(1.1);
 }
 
 .service-box h3{
@@ -176,16 +194,17 @@ margin-bottom:20px;
 .service-box ul{
 list-style:none;
 margin-bottom:20px;
+padding:0;
 }
 
 .service-box li{
 margin-bottom:10px;
 font-size:16px;
+color:#ddd;
 }
 
 .service-box a{
-display:inline-block;
-margin-top:10px;
+margin-top:auto;
 }
 
 /* WHY */
@@ -205,7 +224,7 @@ margin-bottom:60px;
 
 .why-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(3,1fr);
 gap:40px;
 max-width:1000px;
 margin:auto;
@@ -261,10 +280,10 @@ font-size:15px;
 </section>
 
 <section class="services">
-
 <div class="service-grid">
 
 <div class="service-box">
+<img src="assets/ecu-service.png" alt="ECU Service">
 <h3>ECU FILE SERVICE</h3>
 <ul>
 <li>✔ Stage 1 & Tuning</li>
@@ -276,6 +295,7 @@ font-size:15px;
 </div>
 
 <div class="service-box">
+<img src="assets/remote-service.png" alt="Remote Service">
 <h3>REMOTE SERVICE</h3>
 <ul>
 <li>✔ Live Diagnostics</li>
@@ -287,6 +307,7 @@ font-size:15px;
 </div>
 
 <div class="service-box">
+<img src="assets/software-install.png" alt="Software Installation">
 <h3>SOFTWARE INSTALLATION</h3>
 <ul>
 <li>✔ WinOLS & Tools Setup</li>
