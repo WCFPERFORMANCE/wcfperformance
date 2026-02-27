@@ -10,30 +10,31 @@
 <style>
 :root{
 --red:#ff2a2a;
---dark:#0b0b0b;
+--dark:#070707;
 --card:#111;
---border:#222;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
 background:#000;
 color:#fff;
 font-family:Inter,Arial;
+overflow-x:hidden;
 }
+
+/* ---------- HEADER ---------- */
 
 header{
 position:fixed;
 top:0;
 left:0;
 width:100%;
-background:#000;
 padding:20px 60px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-border-bottom:1px solid #111;
+background:linear-gradient(to bottom,rgba(0,0,0,.9),rgba(0,0,0,.6));
 z-index:1000;
 }
 
@@ -43,27 +44,27 @@ font-size:22px;
 font-weight:700;
 }
 
-.logo span{color:var(--red)}
-
-nav{
-display:flex;
-align-items:center;
+.logo span{
+color:var(--red);
+text-shadow:0 0 15px rgba(255,0,0,.8);
 }
 
 nav a{
-color:#fff;
-text-decoration:none;
 margin-left:30px;
-font-size:14px;
+text-decoration:none;
+color:#fff;
 opacity:.85;
+font-size:14px;
 }
 
 .client-btn{
-margin-left:40px;
 padding:8px 18px;
-border:1px solid #555;
+border:1px solid #444;
 border-radius:6px;
+background:#1a1a1a;
 }
+
+/* ---------- HERO ---------- */
 
 .hero{
 height:100vh;
@@ -72,52 +73,80 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:0 20px;
+position:relative;
+background:
+radial-gradient(circle at center,rgba(255,0,0,.4) 0%,rgba(0,0,0,1) 60%);
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:120%;
+height:250px;
+background:linear-gradient(to right,transparent,rgba(255,0,0,.8),transparent);
+top:45%;
+left:-10%;
+filter:blur(60px);
+opacity:.6;
 }
 
 .hero h1{
 font-family:Orbitron;
-font-size:56px;
+font-size:60px;
+letter-spacing:2px;
 margin-bottom:20px;
+position:relative;
+z-index:2;
 }
 
 .hero h1 span{
 color:var(--red);
+text-shadow:0 0 25px rgba(255,0,0,.9);
 }
 
 .hero p{
 margin-bottom:40px;
 opacity:.85;
+position:relative;
+z-index:2;
 }
 
 .hero-buttons{
 display:flex;
-gap:20px;
-flex-wrap:wrap;
-justify-content:center;
+gap:25px;
+position:relative;
+z-index:2;
 }
 
 .btn{
-padding:14px 35px;
+padding:15px 40px;
 border-radius:6px;
 text-decoration:none;
 font-weight:600;
-display:inline-block;
+transition:.3s;
 }
 
 .btn-red{
-background:var(--red);
+background:linear-gradient(180deg,#ff3c3c,#a60000);
+color:#fff;
+box-shadow:0 0 25px rgba(255,0,0,.7);
+}
+
+.btn-dark{
+background:#1a1a1a;
+border:1px solid #333;
 color:#fff;
 }
 
-.btn-outline{
-border:1px solid #555;
-color:#fff;
+.btn:hover{
+transform:translateY(-5px);
 }
+
+/* ---------- SECTION ---------- */
 
 .section{
-padding:100px 60px;
-max-width:1200px;
+padding:120px 60px;
+max-width:1300px;
 margin:auto;
 }
 
@@ -125,7 +154,19 @@ margin:auto;
 text-align:center;
 font-family:Orbitron;
 margin-bottom:60px;
+position:relative;
 }
+
+.section-title::after{
+content:"";
+display:block;
+width:200px;
+height:3px;
+background:linear-gradient(to right,transparent,var(--red),transparent);
+margin:20px auto 0;
+}
+
+/* ---------- CARDS ---------- */
 
 .cards{
 display:grid;
@@ -135,10 +176,16 @@ gap:40px;
 
 .card{
 background:#0f0f0f;
-border:1px solid var(--border);
+border:1px solid #1f1f1f;
 border-radius:12px;
 overflow:hidden;
-box-shadow:0 0 20px rgba(255,0,0,0.1);
+box-shadow:0 0 30px rgba(255,0,0,.15);
+transition:.4s;
+}
+
+.card:hover{
+box-shadow:0 0 50px rgba(255,0,0,.5);
+transform:translateY(-10px);
 }
 
 .card img{
@@ -148,7 +195,7 @@ object-fit:cover;
 }
 
 .card-content{
-padding:25px;
+padding:30px;
 }
 
 .card-content h3{
@@ -156,36 +203,38 @@ font-family:Orbitron;
 margin-bottom:20px;
 }
 
-.card-content ul{
+.card-content li{
 list-style:none;
-margin-bottom:20px;
+margin-bottom:10px;
+color:#ddd;
 }
 
-.card-content li{
-margin-bottom:8px;
-}
+/* ---------- WHY ---------- */
 
 .why{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:40px;
+margin-top:60px;
 text-align:center;
-margin-top:40px;
 }
 
 .why-box{
-padding:30px;
+padding:40px;
 background:#0f0f0f;
-border:1px solid var(--border);
+border:1px solid #1f1f1f;
 border-radius:12px;
+box-shadow:0 0 20px rgba(255,0,0,.15);
 }
+
+/* ---------- FOOTER ---------- */
 
 .footer{
 text-align:center;
-padding:50px;
+padding:60px;
 border-top:1px solid #111;
 color:#aaa;
-margin-top:80px;
+margin-top:100px;
 }
 </style>
 </head>
@@ -194,7 +243,6 @@ margin-top:80px;
 
 <header>
 <div class="logo">WCF <span>PERFORMANCE</span></div>
-
 <nav>
 <a href="#">Home</a>
 <a href="#">ECU File Service</a>
@@ -207,16 +255,14 @@ margin-top:80px;
 <section class="hero">
 <h1>PROFESSIONAL <span>ECU & REMOTE</span> SOLUTIONS</h1>
 <p>Trucks • Heavy Duty • Automotive • Professional Workshops</p>
-
 <div class="hero-buttons">
 <a href="#" class="btn btn-red">UPLOAD YOUR FILE</a>
-<a href="#" class="btn btn-outline">BOOK REMOTE SESSION</a>
-<a href="#" class="btn btn-outline">REQUEST INSTALLATION</a>
+<a href="#" class="btn btn-dark">BOOK REMOTE SESSION</a>
+<a href="#" class="btn btn-dark">REQUEST INSTALLATION</a>
 </div>
 </section>
 
 <section class="section">
-
 <h2 class="section-title">OUR SERVICES</h2>
 
 <div class="cards">
@@ -270,31 +316,19 @@ margin-top:80px;
 <h2 class="section-title">WHY CHOOSE WCF PERFORMANCE?</h2>
 
 <div class="why">
-
 <div class="why-box">
 <h3>EXPERT ENGINEERS</h3>
 <p>Professional Tuning Specialists.</p>
 </div>
-
 <div class="why-box">
 <h3>24/7 SUPPORT</h3>
 <p>Assistance Anytime.</p>
 </div>
-
 <div class="why-box">
 <h3>SECURE PAYMENT</h3>
 <p>Safe & Easy Transactions.</p>
 </div>
-
 </div>
-</section>
-
-<section class="section" style="text-align:center;">
-<h2 class="section-title">CONTACT US</h2>
-<p style="margin-top:20px;">
-info@wcfperformance.com<br>
-+33 6 12 34 56 78
-</p>
 </section>
 
 <div class="footer">
