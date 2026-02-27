@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WCF Performance | Professional ECU & Remote Solutions</title>
+<title>WCF Performance</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
 --red:#ff2a2a;
---dark:#070707;
---card:#111;
+--dark:#0b0b0b;
+--card:#141414;
+--border:#222;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -20,10 +21,9 @@ body{
 background:#000;
 color:#fff;
 font-family:Inter,Arial;
-overflow-x:hidden;
 }
 
-/* ---------- HEADER ---------- */
+/* HEADER */
 
 header{
 position:fixed;
@@ -34,7 +34,8 @@ padding:20px 60px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:linear-gradient(to bottom,rgba(0,0,0,.9),rgba(0,0,0,.6));
+background:#000;
+border-bottom:1px solid #111;
 z-index:1000;
 }
 
@@ -44,16 +45,12 @@ font-size:22px;
 font-weight:700;
 }
 
-.logo span{
-color:var(--red);
-text-shadow:0 0 15px rgba(255,0,0,.8);
-}
+.logo span{color:var(--red)}
 
 nav a{
 margin-left:30px;
 text-decoration:none;
 color:#fff;
-opacity:.85;
 font-size:14px;
 }
 
@@ -61,75 +58,45 @@ font-size:14px;
 padding:8px 18px;
 border:1px solid #444;
 border-radius:6px;
-background:#1a1a1a;
 }
 
-/* ---------- HERO ---------- */
+/* HERO */
 
 .hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+padding-top:150px;
+padding-bottom:80px;
 text-align:center;
-position:relative;
-background:
-radial-gradient(circle at center,rgba(255,0,0,.4) 0%,rgba(0,0,0,1) 60%);
-}
-
-.hero::before{
-content:"";
-position:absolute;
-width:120%;
-height:250px;
-background:linear-gradient(to right,transparent,rgba(255,0,0,.8),transparent);
-top:45%;
-left:-10%;
-filter:blur(60px);
-opacity:.6;
+background:linear-gradient(to bottom,#000,#111);
 }
 
 .hero h1{
 font-family:Orbitron;
-font-size:60px;
-letter-spacing:2px;
-margin-bottom:20px;
-position:relative;
-z-index:2;
+font-size:48px;
+margin-bottom:30px;
 }
 
-.hero h1 span{
+.hero span{
 color:var(--red);
-text-shadow:0 0 25px rgba(255,0,0,.9);
-}
-
-.hero p{
-margin-bottom:40px;
-opacity:.85;
-position:relative;
-z-index:2;
 }
 
 .hero-buttons{
+margin-top:20px;
 display:flex;
-gap:25px;
-position:relative;
-z-index:2;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
 }
 
 .btn{
-padding:15px 40px;
+padding:14px 35px;
 border-radius:6px;
 text-decoration:none;
 font-weight:600;
-transition:.3s;
 }
 
 .btn-red{
-background:linear-gradient(180deg,#ff3c3c,#a60000);
+background:var(--red);
 color:#fff;
-box-shadow:0 0 25px rgba(255,0,0,.7);
 }
 
 .btn-dark{
@@ -138,103 +105,81 @@ border:1px solid #333;
 color:#fff;
 }
 
-.btn:hover{
-transform:translateY(-5px);
-}
+/* SERVICES */
 
-/* ---------- SECTION ---------- */
-
-.section{
-padding:120px 60px;
-max-width:1300px;
+.services{
+padding:80px 60px;
+max-width:1200px;
 margin:auto;
 }
 
-.section-title{
-text-align:center;
-font-family:Orbitron;
-margin-bottom:60px;
-position:relative;
-}
-
-.section-title::after{
-content:"";
-display:block;
-width:200px;
-height:3px;
-background:linear-gradient(to right,transparent,var(--red),transparent);
-margin:20px auto 0;
-}
-
-/* ---------- CARDS ---------- */
-
-.cards{
+.service-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:40px;
 }
 
-.card{
-background:#0f0f0f;
-border:1px solid #1f1f1f;
-border-radius:12px;
-overflow:hidden;
-box-shadow:0 0 30px rgba(255,0,0,.15);
-transition:.4s;
-}
-
-.card:hover{
-box-shadow:0 0 50px rgba(255,0,0,.5);
-transform:translateY(-10px);
-}
-
-.card img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
-
-.card-content{
+.service-box{
+background:var(--card);
+border:1px solid var(--border);
 padding:30px;
+border-radius:10px;
 }
 
-.card-content h3{
+.service-box h3{
 font-family:Orbitron;
 margin-bottom:20px;
 }
 
-.card-content li{
+.service-box ul{
 list-style:none;
-margin-bottom:10px;
-color:#ddd;
+margin-bottom:20px;
 }
 
-/* ---------- WHY ---------- */
+.service-box li{
+margin-bottom:8px;
+}
+
+/* WHY SECTION */
 
 .why{
+padding:80px 60px;
+text-align:center;
+background:#0f0f0f;
+}
+
+.why h2{
+font-family:Orbitron;
+margin-bottom:50px;
+}
+
+.why-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:40px;
-margin-top:60px;
-text-align:center;
+max-width:1000px;
+margin:auto;
 }
 
 .why-box{
-padding:40px;
-background:#0f0f0f;
-border:1px solid #1f1f1f;
-border-radius:12px;
-box-shadow:0 0 20px rgba(255,0,0,.15);
+padding:30px;
+border:1px solid #222;
+border-radius:10px;
 }
 
-/* ---------- FOOTER ---------- */
+.icon{
+font-size:40px;
+margin-bottom:20px;
+color:var(--red);
+}
 
-.footer{
+/* FOOTER */
+
+footer{
 text-align:center;
-padding:60px;
+padding:50px;
 border-top:1px solid #111;
 color:#aaa;
-margin-top:100px;
 }
 </style>
 </head>
@@ -245,31 +190,28 @@ margin-top:100px;
 <div class="logo">WCF <span>PERFORMANCE</span></div>
 <nav>
 <a href="#">Home</a>
-<a href="#">ECU File Service</a>
-<a href="#">Remote Service</a>
-<a href="#">Software Installation</a>
+<a href="ecu-file.html">ECU File Service</a>
+<a href="remote.html">Remote Service</a>
+<a href="software-install.html">Software Installation</a>
 <a href="#" class="client-btn">Client Login</a>
 </nav>
 </header>
 
 <section class="hero">
-<h1>PROFESSIONAL <span>ECU & REMOTE</span> SOLUTIONS</h1>
-<p>Trucks • Heavy Duty • Automotive • Professional Workshops</p>
+<h1>PROFESSIONAL <span>ECU & REMOTE SOLUTIONS</span></h1>
+
 <div class="hero-buttons">
-<a href="#" class="btn btn-red">UPLOAD YOUR FILE</a>
-<a href="#" class="btn btn-dark">BOOK REMOTE SESSION</a>
-<a href="#" class="btn btn-dark">REQUEST INSTALLATION</a>
+<a href="ecu-file.html" class="btn btn-red">UPLOAD YOUR FILE</a>
+<a href="remote.html" class="btn btn-dark">BOOK REMOTE SESSION</a>
+<a href="software-install.html" class="btn btn-dark">REQUEST INSTALLATION</a>
 </div>
 </section>
 
-<section class="section">
-<h2 class="section-title">OUR SERVICES</h2>
+<section class="services">
 
-<div class="cards">
+<div class="service-grid">
 
-<div class="card">
-<img src="assets/ecu-service.PNG">
-<div class="card-content">
+<div class="service-box">
 <h3>ECU FILE SERVICE</h3>
 <ul>
 <li>✔ Stage 1 & Tuning</li>
@@ -277,13 +219,10 @@ margin-top:100px;
 <li>✔ Custom Remaps</li>
 <li>✔ Secure & Fast Delivery</li>
 </ul>
-<a href="#" class="btn btn-red">UPLOAD FILE</a>
-</div>
+<a href="ecu-file.html" class="btn btn-red">UPLOAD FILE</a>
 </div>
 
-<div class="card">
-<img src="assets/remote-service.PNG">
-<div class="card-content">
+<div class="service-box">
 <h3>REMOTE SERVICE</h3>
 <ul>
 <li>✔ Live Diagnostics</li>
@@ -291,13 +230,10 @@ margin-top:100px;
 <li>✔ Truck & Heavy Duty</li>
 <li>✔ Real-Time Support</li>
 </ul>
-<a href="#" class="btn btn-red">BOOK SESSION</a>
-</div>
+<a href="remote.html" class="btn btn-red">BOOK SESSION</a>
 </div>
 
-<div class="card">
-<img src="assets/software-install.PNG">
-<div class="card-content">
+<div class="service-box">
 <h3>SOFTWARE INSTALLATION</h3>
 <ul>
 <li>✔ WinOLS & Tools Setup</li>
@@ -305,35 +241,41 @@ margin-top:100px;
 <li>✔ OBD & Bench Tools</li>
 <li>✔ Full Configuration</li>
 </ul>
-<a href="#" class="btn btn-red">GET STARTED</a>
-</div>
+<a href="software-install.html" class="btn btn-red">GET STARTED</a>
 </div>
 
 </div>
 </section>
 
-<section class="section">
-<h2 class="section-title">WHY CHOOSE WCF PERFORMANCE?</h2>
+<section class="why">
+<h2>WHY CHOOSE WCF PERFORMANCE?</h2>
 
-<div class="why">
+<div class="why-grid">
+
 <div class="why-box">
+<div class="icon">👨‍🔧</div>
 <h3>EXPERT ENGINEERS</h3>
 <p>Professional Tuning Specialists.</p>
 </div>
+
 <div class="why-box">
+<div class="icon">⏱</div>
 <h3>24/7 SUPPORT</h3>
 <p>Assistance Anytime.</p>
 </div>
+
 <div class="why-box">
+<div class="icon">🔒</div>
 <h3>SECURE PAYMENT</h3>
 <p>Safe & Easy Transactions.</p>
 </div>
+
 </div>
 </section>
 
-<div class="footer">
+<footer>
 © WCF Performance — Professional ECU Solutions
-</div>
+</footer>
 
 </body>
 </html>
