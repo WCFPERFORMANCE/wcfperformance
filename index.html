@@ -10,9 +10,6 @@
 <style>
 :root{
 --red:#ff2a2a;
---dark:#070707;
---card:#121212;
---border:#1f1f1f;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -37,12 +34,11 @@ align-items:center;
 background:rgba(0,0,0,.9);
 border-bottom:1px solid #111;
 z-index:1000;
-backdrop-filter:blur(6px);
 }
 
 .logo{
 font-family:'Teko',sans-serif;
-font-size:28px;
+font-size:30px;
 letter-spacing:2px;
 }
 
@@ -64,8 +60,8 @@ border-radius:6px;
 /* HERO */
 
 .hero{
-padding-top:105px;
-padding-bottom:45px;
+padding-top:120px;
+padding-bottom:60px;
 text-align:center;
 position:relative;
 }
@@ -73,42 +69,45 @@ position:relative;
 .hero::before{
 content:"";
 position:absolute;
-top:52%;
+top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-width:950px;
-height:80px;
-background:linear-gradient(to right,transparent,rgba(255,0,0,.9),transparent);
-filter:blur(30px);
-opacity:.9;
+width:1100px;
+height:150px;
+background:radial-gradient(ellipse at center, rgba(255,0,0,.95) 0%, rgba(255,0,0,.4) 45%, transparent 75%);
+filter:blur(65px);
 z-index:-1;
 }
 
 .hero h1{
 font-family:'Teko',sans-serif;
-font-size:58px;
-letter-spacing:2px;
-line-height:1.05;
+font-size:64px;
+letter-spacing:3px;
+line-height:1;
+font-weight:700;
+text-transform:uppercase;
 }
 
-.hero span{color:var(--red)}
+.hero span{
+color:var(--red);
+}
 
 .hero p{
-margin-top:10px;
+margin-top:12px;
 opacity:.85;
-font-size:16px;
+font-size:17px;
+letter-spacing:1px;
 }
 
 .hero-buttons{
-margin-top:22px;
+margin-top:25px;
 display:flex;
 justify-content:center;
-gap:18px;
-flex-wrap:wrap;
+gap:20px;
 }
 
 .btn{
-padding:13px 30px;
+padding:14px 32px;
 border-radius:6px;
 text-decoration:none;
 font-weight:600;
@@ -119,7 +118,7 @@ font-size:15px;
 .btn-red{
 background:linear-gradient(180deg,#ff3c3c,#a80000);
 color:#fff;
-box-shadow:0 0 20px rgba(255,0,0,.6);
+box-shadow:0 0 25px rgba(255,0,0,.7);
 }
 
 .btn-dark{
@@ -135,100 +134,101 @@ transform:translateY(-3px);
 /* SEPARATOR */
 
 .separator{
-width:100%;
 height:1px;
 background:linear-gradient(to right,transparent,var(--red),transparent);
-margin:50px 0;
+margin:55px 0;
 opacity:.6;
 }
 
 /* SERVICES */
 
 .services{
-max-width:1250px;
-margin:auto;
-padding:0 40px 90px;
+padding-bottom:100px;
 }
 
 .service-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:35px;
+grid-template-columns:repeat(3, 340px);
+justify-content:center;
+gap:40px;
 }
 
 .service-box{
 background:#111;
 border:1px solid #1f1f1f;
-padding:28px;
-border-radius:16px;
+padding:30px;
+border-radius:18px;
 text-align:center;
 display:flex;
 flex-direction:column;
-justify-content:space-between;
-min-height:500px;
-box-shadow:0 0 30px rgba(255,0,0,.07);
+align-items:center;
+min-height:520px;
+box-shadow:0 0 40px rgba(255,0,0,.06);
 transition:.3s;
 }
 
 .service-box:hover{
 transform:translateY(-6px);
-box-shadow:0 0 40px rgba(255,0,0,.15);
+box-shadow:0 0 45px rgba(255,0,0,.15);
 }
 
 .service-box img{
 width:100%;
-height:200px;
+height:210px;
 object-fit:cover;
-border-radius:12px;
-margin-bottom:18px;
+border-radius:14px;
+margin-bottom:22px;
 }
 
 .service-box h3{
 font-family:'Teko',sans-serif;
-font-size:26px;
+font-size:28px;
 letter-spacing:2px;
 margin-bottom:18px;
 }
 
 .service-box ul{
 list-style:none;
-margin-bottom:20px;
+margin-bottom:25px;
 }
 
 .service-box li{
-margin-bottom:8px;
+margin-bottom:10px;
 color:#ddd;
 font-size:15px;
+}
+
+.service-box a{
+margin-top:auto;
 }
 
 /* WHY */
 
 .why{
 text-align:center;
-padding:70px 40px;
+padding:80px 40px;
 background:#0a0a0a;
 }
 
 .why h2{
 font-family:'Teko',sans-serif;
-font-size:38px;
+font-size:40px;
 letter-spacing:2px;
-margin-bottom:45px;
+margin-bottom:50px;
 }
 
 .why-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:35px;
-max-width:1000px;
-margin:auto;
+grid-template-columns:repeat(3, 300px);
+justify-content:center;
+gap:40px;
 }
 
 .why-box{
 background:#111;
 border:1px solid #1f1f1f;
 padding:35px;
-border-radius:14px;
+border-radius:16px;
 }
 
 .icon{
@@ -279,7 +279,7 @@ font-size:14px;
 <div class="service-grid">
 
 <div class="service-box">
-<img src="ecu-service.PNG">
+<img src="assets/ecu-service.PNG">
 <h3>ECU FILE SERVICE</h3>
 <ul>
 <li>✔ Stage 1 & Tuning</li>
@@ -291,7 +291,7 @@ font-size:14px;
 </div>
 
 <div class="service-box">
-<img src="remote-service.PNG">
+<img src="assets/remote-service.PNG">
 <h3>REMOTE SERVICE</h3>
 <ul>
 <li>✔ Live Diagnostics</li>
@@ -303,7 +303,7 @@ font-size:14px;
 </div>
 
 <div class="service-box">
-<img src="software-install.PNG">
+<img src="assets/software-install.PNG">
 <h3>SOFTWARE INSTALLATION</h3>
 <ul>
 <li>✔ WinOLS & Tools Setup</li>
