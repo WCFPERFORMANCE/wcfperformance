@@ -11,8 +11,8 @@
 :root{
 --red:#ff2a2a;
 --dark:#0b0b0b;
---card:#121212;
---border:#1f1f1f;
+--card:#111;
+--border:#222;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -102,6 +102,7 @@ padding:14px 35px;
 border-radius:6px;
 text-decoration:none;
 font-weight:600;
+display:inline-block;
 }
 
 .btn-red{
@@ -120,18 +121,24 @@ max-width:1200px;
 margin:auto;
 }
 
+.section-title{
+text-align:center;
+font-family:Orbitron;
+margin-bottom:60px;
+}
+
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:40px;
-margin-top:60px;
 }
 
 .card{
-background:var(--card);
+background:#0f0f0f;
 border:1px solid var(--border);
-border-radius:10px;
+border-radius:12px;
 overflow:hidden;
+box-shadow:0 0 20px rgba(255,0,0,0.1);
 }
 
 .card img{
@@ -163,14 +170,14 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:40px;
 text-align:center;
-margin-top:60px;
+margin-top:40px;
 }
 
 .why-box{
 padding:30px;
-background:var(--card);
+background:#0f0f0f;
 border:1px solid var(--border);
-border-radius:10px;
+border-radius:12px;
 }
 
 .footer{
@@ -209,6 +216,8 @@ margin-top:80px;
 </section>
 
 <section class="section">
+
+<h2 class="section-title">OUR SERVICES</h2>
 
 <div class="cards">
 
@@ -258,7 +267,7 @@ margin-top:80px;
 </section>
 
 <section class="section">
-<h2 style="text-align:center;font-family:Orbitron;">WHY CHOOSE WCF PERFORMANCE?</h2>
+<h2 class="section-title">WHY CHOOSE WCF PERFORMANCE?</h2>
 
 <div class="why">
 
@@ -281,7 +290,7 @@ margin-top:80px;
 </section>
 
 <section class="section" style="text-align:center;">
-<h2 style="font-family:Orbitron;">CONTACT US</h2>
+<h2 class="section-title">CONTACT US</h2>
 <p style="margin-top:20px;">
 info@wcfperformance.com<br>
 +33 6 12 34 56 78
