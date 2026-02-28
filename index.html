@@ -15,10 +15,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-background:
-radial-gradient(ellipse at center, rgba(255,0,0,.25) 0%, rgba(0,0,0,0) 45%),
-radial-gradient(ellipse at 50% 20%, rgba(255,0,0,.15) 0%, transparent 40%),
-#060606;
+background-color:#050505;
 color:#fff;
 font-family:'Rajdhani',sans-serif;
 overflow-x:hidden;
@@ -63,10 +60,29 @@ border-radius:6px;
 /* HERO */
 
 .hero{
-padding-top:120px;
-padding-bottom:60px;
-text-align:center;
 position:relative;
+padding-top:130px;
+padding-bottom:110px;
+text-align:center;
+background:#0a0a0a;
+overflow:hidden;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+top:45%;
+left:50%;
+transform:translate(-50%,-50%);
+width:650px;
+height:160px;
+background:radial-gradient(ellipse at center,
+rgba(255,0,0,.55) 0%,
+rgba(255,0,0,.25) 40%,
+transparent 70%);
+filter:blur(80px);
+opacity:.6;
+z-index:0;
 }
 
 .hero::before{
