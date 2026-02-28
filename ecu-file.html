@@ -45,8 +45,7 @@ text-align:center;
 }
 
 .hero h1{
-margin-top:0;
-margin-bottom:10px;
+margin:0 0 10px;
 font-family:'Teko';
 font-size:64px;
 letter-spacing:3px;
@@ -77,8 +76,7 @@ margin-bottom:25px;
 text-align:center;
 }
 
-.form-box input,
-.form-box textarea{
+.form-box input{
 width:100%;
 padding:14px;
 margin-bottom:15px;
@@ -88,8 +86,71 @@ border-radius:8px;
 color:#fff;
 }
 
-.form-box input[type="file"]{
-background:#111;
+/* ===== PREMIUM UPLOAD BOX ===== */
+
+.upload-box{
+position:relative;
+width:100%;
+margin:20px 0;
+}
+
+.upload-box input{
+display:none;
+}
+
+.upload-content{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+height:150px;
+border:1px solid rgba(255,255,255,.08);
+border-radius:18px;
+background:linear-gradient(145deg,#111,#0c0c0c);
+cursor:pointer;
+transition:.3s;
+text-align:center;
+box-shadow:
+inset 0 0 20px rgba(255,255,255,.03),
+0 0 25px rgba(0,0,0,.6);
+}
+
+.upload-content h3{
+font-family:'Teko',sans-serif;
+letter-spacing:2px;
+margin-bottom:6px;
+font-size:22px;
+}
+
+.upload-content p{
+font-size:14px;
+color:#aaa;
+}
+
+.upload-content:hover{
+border-color:#ff2a2a;
+box-shadow:
+inset 0 0 25px rgba(255,0,0,.08),
+0 0 30px rgba(255,0,0,.15);
+transform:translateY(-2px);
+}
+
+.upload-content.active{
+border-color:#ff2a2a;
+box-shadow:
+inset 0 0 30px rgba(255,0,0,.15),
+0 0 40px rgba(255,0,0,.2);
+}
+
+.upload-info{
+text-align:center;
+font-size:13px;
+color:#888;
+margin-bottom:20px;
+}
+
+.upload-info p{
+margin:4px 0;
 }
 
 .form-box button{
@@ -101,6 +162,7 @@ border-radius:8px;
 color:#fff;
 font-weight:600;
 cursor:pointer;
+transition:.3s;
 }
 
 .form-box button:hover{
@@ -138,15 +200,17 @@ color:#888;
 <h2>Upload Your File</h2>
 
 <form action="success.html" method="POST" enctype="multipart/form-data">
+
 <input type="text" placeholder="Your Name" required>
 <input type="email" placeholder="Email Address" required>
 <input type="text" placeholder="Vehicle Model" required>
 <input type="text" placeholder="ECU Type" required>
+
 <div class="upload-box">
   <input type="file" id="file" required>
-  <label for="file" class="upload-content">
+  <label for="file" class="upload-content" id="uploadLabel">
     <h3>ECU FILE UPLOAD</h3>
-    <p>Drag & Drop file or click to browse</p>
+    <p id="fileText">Drag & Drop file or click to browse</p>
   </label>
 </div>
 
@@ -155,15 +219,29 @@ color:#888;
   <p>🛡 Secure Engineering Transmission</p>
   <p>✔ Engineering Verified Platform</p>
 </div>
-<button type="submit">SEND FILE</button>
-</form>
 
+<button type="submit">SEND FILE</button>
+
+</form>
 </div>
 </section>
 
 <footer>
 © WCF Performance — Professional ECU Solutions
 </footer>
+
+<script>
+const fileInput = document.getElementById("file");
+const fileText = document.getElementById("fileText");
+const uploadLabel = document.getElementById("uploadLabel");
+
+fileInput.addEventListener("change", function(){
+  if(this.files.length > 0){
+    fileText.textContent = this.files[0].name;
+    uploadLabel.classList.add("active");
+  }
+});
+</script>
 
 </body>
 </html>
