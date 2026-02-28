@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECU File Service | WCF Performance</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+background:#0a0a0a;
+color:#fff;
+font-family:'Rajdhani',sans-serif;
+margin:0;
+}
+
+header{
+padding:20px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#000;
+}
+
+.logo{
+font-family:'Teko';
+font-size:28px;
+letter-spacing:2px;
+}
+
+.logo span{
+color:#ff2a2a;
+}
+
+nav a{
+margin-left:30px;
+text-decoration:none;
+color:#fff;
+}
+
+.hero{
+padding:120px 20px 60px;
+text-align:center;
+}
+
+.hero h1{
+font-family:'Teko';
+font-size:64px;
+letter-spacing:3px;
+}
+
+.hero span{
+color:#ff2a2a;
+}
+
+.form-section{
+display:flex;
+justify-content:center;
+padding:60px 20px 120px;
+}
+
+.form-box{
+background:#111;
+padding:40px;
+border-radius:18px;
+width:450px;
+box-shadow:0 0 40px rgba(0,0,0,.6);
+}
+
+.form-box h2{
+font-family:'Teko';
+font-size:32px;
+margin-bottom:25px;
+text-align:center;
+}
+
+.form-box input,
+.form-box textarea{
+width:100%;
+padding:14px;
+margin-bottom:15px;
+background:#0d0d0d;
+border:1px solid #222;
+border-radius:8px;
+color:#fff;
+}
+
+.form-box input[type="file"]{
+background:#111;
+}
+
+.form-box button{
+width:100%;
+padding:15px;
+background:#ff2a2a;
+border:none;
+border-radius:8px;
+color:#fff;
+font-weight:600;
+cursor:pointer;
+}
+
+.form-box button:hover{
+opacity:.85;
+}
+
+footer{
+text-align:center;
+padding:60px;
+border-top:1px solid #111;
+color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">WCF <span>PERFORMANCE</span></div>
+<nav>
+<a href="index.html">Home</a>
+<a href="ecu-file.html">ECU File Service</a>
+<a href="remote.html">Remote Service</a>
+<a href="software-install.html">Software Installation</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>ECU <span>FILE SERVICE</span></h1>
+<p>Upload your original file and receive a professional solution</p>
+</section>
+
+<section class="form-section">
+<div class="form-box">
+<h2>Upload Your File</h2>
+
+<form action="success.html" method="POST" enctype="multipart/form-data">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Email Address" required>
+<input type="text" placeholder="Vehicle Model" required>
+<input type="text" placeholder="ECU Type" required>
+<input type="file" required>
+<button type="submit">SEND FILE</button>
+</form>
+
+</div>
+</section>
+
+<footer>
+© WCF Performance — Professional ECU Solutions
+</footer>
+
+</body>
+</html>
