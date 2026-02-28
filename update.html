@@ -3,245 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ECU File Service | WCF Performance</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
-
+<title>WCF Performance - Software Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-body{
-background:#0a0a0a;
-color:#fff;
-font-family:'Rajdhani',sans-serif;
-margin:0;
+:root{
+--bg1:#060b18;
+--bg2:#0a1f45;
+--cardTop:#2f5fff;
+--cardMid:#1c3d95;
+--cardBot:#0e1f4d;
+--accent:#ff3b3b;
 }
+*{box-sizing:border-box}
+body{margin:0;font-family:Poppins;background:radial-gradient(circle at 50% 0%,var(--bg2),var(--bg1) 70%);color:#eaf0ff}
 
-header{
-padding:15px 60px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#000;
-}
+/* HEADER */
+.topbar{background:#e00000;height:72px;display:flex;align-items:center;justify-content:center;font-weight:800;letter-spacing:3px}
+nav{background:#050914;display:flex;justify-content:center;gap:40px;padding:14px 10px}
+nav a{color:#c9d3ff;text-decoration:none;font-size:14px}
+nav a:hover{color:#fff}
 
-.logo{
-font-family:'Teko';
-font-size:28px;
-letter-spacing:2px;
-}
+/* HERO */
+.hero{text-align:center;padding:70px 20px 40px}
+.hero h1{color:#ff4040;font-size:44px;margin:0;font-weight:800}
+.hero p{max-width:760px;margin:14px auto 0;color:#9fb2ff;font-size:14px}
 
-.logo span{
-color:#ff2a2a;
-}
+/* GRID */
+.section{max-width:1200px;margin:0 auto 80px;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.grid{grid-template-columns:1fr}}
 
-nav a{
-margin-left:30px;
-text-decoration:none;
-color:#fff;
-}
-
-.hero{
-padding:10px 20px 10px;
-text-align:center;
-}
-
-.hero h1{
-margin:0 0 10px;
-font-family:'Teko';
-font-size:64px;
-letter-spacing:3px;
-}
-
-.hero span{
-color:#ff2a2a;
-}
-
-.form-section{
-display:flex;
-justify-content:center;
-padding:60px 20px 120px;
-}
-
-.form-box{
-background:#111;
-padding:40px;
-border-radius:18px;
-width:450px;
-box-shadow:0 0 40px rgba(0,0,0,.6);
-}
-
-.form-box h2{
-font-family:'Teko';
-font-size:32px;
-margin-bottom:25px;
-text-align:center;
-}
-
-.form-box input{
-width:100%;
-padding:14px;
-margin-bottom:15px;
-background:#0d0d0d;
-border:1px solid #222;
-border-radius:8px;
-color:#fff;
-}
-
-/* ===== PREMIUM UPLOAD BOX ===== */
-
-.upload-box{
+/* CARD PREMIUM */
+.card{
 position:relative;
-width:100%;
-margin:20px 0;
-}
+background: radial-gradient(circle at 50% 15%, #3a6bff 0%, #1e3c8f 45%, #0b1c4a 100%);
+border-radius:28px;
+padding:34px 26px 28px;
+overflow:hidden;
 
-.upload-box input{
-display:none;
-}
-
-.upload-content{
 display:flex;
 flex-direction:column;
-align-items:center;
-justify-content:center;
-height:150px;
-border:1px solid rgba(255,255,255,.08);
-border-radius:18px;
-background:linear-gradient(145deg,#111,#0c0c0c);
-cursor:pointer;
-transition:.3s;
+justify-content:flex-start;
+
+min-height:420px; /* HAUTEUR IDENTIQUE */
+
+box-shadow:
+0 25px 60px rgba(0,0,0,0.9),
+inset 0 2px 12px rgba(255,255,255,0.25),
+inset 0 -18px 35px rgba(0,0,0,0.55);
+
+transition:.25s;
+}
+
+/* reflet lumineux */
+.card::before{
+content:"";
+position:absolute;
+top:-120%;
+left:-40%;
+width:180%;
+height:200%;
+background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.18),transparent 60%);
+transform:rotate(25deg);
+transition:.6s;
+}
+
+.card:hover::before{
+top:120%;
+}
+
+.card:hover{
+transform:translateY(-8px) scale(1.015);
+box-shadow:
+0 40px 90px rgba(0,0,0,1),
+inset 0 2px 18px rgba(255,255,255,0.35),
+inset 0 -20px 40px rgba(0,0,0,0.6);
+}
+
+
+
+.head{display:flex;align-items:center;gap:16px}
+.logo{width:74px;height:74px;background:linear-gradient(180deg,#ffffff,#eef2ff);border-radius:20px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 3px 6px rgba(0,0,0,.25),0 10px 25px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.6);overflow:hidden}
+.logo img{max-width:80%;max-height:80%;object-fit:contain} display:block;
+margin:auto;
+
+
+
+.title{font-size:20px;font-weight:700;margin-top:6px}
+.brand{font-size:13px;color:#a9b9ff;margin-top:4px}
+.info{
+margin-top:18px;
+}
+
+.price{
+color:#ff3b3b;
+font-size:34px;
+font-weight:800;
+margin:22px 0 18px;
 text-align:center;
+letter-spacing:1px;
+text-shadow:none;
+}
+
+
+.actions{
+display:flex;
+flex-direction:column;
+gap:14px;
+margin-top:auto; /* colle les boutons en bas */
+}
+
+button{border:none;border-radius:16px;height:50px;font-weight:700;cursor:pointer;font-size:14px;letter-spacing:.3px;transition:.15s}
+
+.paypal{
+background:linear-gradient(180deg,#ffe27a,#ffb300);
+color:#000;
 box-shadow:
-inset 0 0 20px rgba(255,255,255,.03),
-0 0 25px rgba(0,0,0,.6);
+inset 0 3px 0 rgba(255,255,255,.7),
+0 10px 18px rgba(0,0,0,.55),
+0 5px 0 #b87b00;
 }
 
-.upload-content h3{
-font-family:'Teko',sans-serif;
-letter-spacing:2px;
-margin-bottom:6px;
-font-size:22px;
-}
-
-.upload-content p{
-font-size:14px;
-color:#aaa;
-}
-
-.upload-content:hover{
-border-color:#ff2a2a;
+.paypal:active{
+transform:translateY(5px);
 box-shadow:
-inset 0 0 25px rgba(255,0,0,.08),
-0 0 30px rgba(255,0,0,.15);
-transform:translateY(-2px);
+inset 0 3px 0 rgba(255,255,255,.7),
+0 2px 0 #b87b00;
 }
 
-.upload-content.active{
-border-color:#ff2a2a;
-box-shadow:
-inset 0 0 30px rgba(255,0,0,.15),
-0 0 40px rgba(255,0,0,.2);
-}
-
-.upload-info{
-text-align:center;
-font-size:13px;
-color:#888;
-margin-bottom:20px;
-}
-
-.upload-info p{
-margin:4px 0;
-}
-
-.form-box button{
-width:100%;
-padding:15px;
-background:#ff2a2a;
-border:none;
-border-radius:8px;
+.whatsapp{
+background:linear-gradient(180deg,#3be07f,#16b85f);
 color:#fff;
-font-weight:600;
-cursor:pointer;
-transition:.3s;
+box-shadow:
+inset 0 3px 0 rgba(255,255,255,.6),
+0 10px 18px rgba(0,0,0,.55),
+0 5px 0 #0d8e49;
 }
 
-.form-box button:hover{
-opacity:.85;
+.whatsapp:active{
+transform:translateY(5px);
+box-shadow:
+inset 0 3px 0 rgba(255,255,255,.6),
+0 2px 0 #0d8e49;
 }
 
-footer{
-text-align:center;
-padding:60px;
-border-top:1px solid #111;
-color:#888;
-}
+
+footer{text-align:center;padding:45px;color:#7d8dd1;font-size:13px;opacity:.8}
 </style>
 </head>
-
 <body>
-
-<header>
-<div class="logo">WCF <span>PERFORMANCE</span></div>
+<div class="topbar">WCF PERFORMANCE</div>
 <nav>
-<a href="index.html">Home</a>
-<a href="ecu-file.html">ECU File Service</a>
-<a href="remote.html">Remote Service</a>
-<a href="software-install.html">Software Installation</a>
+<a href="#">Accueil</a>
+<a href="#">Chiptuning</a>
+<a href="#">Remote Support</a>
+<a href="#">Software Update</a>
+<a href="#">Contact</a>
 </nav>
-</header>
 
 <section class="hero">
-<h1>ECU <span>FILE SERVICE</span></h1>
-<p>Upload your original file and receive a professional solution</p>
+<h1>Professional Diagnostic Software Store</h1>
+<p>Official engineering & dealer tools for trucks and heavy equipment. Ready‑to‑use installation and remote activation included.</p>
 </section>
 
-<section class="form-section">
-<div class="form-box">
-<h2>Upload Your File</h2>
+<section class="section">
+<div class="grid">
 
-<form action="success.html" method="POST" enctype="multipart/form-data">
+<!-- 1 -->
+<div class="card">
+    <div class="head">
+        <div class="logo"><img src="logos/cummins.png"></div>
+        <div>
+            <div class="title">Cummins INSITE + Calterm</div>
+            <div class="brand">Cummins Engines</div>
+        </div>
+    </div>
 
-<input type="text" placeholder="Your Name" required>
-<input type="email" placeholder="Email Address" required>
-<input type="text" placeholder="Vehicle Model" required>
-<input type="text" placeholder="ECU Type" required>
+    <div class="info">
+        <div class="price">390€</div>
+    </div>
 
-<div class="upload-box">
-  <input type="file" id="file" required>
-  <label for="file" class="upload-content" id="uploadLabel">
-    <h3>ECU FILE UPLOAD</h3>
-    <p id="fileText">Drag & Drop file or click to browse</p>
-  </label>
+    <div class="actions">
+        <button class="paypal">Secure Payment</button>
+        <button class="whatsapp">Contact WhatsApp</button>
+    </div>
 </div>
 
-<div class="upload-info">
-  <p>🔒 256-bit SSL Encrypted</p>
-  <p>🛡 Secure Engineering Transmission</p>
-  <p>✔ Engineering Verified Platform</p>
+
+<!-- 2 -->
+<div class="card">
+    <div class="head">
+        <div class="logo"><img src="logos/volvo.png"></div>
+        <div>
+            <div class="title">Volvo TechTool (PTT)</div>
+            <div class="brand">Volvo Trucks</div>
+        </div>
+    </div>
+
+    <div class="info">
+        <div class="price">450€</div>
+    </div>
+
+    <div class="actions">
+        <button class="paypal">Secure Payment</button>
+        <button class="whatsapp">Contact WhatsApp</button>
+    </div>
 </div>
 
-<button type="submit">SEND FILE</button>
 
-</form>
+<!-- 3 -->
+<div class="card">
+    <div class="head">
+        <div class="logo"><img src="logos/scania.png"></div>
+        <div>
+            <div class="title">Scania SDP3</div>
+            <div class="brand">Scania Dealer Tool</div>
+        </div>
+    </div>
+
+    <div class="info">
+        <div class="price">190€</div>
+    </div>
+
+    <div class="actions">
+        <button class="paypal">Secure Payment</button>
+        <button class="whatsapp">Contact WhatsApp</button>
+    </div>
 </div>
+
+
+<!-- 4 -->
+<div class="card">
+    <div class="head">
+        <div class="logo"><img src="logos/xentry.png"></div>
+        <div>
+            <div class="title">Mercedes Xentry</div>
+            <div class="brand">Mercedes Trucks</div>
+        </div>
+    </div>
+
+    <div class="info">
+        <div class="price">250€</div>
+    </div>
+
+    <div class="actions">
+        <button class="paypal">Secure Payment</button>
+        <button class="whatsapp">Contact WhatsApp</button>
+    </div>
+</div>
+
+
+<!-- 5 -->
+<div class="card">
+    <div class="head">
+        <div class="logo"><img src="logos/cat.png"></div>
+        <div>
+            <div class="title">CAT Electronic Technician</div>
+            <div class="brand">Caterpillar</div>
+        </div>
+    </div>
+
+    <div class="info">
+        <div class="price">250€</div>
+    </div>
+
+    <div class="actions">
+        <button class="paypal">Secure Payment</button>
+        <button class="whatsapp">Contact WhatsApp</button>
+    </div>
+</div>
+
+
+<!-- 6 -->
+<div class="card">
+    <div class="head">
+        <div class="logo"><img src="logos/jaltest.png"></div>
+        <div>
+            <div class="title">Jaltest / TEXA IDC5</div>
+            <div class="brand">Multi Brand</div>
+        </div>
+    </div>
+
+    <div class="info">
+        <div class="price">190€</div>
+    </div>
+
+    <div class="actions">
+        <button class="paypal">Secure Payment</button>
+        <button class="whatsapp">Contact WhatsApp</button>
+    </div>
+</div>
+
+</div>
+
 </section>
 
-<footer>
-© WCF Performance — Professional ECU Solutions
-</footer>
-
-<script>
-const fileInput = document.getElementById("file");
-const fileText = document.getElementById("fileText");
-const uploadLabel = document.getElementById("uploadLabel");
-
-fileInput.addEventListener("change", function(){
-  if(this.files.length > 0){
-    fileText.textContent = this.files[0].name;
-    uploadLabel.classList.add("active");
-  }
-});
-</script>
-
+<footer>© WCF Performance</footer>
 </body>
 </html>
