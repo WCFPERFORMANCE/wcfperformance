@@ -29,9 +29,7 @@ font-size:28px;
 letter-spacing:2px;
 }
 
-.logo span{
-color:#ff2a2a;
-}
+.logo span{color:#ff2a2a;}
 
 nav a{
 margin-left:30px;
@@ -40,7 +38,7 @@ color:#fff;
 }
 
 .hero{
-padding:10px 20px 10px;
+padding:20px;
 text-align:center;
 }
 
@@ -51,9 +49,7 @@ font-size:64px;
 letter-spacing:3px;
 }
 
-.hero span{
-color:#ff2a2a;
-}
+.hero span{color:#ff2a2a;}
 
 .form-section{
 display:flex;
@@ -86,37 +82,30 @@ border-radius:8px;
 color:#fff;
 }
 
-/* ===== PREMIUM UPLOAD BOX ===== */
+/* UPLOAD */
 
 .upload-box{
 position:relative;
-width:100%;
 margin:20px 0;
-}
-
-.upload-box input{
-display:none;
-}
-
-.upload-content{
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-height:150px;
-border:1px solid rgba(255,255,255,.08);
+border:2px dashed #333;
 border-radius:18px;
-background:linear-gradient(145deg,#111,#0c0c0c);
+padding:40px 20px;
+text-align:center;
 cursor:pointer;
 transition:.3s;
-text-align:center;
-box-shadow:
-inset 0 0 20px rgba(255,255,255,.03),
-0 0 25px rgba(0,0,0,.6);
+}
+
+.upload-box:hover{
+border-color:#ff2a2a;
+}
+
+.upload-box.active{
+border-color:#ff2a2a;
+box-shadow:0 0 30px rgba(255,0,0,.4);
 }
 
 .upload-content h3{
-font-family:'Teko',sans-serif;
+font-family:'Teko';
 letter-spacing:2px;
 margin-bottom:6px;
 font-size:22px;
@@ -127,33 +116,34 @@ font-size:14px;
 color:#aaa;
 }
 
-.upload-content:hover{
-border-color:#ff2a2a;
-box-shadow:
-inset 0 0 25px rgba(255,0,0,.08),
-0 0 30px rgba(255,0,0,.15);
-transform:translateY(-2px);
+.progress-container{
+display:none;
+margin-top:20px;
+background:#111;
+border-radius:8px;
+overflow:hidden;
+height:25px;
+position:relative;
 }
 
-.upload-content.active{
-border-color:#ff2a2a;
-box-shadow:
-inset 0 0 30px rgba(255,0,0,.15),
-0 0 40px rgba(255,0,0,.2);
+.progress-bar{
+height:100%;
+width:0%;
+background:#ff2a2a;
+transition:width .3s;
 }
 
-.upload-info{
+#progressText{
+position:absolute;
+width:100%;
 text-align:center;
-font-size:13px;
-color:#888;
-margin-bottom:20px;
+top:0;
+left:0;
+font-size:14px;
+line-height:25px;
 }
 
-.upload-info p{
-margin:4px 0;
-}
-
-.form-box button{
+button{
 width:100%;
 padding:15px;
 background:#ff2a2a;
@@ -165,61 +155,13 @@ cursor:pointer;
 transition:.3s;
 }
 
-.form-box button:hover{
-opacity:.85;
-}
+button:hover{opacity:.85;}
 
 footer{
 text-align:center;
 padding:60px;
 border-top:1px solid #111;
 color:#888;
-}
-
-.upload-box{
-  border:2px dashed #333;
-  border-radius:14px;
-  padding:40px 20px;
-  text-align:center;
-  cursor:pointer;
-  transition:.3s;
-  position:relative;
-}
-
-.upload-box:hover{
-  border-color:#ff2a2a;
-}
-
-.upload-box.active{
-  border-color:#ff2a2a;
-  box-shadow:0 0 25px rgba(255,0,0,.5);
-}
-
-.progress-container{
-  display:none;
-  margin-top:20px;
-  background:#111;
-  border-radius:8px;
-  overflow:hidden;
-  height:25px;
-  position:relative;
-}
-
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:#ff2a2a;
-  transition:width .3s;
-}
-
-#progressText{
-  position:absolute;
-  width:100%;
-  text-align:center;
-  top:0;
-  left:0;
-  font-size:14px;
-  line-height:25px;
 }
 </style>
 </head>
@@ -245,7 +187,7 @@ color:#888;
 <div class="form-box">
 <h2>Upload Your File</h2>
 
-<form action="success.html" method="POST" enctype="multipart/form-data">
+<form id="uploadForm">
 
 <input type="text" placeholder="Your Name" required>
 <input type="email" placeholder="Email Address" required>
@@ -253,21 +195,20 @@ color:#888;
 <input type="text" placeholder="ECU Type" required>
 
 <div class="upload-box" id="uploadBox">
-  <input type="file" id="file" hidden required>
+<input type="file" id="fileInput" hidden required>
 
-  <div class="upload-content" id="uploadContent">
-    <h3 id="uploadTitle">ECU FILE UPLOAD</h3>
-    <p id="uploadSub">Drag & Drop file or click to browse</p>
-  </div>
+<div class="upload-content">
+<h3 id="uploadTitle">ECU FILE UPLOAD</h3>
+<p>Drag & Drop file or click to browse</p>
+</div>
 
-  <div class="progress-container" id="progressContainer">
-    <div class="progress-bar" id="progressBar"></div>
-    <span id="progressText">0%</span>
-  </div>
+<div class="progress-container" id="progressContainer">
+<div class="progress-bar" id="progressBar"></div>
+<span id="progressText">0%</span>
+</div>
 </div>
 
 <button type="submit">SEND FILE</button>
-
 </form>
 </div>
 </section>
@@ -276,94 +217,72 @@ color:#888;
 © WCF Performance — Professional ECU Solutions
 </footer>
 
-<script>
-const fileInput = document.getElementById("file");
-const fileText = document.getElementById("fileText");
-const uploadLabel = document.getElementById("uploadLabel");
-
-fileInput.addEventListener("change", function(){
-  if(this.files.length > 0){
-    fileText.textContent = this.files[0].name;
-    uploadLabel.classList.add("active");
-  }
-});
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 const supabaseUrl = "YOUR_PROJECT_URL";
-const supabaseKey = "YOUR_PUBLIC_KEY";
+const supabaseKey = "YOUR_NEW_PUBLISHABLE_KEY";
 const client = supabase.createClient(supabaseUrl, supabaseKey);
 
 const uploadBox = document.getElementById("uploadBox");
-const fileInput = document.getElementById("file");
+const fileInput = document.getElementById("fileInput");
 const uploadTitle = document.getElementById("uploadTitle");
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
 const progressContainer = document.getElementById("progressContainer");
-const form = document.querySelector("form");
+const form = document.getElementById("uploadForm");
 
-// Click
 uploadBox.addEventListener("click", () => fileInput.click());
 
-// Drag
 uploadBox.addEventListener("dragover", e => {
-  e.preventDefault();
-  uploadBox.classList.add("active");
+e.preventDefault();
+uploadBox.classList.add("active");
 });
 
 uploadBox.addEventListener("dragleave", () => {
-  uploadBox.classList.remove("active");
+uploadBox.classList.remove("active");
 });
 
 uploadBox.addEventListener("drop", e => {
-  e.preventDefault();
-  fileInput.files = e.dataTransfer.files;
-  uploadBox.classList.add("active");
-  showFileName();
+e.preventDefault();
+fileInput.files = e.dataTransfer.files;
+uploadBox.classList.add("active");
+showFileName();
 });
 
-// File selected
 fileInput.addEventListener("change", showFileName);
 
 function showFileName(){
-  if(fileInput.files.length > 0){
-    uploadTitle.innerText = fileInput.files[0].name;
-    uploadBox.classList.add("active");
-  }
+if(fileInput.files.length > 0){
+uploadTitle.innerText = fileInput.files[0].name;
+uploadBox.classList.add("active");
+}
 }
 
-// Submit
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+form.addEventListener("submit", async (e)=>{
+e.preventDefault();
 
-  const file = fileInput.files[0];
-  if(!file) return alert("Select a file");
+const file = fileInput.files[0];
+if(!file) return alert("Select a file");
 
-  progressContainer.style.display = "block";
+progressContainer.style.display = "block";
 
-  const fileName = Date.now() + "_" + file.name;
+const fileName = Date.now()+"_"+file.name;
 
-  const { error } = await client.storage
-    .from("ecu-files")
-    .upload(fileName, file, {
-      onUploadProgress: (progress) => {
-        const percent = Math.round((progress.loaded / progress.total) * 100);
-        progressBar.style.width = percent + "%";
-        progressText.innerText = percent + "%";
-      }
-    });
+const { error } = await client.storage
+.from("ecu-files")
+.upload(fileName, file);
 
-  if(error){
-    alert("Upload failed");
-    return;
-  }
+if(error){
+alert("Upload failed");
+return;
+}
 
-  progressBar.style.width = "100%";
-  progressText.innerText = "Upload Complete ✔";
-
-  uploadBox.style.boxShadow = "0 0 40px rgba(0,255,0,.6)";
+progressBar.style.width = "100%";
+progressText.innerText = "Upload Complete ✔";
+uploadBox.style.boxShadow = "0 0 40px rgba(0,255,0,.6)";
 });
 </script>
+
 </body>
 </html>
