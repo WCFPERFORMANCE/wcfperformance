@@ -259,28 +259,43 @@ uploadBox.classList.add("active");
 }
 }
 
-form.addEventListener("submit", async (e)=>{
-e.preventDefault();
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-const file = fileInput.files[0];
-if(!file) return alert("Select a file");
+    const file = fileInput.files[0];
+    if (!file) return alert("Select a file");
 
-progressContainer.style.display = "block";
+    progressContainer.style.display = "block";
+    progressBar.style.width = "0%";
+    progressText.innerText = "0%";
 
-const fileName = Date.now()+"_"+file.name;
+    let percent = 0;
 
-const { error } = await client.storage
-.from("ecu-files")
-.upload(fileName, file);
+    const fakeProgress = setInterval(() => {
+        if (percent < 90) {
+            percent += 5;
+            progressBar.style.width = percent + "%";
+            progressText.innerText = percent + "%";
+        }
+    }, 200);
 
-if(error){
-alert("Upload failed");
-return;
-}
+    const fileName = Date.now() + "-" + file.name;
 
-progressBar.style.width = "100%";
-progressText.innerText = "Upload Complete ✔";
-uploadBox.style.boxShadow = "0 0 40px rgba(0,255,0,.6)";
+    const { error } = await client.storage
+        .from("ecu-files")
+        .upload(fileName, file);
+
+    clearInterval(fakeProgress);
+
+    if (error) {
+        progressText.innerText = "Upload failed";
+        progressBar.style.background = "red";
+        return;
+    }
+
+    progressBar.style.width = "100%";
+    progressText.innerText = "Upload Complete ✓";
+    uploadBox.style.boxShadow = "0 0 40px rgba(0,255,0,0.6)";
 });
 </script>
 
