@@ -266,7 +266,7 @@ progressBar.style.width = percent + "%";
 const fileName = Date.now() + "-" + file.name;
 
 const { error } = await client.storage
-.from("ecu-files")
+.from("files")
 .upload(fileName, file);
 
 clearInterval(fakeProgress);
