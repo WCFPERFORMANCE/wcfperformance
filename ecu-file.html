@@ -272,9 +272,10 @@ const { error } = await client.storage
 clearInterval(fakeProgress);
 
 if (error) {
-alert("Upload failed");
-progressContainer.style.display = "none";
-return;
+  alert("Upload failed: " + error.message);
+  console.log("FULL ERROR:", error);
+  progressContainer.style.display = "none";
+  return;
 }
 
 progressBar.style.width = "100%";
