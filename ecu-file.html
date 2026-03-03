@@ -85,7 +85,6 @@ color:#fff;
 /* UPLOAD */
 
 .upload-box{
-position:relative;
 margin:20px 0;
 border:2px dashed #333;
 border-radius:18px;
@@ -93,6 +92,7 @@ padding:40px 20px;
 text-align:center;
 cursor:pointer;
 transition:.3s;
+overflow:hidden;
 }
 
 .upload-box:hover{
@@ -101,14 +101,16 @@ border-color:#ff2a2a;
 
 .upload-box.active{
 border-color:#ff2a2a;
-box-shadow:0 0 30px rgba(255,0,0,.4);
 }
 
 .upload-content h3{
 font-family:'Teko';
-letter-spacing:2px;
+letter-spacing:1px;
 margin-bottom:6px;
-font-size:22px;
+font-size:16px;
+word-break:break-word;
+overflow-wrap:break-word;
+white-space:normal;
 }
 
 .upload-content p{
@@ -116,14 +118,15 @@ font-size:14px;
 color:#aaa;
 }
 
+/* Progress */
+
 .progress-container{
 display:none;
-margin-top:20px;
-background:#111;
+margin-top:15px;
+background:#1a1a1a;
 border-radius:8px;
 overflow:hidden;
-height:25px;
-position:relative;
+height:8px;
 }
 
 .progress-bar{
@@ -133,14 +136,17 @@ background:#ff2a2a;
 transition:width .3s;
 }
 
-#progressText{
-position:absolute;
-width:100%;
+/* Security block */
+
+.secure-info{
+margin:15px 0;
 text-align:center;
-top:0;
-left:0;
-font-size:14px;
-line-height:25px;
+font-size:13px;
+color:#888;
+}
+
+.secure-info p{
+margin:5px 0;
 }
 
 button{
@@ -204,8 +210,13 @@ color:#888;
 
 <div class="progress-container" id="progressContainer">
 <div class="progress-bar" id="progressBar"></div>
-<span id="progressText">0%</span>
 </div>
+</div>
+
+<div class="secure-info">
+<p>🔒 256-bit SSL Encrypted</p>
+<p>🛠 Secure Engineering Transmission</p>
+<p>⚙ Engineering Verified Platform</p>
 </div>
 
 <button type="submit">SEND FILE</button>
@@ -221,81 +232,69 @@ color:#888;
 
 <script>
 const supabaseUrl = "https://rjhfpdmbupznwckrvcsv.supabase.co";
-const supabaseKey = "sb_publishable_F23u2f4e7o9EhHJs0b8UUg_W8HLhxtQ";
+const supabaseKey = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
 const client = supabase.createClient(supabaseUrl, supabaseKey);
 
 const uploadBox = document.getElementById("uploadBox");
 const fileInput = document.getElementById("fileInput");
 const uploadTitle = document.getElementById("uploadTitle");
 const progressBar = document.getElementById("progressBar");
-const progressText = document.getElementById("progressText");
 const progressContainer = document.getElementById("progressContainer");
 const form = document.getElementById("uploadForm");
 
 uploadBox.addEventListener("click", () => fileInput.click());
 
-uploadBox.addEventListener("dragover", e => {
-e.preventDefault();
-uploadBox.classList.add("active");
-});
-
-uploadBox.addEventListener("dragleave", () => {
-uploadBox.classList.remove("active");
-});
-
-uploadBox.addEventListener("drop", e => {
-e.preventDefault();
-fileInput.files = e.dataTransfer.files;
-uploadBox.classList.add("active");
-showFileName();
-});
-
-fileInput.addEventListener("change", showFileName);
-
-function showFileName(){
+fileInput.addEventListener("change", () => {
 if(fileInput.files.length > 0){
 uploadTitle.innerText = fileInput.files[0].name;
 uploadBox.classList.add("active");
 }
-}
-console.log(progressContainer);
+});
+
 form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+e.preventDefault();
 
-    const file = fileInput.files[0];
-    if (!file) return alert("Select a file");
+const file = fileInput.files[0];
+if (!file) return alert("Select a file");
 
-    progressContainer.style.display = "block";
-    progressBar.style.width = "0%";
-    progressText.innerText = "0%";
+progressContainer.style.display = "block";
+progressBar.style.width = "0%";
 
-    let percent = 0;
+let percent = 0;
 
-    const fakeProgress = setInterval(() => {
-        if (percent < 90) {
-            percent += 5;
-            progressBar.style.width = percent + "%";
-            progressText.innerText = percent + "%";
-        }
-    }, 200);
+const fakeProgress = setInterval(() => {
+if (percent < 90) {
+percent += 5;
+progressBar.style.width = percent + "%";
+}
+}, 150);
 
-    const fileName = Date.now() + "-" + file.name;
+const fileName = Date.now() + "-" + file.name;
 
-    const { error } = await client.storage
-        .from("ecu-files")
-        .upload(fileName, file);
+const { error } = await client.storage
+.from("ecu-files")
+.upload(fileName, file);
 
-    clearInterval(fakeProgress);
+clearInterval(fakeProgress);
 
-    if (error) {
-        progressText.innerText = "Upload failed";
-        progressBar.style.background = "red";
-        return;
-    }
+if (error) {
+alert("Upload failed");
+progressContainer.style.display = "none";
+return;
+}
 
-    progressBar.style.width = "100%";
-    progressText.innerText = "Upload Complete ✓";
-    uploadBox.style.boxShadow = "0 0 40px rgba(0,255,0,0.6)";
+progressBar.style.width = "100%";
+uploadBox.style.boxShadow = "0 0 15px rgba(0,255,0,0.4)";
+
+setTimeout(()=>{
+alert("File successfully sent.");
+form.reset();
+uploadTitle.innerText = "ECU FILE UPLOAD";
+progressContainer.style.display = "none";
+progressBar.style.width = "0%";
+uploadBox.classList.remove("active");
+uploadBox.style.boxShadow = "none";
+},800);
 });
 </script>
 
