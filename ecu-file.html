@@ -278,6 +278,24 @@ if (error) {
   return;
 }
 
+  await fetch("https://api.resend.com/emails", {
+  method: "POST",
+  headers: {
+    "Authorization": "re_PHN9zsYK_HCVth4gEr2kpEihHMYnTxEns",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    from: "WCF Performance <onboarding@resend.dev>",
+    to: ["wcfperformance@gmail.com"],
+    subject: "New ECU File Uploaded",
+    html: `
+      <h2>New ECU File Uploaded</h2>
+      <p><strong>Name:</strong> ${document.getElementById("name").value}</p>
+      <p><strong>Email:</strong> ${document.getElementById("email").value}</p>
+      <p><strong>File name:</strong> ${fileName}</p>
+    `
+  })
+});
 progressBar.style.width = "100%";
 uploadBox.style.boxShadow = "0 0 15px rgba(0,255,0,0.4)";
 
