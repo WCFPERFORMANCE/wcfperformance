@@ -278,6 +278,18 @@ if (error) {
   return;
 }
 
+  await fetch("https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/send-upload-email", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: document.querySelectorAll("input")[0].value,
+    email: document.querySelectorAll("input")[1].value,
+    file: fileName
+  })
+});
+  
   fetch("https://api.resend.com/emails", {
   method: "POST",
   headers: {
