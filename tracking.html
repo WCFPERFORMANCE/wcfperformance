@@ -337,6 +337,15 @@ function goBack(){
 window.location.href="app.html";
 }
 
+  // Auto load tracking from URL
+const params = new URLSearchParams(window.location.search);
+const autoRef = params.get("ref");
+
+if(autoRef){
+  document.getElementById("refId").value = autoRef;
+  checkStatus();
+}
+  
 </script>
 
 </body>
