@@ -153,6 +153,25 @@ color:#888;
 margin:5px 0;
 }
 
+  .description-box{
+width:100%;
+padding:14px;
+height:100px;
+margin-bottom:15px;
+background:#0d0d0d;
+border:1px solid #222;
+border-radius:8px;
+color:#fff;
+resize:none;
+font-family:'Rajdhani',sans-serif;
+}
+
+.description-box:focus{
+outline:none;
+border-color:#ff2a2a;
+box-shadow:0 0 8px rgba(255,42,42,0.4);
+}
+  
 button{
 width:100%;
 padding:15px;
@@ -219,7 +238,7 @@ color:#888;
 <textarea
 id="description"
 placeholder="Describe your request..."
-style="width:100%;padding:10px;height:90px;border-radius:6px;">
+class="description-box">
 </textarea>
 </div>
 
