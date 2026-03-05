@@ -333,12 +333,14 @@ const solution = document.getElementById("solution").value.replace(/\s+/g,"_");
 const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
 
 const fileName = vehicle + "_" + ecu + "_" + solution + "_" + Date.now() + "_" + safeName;
-  
+
 
 const { error } = await client.storage
 .from("ecu-files")
 .upload(fileName, file);
-
+  
+progressBar.style.width = "100%";
+  
 alert("✅ File uploaded successfully. We will contact you shortly."); 
 
 clearInterval(fakeProgress);
