@@ -326,8 +326,14 @@ progressBar.style.width = percent + "%";
 }
 }, 150);
 
+const vehicle = document.getElementById("vehicle").value.replace(/\s+/g,"_");
+const ecu = document.getElementById("ecu").value.replace(/\s+/g,"_");
+const solution = document.getElementById("solution").value.replace(/\s+/g,"_");
+
 const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-const fileName = Date.now() + "-" + safeName;
+
+const fileName = vehicle + "_" + ecu + "_" + solution + "_" + Date.now() + "_" + safeName;
+  
 
 const { error } = await client.storage
 .from("ecu-files")
