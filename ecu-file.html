@@ -333,6 +333,8 @@ const { error } = await client.storage
 .from("ecu-files")
 .upload(fileName, file);
 
+alert("✅ File uploaded successfully. We will contact you shortly."); 
+
 clearInterval(fakeProgress);
 
 if (error) {
