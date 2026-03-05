@@ -259,6 +259,20 @@ const client = supabase.createClient(supabaseUrl, supabaseKey);
 
 const uploadBox = document.getElementById("uploadBox");
 const fileInput = document.getElementById("fileInput");
+
+const solution = document.getElementById("solution");
+const descriptionBox = document.getElementById("descriptionBox");
+
+solution.addEventListener("change", () => {
+
+if(solution.value === "DTC OFF" || solution.value === "OTHER"){
+descriptionBox.style.display = "block";
+}else{
+descriptionBox.style.display = "none";
+}
+
+});
+
 const uploadTitle = document.getElementById("uploadTitle");
 const progressBar = document.getElementById("progressBar");
 const progressContainer = document.getElementById("progressContainer");
