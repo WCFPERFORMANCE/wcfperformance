@@ -343,10 +343,22 @@ progressBar.style.width = "100%";
   
 alert("✅ File uploaded successfully. We will contact you shortly."); 
 
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+
+const message =
+"NEW ECU FILE REQUEST%0A%0A" +
+"Name: " + name + "%0A" +
+"Email: " + email + "%0A" +
+"Vehicle: " + vehicle + "%0A" +
+"ECU: " + ecu + "%0A" +
+"Solution: " + solution;
+
 window.open(
-"https://wa.me/33636478416?text=ECU file uploaded from WCF Performance",
+"https://wa.me/33636478416?text=" + message,
 "_blank"
 );
+
   
 clearInterval(fakeProgress);
 
