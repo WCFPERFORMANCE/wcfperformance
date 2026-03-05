@@ -194,6 +194,34 @@ color:#888;
 <input type="text" id="vehicle" placeholder="Vehicle Model" required>
 <input type="text" id="ecu" placeholder="ECU Type" required>
 
+<label style="margin-top:15px;display:block;">Select Solution</label>
+
+<select id="solution" style="width:100%;padding:10px;margin-top:5px;">
+
+<option value="">Choose solution</option>
+
+<option value="SCR OFF">SCR OFF</option>
+<option value="DPF OFF">DPF OFF</option>
+<option value="EGR OFF">EGR OFF</option>
+
+<option value="ALL EMISSION OFF">ALL EMISSION OFF (SCR + DPF + EGR)</option>
+
+<option value="DTC OFF">DTC OFF</option>
+
+<option value="OTHER">OTHER</option>
+
+</select>
+
+
+<div id="descriptionBox" style="display:none;margin-top:10px;">
+<textarea
+id="description"
+placeholder="Describe your request..."
+style="width:100%;padding:10px;height:90px;border-radius:6px;">
+</textarea>
+</div>
+
+  
 <div class="upload-box" id="uploadBox">
 <input type="file" id="fileInput" hidden required>
 
