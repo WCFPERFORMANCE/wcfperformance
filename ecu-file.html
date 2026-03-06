@@ -338,6 +338,14 @@ const fileName = vehicle + "_" + ecu + "_" + solution + "_" + Date.now() + "_" +
 const { error } = await client.storage
 .from("ecu-files")
 .upload(fileName, file);
+await client.from("ecu_requests").insert({
+name: document.getElementById("name").value,
+email: document.getElementById("email").value,
+vehicle: vehicle,
+ecu: ecu,
+solution: solution,
+file: fileName
+});
   
 progressBar.style.width = "100%";
   
