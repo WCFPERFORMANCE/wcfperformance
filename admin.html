@@ -53,6 +53,7 @@ cursor:pointer;
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
 <button id="loginBtn">LOGIN</button>
+<p id="status"></p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -67,9 +68,15 @@ const supabaseClient = window.supabase.createClient(
 );
 
 document.getElementById("loginBtn").addEventListener("click", async () => {
+document.getElementById("status").innerText = "Connecting...";
+  
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+if(!email || !password){
+alert("Please enter email and password");
+return;
+}
 
   const { error } = await supabaseClient.auth.signInWithPassword({
     email: email,
