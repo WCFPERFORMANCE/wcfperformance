@@ -112,6 +112,10 @@ loadRequests();
 /* LOAD REQUESTS */
 /* ========================= */
 async function loadRequests(){
+  
+let waiting = 0;
+let progress = 0;
+let ready = 0;
 
 const res = await fetch(LIST_URL,{
   headers:{
@@ -125,10 +129,14 @@ const table = document.getElementById("requestsTable");
 
 data.forEach(n=>{
 
+if(n.status === "Waiting"){waiting++;}
+if(n.status === "In Progress"){progress++;}
+if(n.status === "Ready"){ready++;}
+
 let statusClass = "status-waiting";
-if(r.status === "In Progress"){statusClass = "status-progress";}
-if(r.status === "Payment"){statusClass = "status-payment";}
-if(r.status === "Ready"){statusClass = "status-ready";}
+if(n.status === "In Progress"){statusClass = "status-progress";}
+if(n.status === "Payment"){statusClass = "status-payment";}
+if(n.status === "Ready"){statusClass = "status-ready";}
 
 const row = table.insertRow();
 row.innerHTML = `
@@ -136,12 +144,12 @@ row.innerHTML = `
 <td>${n.name}</td>
 <td>${n.user_email}</td>
 <td>${n.vehicle}</td>
-<td><span class="status-badge ${statusClass}">${r.status}</span></td>
+<td><span class="status-badge ${statusClass}">${n.status}</span></td>
 <td>
-<button class="wait" onclick="updateStatus('${r.id}','Waiting')">Waiting</button>
-<button class="progress" onclick="updateStatus('${r.id}','In Progress')">Processing</button>
-<button class="payment" onclick="updateStatus('${r.id}','Payment')">Payment</button>
-<button class="ready" onclick="triggerUpload('${r.id}')">Upload & Ready</button>
+<button class="wait" onclick="updateStatus('${n.id}','Waiting')">Waiting</button>
+<button class="progress" onclick="updateStatus('${n.id}','In Progress')">Processing</button>
+<button class="payment" onclick="updateStatus('${n.id}','Payment')">Payment</button>
+<button class="ready" onclick="triggerUpload('${n.id}')">Upload & Ready</button>
 </td>
 `;
 });
