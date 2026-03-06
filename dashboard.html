@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+  
 body{
 background:#0b0b0b;
 color:white;
@@ -79,6 +80,23 @@ font-size:12px;
 const SUPABASE_URL = "https://hhubssfupghziafmdgtn.supabase.co";
 const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhodWJzc2Z1cGdoemlhZm1kZ3RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNDE4MzUsImV4cCI6MjA4NzcxNzgzNX0.JFbcLof107qPIYRrC2bM07YD441BFuw56sKWuLw6Pcg";
 
+const supabase = window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
+
+(async () => {
+
+const { data } = await supabase.auth.getUser();
+
+if(!data.user){
+window.location.href = "admin.html";
+}
+
+})();
+
+
+  
 /* 🔥 EDGE FUNCTIONS */
 const LIST_URL   = "https://hhubssfupghziafmdgtn.supabase.co/functions/v1/admin-list";
 const UPDATE_URL = "https://hhubssfupghziafmdgtn.supabase.co/functions/v1/update-status";
@@ -101,7 +119,7 @@ const res = await fetch(LIST_URL,{
 const data = await res.json();
 const table = document.getElementById("requestsTable");
 
-data.forEach(r=>{
+data.forEach(n=>{
 
 let statusClass = "status-waiting";
 if(r.status === "In Progress"){statusClass = "status-progress";}
@@ -110,10 +128,10 @@ if(r.status === "Ready"){statusClass = "status-ready";}
 
 const row = table.insertRow();
 row.innerHTML = `
-<td>${r.id}</td>
-<td>${r.name}</td>
-<td>${r.user_email}</td>
-<td>${r.vehicle}</td>
+<td>${n.id}</td>
+<td>${n.name}</td>
+<td>${n.user_email}</td>
+<td>${n.vehicle}</td>
 <td><span class="status-badge ${statusClass}">${r.status}</span></td>
 <td>
 <button class="wait" onclick="updateStatus('${r.id}','Waiting')">Waiting</button>
