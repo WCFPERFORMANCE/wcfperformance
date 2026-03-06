@@ -338,6 +338,12 @@ const fileName = vehicle + "_" + ecu + "_" + solution + "_" + Date.now() + "_" +
 const { error } = await client.storage
 .from("ecu-files")
 .upload(fileName, file);
+
+if (error) {
+alert("Upload failed");
+return;
+}
+  
 await client.from("ecu_requests").insert({
 name: document.getElementById("name").value,
 email: document.getElementById("email").value,
@@ -348,26 +354,28 @@ file: fileName
 });
   
 progressBar.style.width = "100%";
-  
-alert("✅ File uploaded successfully. We will contact you shortly."); 
 
 const name = document.getElementById("name").value;
 const email = document.getElementById("email").value;
 
 const message =
-"NEW ECU FILE REQUEST%0A%0A" +
-"Name: " + name + "%0A" +
-"Email: " + email + "%0A" +
-"Vehicle: " + vehicle + "%0A" +
-"ECU: " + ecu + "%0A" +
-"Solution: " + solution;
+"🚗 NEW ECU FILE REQUEST%0A%0A" +
+"👤 Name: " + name + "%0A" +
+"📧 Email: " + email + "%0A" +
+"🚘 Vehicle: " + vehicle + "%0A" +
+"🧠 ECU: " + ecu + "%0A" +
+"⚙️ Solution: " + solution + "%0A" +
+"📁 File: " + fileName + "%0A" +
+"🕒 Date: " + new Date().toLocaleString();
 
 window.open(
 "https://wa.me/33664784160?text=" + message,
 "_blank"
 );
-
   
+alert("✅ File uploaded successfully. We will contact you shortly."); 
+
+
 clearInterval(fakeProgress);
 
 if (error) {
