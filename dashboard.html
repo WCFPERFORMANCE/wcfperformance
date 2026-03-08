@@ -141,10 +141,14 @@ let ready = 0;
 const { data, error } = await supabaseClient
 .from("ecu_requests")
 .select("*")
-.order("created_at",{ascending:false});
 
 console.log(data);
 console.log(error);
+
+if(error){
+  console.log(error);
+  return;
+}
   
 const table = document.getElementById("requestsTable");
 
