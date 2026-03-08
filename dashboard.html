@@ -75,7 +75,8 @@ Ready : <span id="countReady">0</span>
 <th>Client</th>
 <th>Email</th>
 <th>Vehicle</th>
-<th>File</th>
+<th>Original File</th>
+<th>Modified File</th>
 <th>Status</th>
 <th>Actions</th>
 </tr>
@@ -165,6 +166,7 @@ row.innerHTML = `
 <td>${n.user_email}</td>
 <td>${n.vehicle}</td>
 <td><a href="${n.file}" target="_blank">Download</a></td>
+<td><a href="${n.modified_file || '#'}" target="_blank">Modified</a></td>
 <td><span class="status-badge ${statusClass}">${n.status}</span></td>
 <td>
 <button class="wait" onclick="updateStatus('${n.id}','Waiting')">Waiting</button>
