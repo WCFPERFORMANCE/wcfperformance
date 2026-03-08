@@ -94,16 +94,6 @@ const supabase = window.supabase.createClient(
 SUPABASE_URL,
 ANON_KEY
 );
-
-(async () => {
-
-const { data } = await supabase.auth.getUser();
-
-if(!data.user){
-window.location.href = "admin.html";
-}
-
-})();
   
 /* 🔥 EDGE FUNCTIONS */
 const LIST_URL   = "https://hhubssfupghziafmdgtn.supabase.co/functions/v1/admin-list";
