@@ -87,7 +87,7 @@ Ready : <span id="countReady">0</span>
 const SUPABASE_URL = "https://hhubssfupghziafmdgtn.supabase.co";
 const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhodWJzc2Z1cGdoemlhZm1kZ3RuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNDE4MzUsImV4cCI6MjA4NzcxNzgzNX0.JFbcLof107qPIYRrC2bM07YD441BFuw56sKWuLw6Pcg";
 
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
 SUPABASE_URL,
 ANON_KEY
 );
@@ -108,7 +108,7 @@ let waiting = 0;
 let progress = 0;
 let ready = 0;
 
-const { data } = await supabase
+const { data } = await supabaseClient
 .from("ecu_requests")
 .select("*")
 .order("id",{ascending:false});
