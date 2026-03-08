@@ -108,7 +108,7 @@ let waiting = 0;
 let progress = 0;
 let ready = 0;
 
-const { data } = await supabaseClient
+const { data, error } = await supabaseClient
 .from("ecu_requests")
 .select("*")
 .order("id",{ascending:false});
