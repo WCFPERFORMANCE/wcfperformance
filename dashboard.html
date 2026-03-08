@@ -141,7 +141,7 @@ let ready = 0;
 const { data, error } = await supabaseClient
 .from("ecu_requests")
 .select("*")
-.order("id",{ascending:false});
+.order("created_at",{ascending:false});
 
 console.log(data);
 console.log(error);
