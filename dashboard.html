@@ -99,10 +99,38 @@ const UPLOAD_URL = "https://hhubssfupghziafmdgtn.supabase.co/functions/v1/upload
 
 loadRequests();
 
+supabaseClient
+.channel('requests_changes')
+.on(
+  'postgres_changes',
+  { event: '*', schema: 'public', table: 'requests' },
+  (payload) => {
+
+    console.log('Change detected!', payload);
+
+    // reset tableau
+    document.getElementById("requestsTable").innerHTML = `
+<tr>
+<th>Reference ID</th>
+<th>Client</th>
+<th>Email</th>
+<th>Vehicle</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+`;
+
+    loadRequests();
+  }
+)
+.subscribe();
+
 /* ========================= */
 /* LOAD REQUESTS */
 /* ========================= */
 async function loadRequests(){
+
+
   
 let waiting = 0;
 let progress = 0;
