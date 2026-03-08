@@ -139,7 +139,7 @@ let progress = 0;
 let ready = 0;
 
 const { data, error } = await supabaseClient
-.from("ecu_requests")
+.from("public.ecu_requests")
 .select("*")
 
 console.log(data);
