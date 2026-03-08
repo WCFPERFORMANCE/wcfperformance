@@ -139,7 +139,7 @@ let progress = 0;
 let ready = 0;
 
 const { data, error } = await supabaseClient
-.from("requests")
+.from("ecu_requests")
 .select("*")
 .order("id",{ascending:false});
 
