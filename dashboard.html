@@ -117,14 +117,12 @@ let waiting = 0;
 let progress = 0;
 let ready = 0;
 
-const res = await fetch(LIST_URL,{
-  headers:{
-    "apikey": ANON_KEY,
-    "Authorization":"Bearer " + ANON_KEY
-  }
-});
+const { data } = await supabase
+.from("ecu_requests")
+.select("*")
+.order("id",{ascending:false});
 
-const data = await res.json();
+  
 const table = document.getElementById("requestsTable");
 
 data.forEach(n=>{
