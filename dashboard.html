@@ -94,7 +94,13 @@ SUPABASE_URL,
 ANON_KEY
 );
 
-setInterval(loadRequests, 3000);
+window.onload = () => {
+
+  loadRequests();
+
+  setInterval(loadRequests, 3000);
+
+};
   
 /* 🔥 EDGE FUNCTIONS */
 const LIST_URL   = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/admin-list";
