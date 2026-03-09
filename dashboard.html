@@ -186,9 +186,9 @@ const w = document.getElementById("countWaiting");
 const p = document.getElementById("countProgress");
 const r = document.getElementById("countReady");
 
-if (w) w.innerText = waiting;
-if (p) p.innerText = progress;
-if (r) r.innerText = ready;
+if(w) w.textContent = waiting || 0;
+if(p) p.textContent = progress || 0;
+if(r) r.textContent = ready || 0;
 }
 
 /* ========================= */
