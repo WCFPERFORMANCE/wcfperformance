@@ -177,13 +177,13 @@ row.innerHTML = `
 <td>${n.email}</td>
 <td>${n.vehicle}</td>
 <td><button onclick="downloadFile('${n.file}')">Download</button></td>
-<td>-</td>
+<td><a href="${n.modified_file || '#'}" target="_blank">Download</a></td>
 <td><span class="status-badge ${statusClass}">${n.status}</span></td>
 <td>
-<button class="wait" onclick="updateStatus('${n.id}','Waiting')">Waiting</button>
-<button class="progress" onclick="updateStatus('${n.id}','In Progress')">Processing</button>
-<button class="payment" onclick="updateStatus('${n.id}','Payment')">Payment</button>
-<button class="ready" onclick="triggerUpload('${n.id}')">Upload & Ready</button>
+<button class="wait" onclick="updateStatus(${n.id}, 'Waiting')">Waiting</button>
+<button class="progress" onclick="updateStatus(${n.id}, 'In Progress')">Processing</button>
+<button class="payment" onclick="updateStatus(${n.id}, 'Payment')">Payment</button>
+<button class="ready" onclick="triggerUpload(${n.id})">Upload & Ready</button>
 </td>
 `;
 
