@@ -105,7 +105,7 @@ supabaseClient
 .channel('requests_changes')
 .on(
   'postgres_changes',
-  { event: '*', schema: 'public', table: 'requests' },
+  { event: '*', schema: 'public', table: 'ecu_requests' },
   (payload) => {
 
     console.log('Change detected!', payload);
