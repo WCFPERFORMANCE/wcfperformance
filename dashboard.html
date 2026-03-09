@@ -151,16 +151,19 @@ data.forEach(n=>{
   
 console.log("STATUS =", n.status);
 
-if(n.status && n.status.toLowerCase() === "waiting"){waiting++;}
-if(n.status && (n.status.toLowerCase() === "in progress" || n.status.toLowerCase() === "payment")){progress++;}
-if(n.status && n.status.toLowerCase() === "ready"){ready++;}
+const status = (n.status || "").toLowerCase();
+
+if(status === "waiting") waiting++;
+if(status === "in progress" || status === "payment") progress++;
+if(status === "ready") ready++;}
 
 let statusClass = "status-waiting";
+const status = (n.status || "").toLowerCase();
   
-if(n.status === "Waiting"){statusClass = "status-waiting";}
-if(n.status === "In Progress"){statusClass = "status-progress";}
-if(n.status === "Payment"){statusClass = "status-payment";}
-if(n.status === "Ready"){statusClass = "status-ready";}
+if(status === "waiting") statusClass = "status-waiting";
+if(status === "in progress") statusClass = "status-progress";
+if(status === "payment") statusClass = "status-payment";
+if(status === "ready") statusClass = "status-ready";
 
 const row = table.insertRow();
   
