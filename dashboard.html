@@ -153,9 +153,9 @@ console.log("STATUS =", n.status);
 
 const status = (n.status || "").toLowerCase();
 
-if(status === "waiting") waiting++;
-if(status === "in progress" || status === "payment") progress++;
-if(status === "ready") ready++;
+if(status === "waiting") waiting += 1;
+if(status === "in progress" || status === "payment") progress += 1;
+if(status === "ready") ready += 1;
 
 let statusClass = "status-waiting";
   
