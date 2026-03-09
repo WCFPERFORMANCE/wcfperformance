@@ -116,7 +116,7 @@ let ready = 0;
 
 const { data, error } = await supabaseClient
 .from("ecu_requests")
-.select("*")
+.select("*").order("created_at", { ascending: false })
 
 console.log(data);
 console.log(error);
@@ -159,6 +159,9 @@ row.innerHTML = `
 </td>
 `;
 });
+document.getElementById("waitingCount").innerText = waiting;
+document.getElementById("processingCount").innerText = progress;
+document.getElementById("readyCount").innerText = ready;
 }
 
 /* ========================= */
