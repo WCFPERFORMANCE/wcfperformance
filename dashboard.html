@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-  
+
 body{
 background:#0b0b0b;
 color:white;
@@ -18,23 +18,28 @@ font-family:Inter,Arial;
 margin:0;
 padding:40px;
 }
+
 h1{
 font-family:Orbitron;
 margin-bottom:30px;
 }
+
 table{
 width:100%;
 border-collapse:collapse;
 }
+
 th,td{
 padding:12px;
 border-bottom:1px solid #222;
 text-align:left;
 }
+
 th{
 color:#888;
 font-weight:500;
 }
+
 button{
 padding:6px 10px;
 margin-right:5px;
@@ -43,26 +48,30 @@ border-radius:6px;
 cursor:pointer;
 font-size:12px;
 }
+
 .wait{background:#444;color:white;}
 .progress{background:#007bff;color:white;}
 .payment{background:#ff9900;color:white;}
 .ready{background:#00cc66;color:white;}
+
 .status-badge{
 padding:4px 8px;
 border-radius:20px;
 font-size:12px;
 }
+
 .status-waiting{background:#555;}
 .status-progress{background:#007bff;}
 .status-payment{background:#ff9900;}
 .status-ready{background:#00cc66;}
+
 </style>
 </head>
 
 <body>
 
 <h1>WCF Admin Dashboard</h1>
-  
+
 <div style="margin-bottom:20px;font-size:18px">
 Waiting : <span id="countWaiting">0</span> |
 Processing : <span id="countProgress">0</span> |
@@ -82,10 +91,10 @@ Ready : <span id="countReady">0</span>
 </tr>
 </table>
 
-  
 <script>
 
-/* 🔥 NOUVEAU PROJET */
+/* SUPABASE */
+
 const SUPABASE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co";
 const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqaGZwZG1idXB6bndja3J2Y3N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3MDU3NzQsImV4cCI6MjA4NzI4MTc3NH0.JFjuVEV7bMzC3qXeQbFHkUA_YIZFkM16NBkrqdG5yXY";
 
@@ -94,46 +103,44 @@ SUPABASE_URL,
 ANON_KEY
 );
 
-window.onload = () => {
+/* EDGE FUNCTIONS */
 
-  loadRequests();
-
-  setInterval(loadRequests, 3000);
-
-};
-  
-/* 🔥 EDGE FUNCTIONS */
 const LIST_URL   = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/admin-list";
 const UPDATE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/update-status";
 const UPLOAD_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/upload-modified";
 
+/* AUTO REFRESH */
 
-/* ========================= */
+window.onload = () => {
+
+loadRequests();
+
+setInterval(loadRequests,3000);
+
+};
+
 /* LOAD REQUESTS */
-/* ========================= */
+
 async function loadRequests(){
-  
+
 let waiting = 0;
 let progress = 0;
 let ready = 0;
 
-
 const { data, error } = await supabaseClient
 .from("ecu_requests")
-.select("id,name,email,vehicle,ecu,solution,file,created_at,status")
-.order("created_at", { ascending: false })
-
-console.log(data);
-console.log(error);
+.select("id,name,email,vehicle,file,modified_file,status,created_at")
+.order("created_at",{ascending:false})
 
 if(error){
-  console.log(error);
-  return;
+console.log(error);
+return;
 }
-  if(!data) return;
-  
+
+if(!data) return;
+
 const table = document.getElementById("requestsTable");
-  
+
 table.innerHTML = `
 <tr>
 <th>Reference ID</th>
@@ -148,24 +155,22 @@ table.innerHTML = `
 `;
 
 data.forEach(n=>{
-  
-console.log("STATUS =", n.status);
 
 const status = (n.status || "").toLowerCase();
 
-if(status === "waiting") waiting += 1;
-if(status === "in progress" || status === "payment") progress += 1;
-if(status === "ready") ready += 1;
+if(status==="waiting") waiting++;
+if(status==="in progress" || status==="payment") progress++;
+if(status==="ready") ready++;
 
-let statusClass = "status-waiting";
-  
-if(status === "waiting") statusClass = "status-waiting";
-if(status === "in progress") statusClass = "status-progress";
-if(status === "payment") statusClass = "status-payment";
-if(status === "ready") statusClass = "status-ready";
+let statusClass="status-waiting";
+
+if(status==="waiting") statusClass="status-waiting";
+if(status==="in progress") statusClass="status-progress";
+if(status==="payment") statusClass="status-payment";
+if(status==="ready") statusClass="status-ready";
 
 const row = table.insertRow();
-  
+
 row.innerHTML = `
 <td>${n.id}</td>
 <td>${n.name}</td>
@@ -181,15 +186,19 @@ row.innerHTML = `
 <button class="ready" onclick="triggerUpload('${n.id}')">Upload & Ready</button>
 </td>
 `;
+
 });
+
+/* COUNTERS */
+
 document.getElementById("countWaiting").textContent = waiting;
 document.getElementById("countProgress").textContent = progress;
 document.getElementById("countReady").textContent = ready;
-  
 
-/* ========================= */
+}
+
 /* UPDATE STATUS */
-/* ========================= */
+
 async function updateStatus(id,status){
 
 await fetch(UPDATE_URL,{
@@ -197,75 +206,85 @@ method:"POST",
 headers:{
 "Content-Type":"application/json",
 "apikey":ANON_KEY,
-"Authorization":"Bearer " + ANON_KEY
+"Authorization":"Bearer "+ANON_KEY
 },
 body:JSON.stringify({id,status})
 });
 
-location.reload();
+loadRequests();
+
 }
 
-/* ========================= */
-/* UPLOAD MODIFIED FILE */
-/* ========================= */
+/* UPLOAD FILE */
+
 async function triggerUpload(id){
 
-const fileInput = document.createElement("input");
-fileInput.type = "file";
+const fileInput=document.createElement("input");
+fileInput.type="file";
 
-fileInput.onchange = async function(){
+fileInput.onchange=async function(){
 
-const file = fileInput.files[0];
+const file=fileInput.files[0];
 if(!file) return;
 
-const formData = new FormData();
-formData.append("file", file);
-formData.append("id", id);
+const formData=new FormData();
+formData.append("file",file);
+formData.append("id",id);
 
-try {
+try{
 
-const res = await fetch(UPLOAD_URL,{
+const res=await fetch(UPLOAD_URL,{
 method:"POST",
 headers:{
-"apikey": ANON_KEY,
-"Authorization":"Bearer " + ANON_KEY
+"apikey":ANON_KEY,
+"Authorization":"Bearer "+ANON_KEY
 },
 body:formData
 });
 
-const data = await res.json();
+const data=await res.json();
 
 if(data.success){
+
 alert("Upload successful ✅");
-location.reload();
+loadRequests();
+
 }else{
-alert("Upload failed ❌\n\n" + JSON.stringify(data));
+
+alert("Upload failed ❌");
+
 }
 
-} catch(err){
-console.error(err);
-alert("Network error ❌");
+}catch(err){
+
+console.log(err);
+alert("Network error");
+
 }
 
 };
 
 fileInput.click();
+
 }
 
-async function downloadFile(fileName) {
+/* DOWNLOAD FILE */
 
-const { data, error } = await supabaseClient
+async function downloadFile(fileName){
+
+const {data,error}=await supabaseClient
 .storage
-.from('ecu-files')
-.createSignedUrl(fileName, 60)
+.from("ecu-files")
+.createSignedUrl(fileName,60)
 
 if(error){
-console.log(error)
-alert("Download error")
-return
+
+alert("Download error");
+return;
+
 }
 
-window.open(data.signedUrl, "_blank")
+window.open(data.signedUrl,"_blank");
 
 }
 
