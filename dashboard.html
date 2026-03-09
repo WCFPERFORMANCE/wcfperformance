@@ -117,6 +117,8 @@ let waiting = 0;
 let progress = 0;
 let ready = 0;
 
+if(!data) return;
+
 const { data, error } = await supabaseClient
 .from("ecu_requests")
 .select("id,name,email,vehicle,ecu,solution,file,created_at,status")
@@ -146,10 +148,12 @@ table.innerHTML = `
 `;
 
 data.forEach(n=>{
+  
+console.log("STATUS =", n.status);
 
-if(n.status === "Waiting"){waiting++;}
-if(n.status === "In Progress" || n.status === "Payment"){progress++;}
-if(n.status === "Ready"){ready++;}
+if(n.status && n.status.toLowerCase() === "waiting"){waiting++;}
+if(n.status && (n.status.toLowerCase() === "in progress" || n.status.toLowerCase() === "payment")){progress++;}
+if(n.status && n.status.toLowerCase() === "ready"){ready++;}
 
 let statusClass = "status-waiting";
   
