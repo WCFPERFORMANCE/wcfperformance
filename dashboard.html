@@ -164,9 +164,13 @@ row.innerHTML = `
 </td>
 `;
 });
-document.getElementById("countWaiting").innerText = waiting;
-document.getElementById("countProgress").innerText = progress;
-document.getElementById("countReady").innerText = ready;
+const w = document.getElementById("countWaiting");
+const p = document.getElementById("countProgress");
+const r = document.getElementById("countReady");
+
+if (w) w.innerText = waiting;
+if (p) p.innerText = progress;
+if (r) r.innerText = ready;
 }
 
 /* ========================= */
