@@ -158,7 +158,6 @@ if(status === "in progress" || status === "payment") progress++;
 if(status === "ready") ready++;}
 
 let statusClass = "status-waiting";
-const status = (n.status || "").toLowerCase();
   
 if(status === "waiting") statusClass = "status-waiting";
 if(status === "in progress") statusClass = "status-progress";
