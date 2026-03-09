@@ -101,7 +101,7 @@ const UPLOAD_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/upload
 
 
 supabaseClient
-.channel('requests_changes')
+.channel('ecu_requests_changes')
 .on(
   'postgres_changes',
   { event: '*', schema: 'public', table: 'ecu_requests' },
