@@ -95,38 +95,13 @@ ANON_KEY
 );
 
 loadRequests();
+setInterval(loadRequests, 3000);
   
 /* 🔥 EDGE FUNCTIONS */
 const LIST_URL   = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/admin-list";
 const UPDATE_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/update-status";
 const UPLOAD_URL = "https://rjhfpdmbupznwckrvcsv.supabase.co/functions/v1/upload-modified";
 
-
-supabaseClient
-.channel('ecu_requests_changes')
-.on(
-  'postgres_changes',
-  { event: '*', schema: 'public', table: 'ecu_requests' },
-  (payload) => {
-
-    console.log('Change detected!', payload);
-
-    // reset tableau
-    document.getElementById("requestsTable").innerHTML = `
-<tr>
-<th>Reference ID</th>
-<th>Client</th>
-<th>Email</th>
-<th>Vehicle</th>
-<th>Status</th>
-<th>Actions</th>
-</tr>
-`;
-
-    loadRequests();
-  }
-)
-.subscribe();
 
 /* ========================= */
 /* LOAD REQUESTS */
