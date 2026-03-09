@@ -129,7 +129,7 @@ let ready = 0;
 
 const { data, error } = await supabaseClient
 .from("ecu_requests")
-.select("id,name,email,vehicle,file,modified_file,status,created_at")
+.select("id,name,email,vehicle,ecu,solution,file,created_at,status")
 .order("created_at",{ascending:false})
 
 if(error){
@@ -177,7 +177,7 @@ row.innerHTML = `
 <td>${n.email}</td>
 <td>${n.vehicle}</td>
 <td><button onclick="downloadFile('${n.file}')">Download</button></td>
-<td><a href="${n.modified_file || '#'}" target="_blank">Modified</a></td>
+<td>-</td>
 <td><span class="status-badge ${statusClass}">${n.status}</span></td>
 <td>
 <button class="wait" onclick="updateStatus('${n.id}','Waiting')">Waiting</button>
