@@ -182,14 +182,10 @@ row.innerHTML = `
 </td>
 `;
 });
-const w = document.getElementById("countWaiting");
-const p = document.getElementById("countProgress");
-const r = document.getElementById("countReady");
-
-if(w) w.textContent = waiting || 0;
-if(p) p.textContent = progress || 0;
-if(r) r.textContent = ready || 0;
-}
+document.getElementById("countWaiting").textContent = waiting;
+document.getElementById("countProgress").textContent = progress;
+document.getElementById("countReady").textContent = ready;
+  
 
 /* ========================= */
 /* UPDATE STATUS */
