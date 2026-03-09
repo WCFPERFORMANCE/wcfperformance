@@ -119,7 +119,8 @@ let ready = 0;
 
 const { data, error } = await supabaseClient
 .from("ecu_requests")
-.select("*").order("created_at", { ascending: false })
+.select("id,name,email,vehicle,ecu,solution,file,created_at,status")
+.order("created_at", { ascending: false })
 
 console.log(data);
 console.log(error);
