@@ -132,7 +132,18 @@ if(error){
   
 const table = document.getElementById("requestsTable");
   
-table.innerHTML = "" ;
+table.innerHTML = `
+<tr>
+<th>Reference ID</th>
+<th>Client</th>
+<th>Email</th>
+<th>Vehicle</th>
+<th>Original File</th>
+<th>Modified File</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+`;
 
 data.forEach(n=>{
 
