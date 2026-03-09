@@ -179,7 +179,7 @@ row.innerHTML = `
 <td><button onclick="downloadFile('${n.file}')">Download</button></td>
 <td>
 ${n.modified_file 
-? <a href="${n.modified_file}" target="_blank">Download</a> 
+? `<a href="${n.modified_file}" target="_blank">Download</a>` 
 : '-'}
 </td>
 <td><span class="status-badge ${statusClass}">${n.status}</span></td>
